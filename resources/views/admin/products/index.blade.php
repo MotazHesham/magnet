@@ -53,7 +53,10 @@
                         {{ trans('cruds.product.fields.main_photo') }}
                     </th>
                     <th>
-                        {{ trans('cruds.product.fields.price') }}
+                        {{ trans('cruds.product.fields.purchase_price') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.product.fields.unit_price') }}
                     </th>
                     <th>
                         {{ trans('cruds.product.fields.current_stock') }}
@@ -129,7 +132,8 @@
 { data: 'approved', name: 'approved' },
 { data: 'published', name: 'published' },
 { data: 'main_photo', name: 'main_photo', sortable: false, searchable: false },
-{ data: 'price', name: 'price' },
+{ data: 'purchase_price', name: 'purchase_price' },
+{ data: 'unit_price', name: 'unit_price' },
 { data: 'current_stock', name: 'current_stock' },
 { data: 'num_of_sale', name: 'num_of_sale' },
 { data: 'rating', name: 'rating' },

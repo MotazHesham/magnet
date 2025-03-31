@@ -64,8 +64,8 @@ class OrderDetailsController extends Controller
             $table->editColumn('note', function ($row) {
                 return $row->note ? $row->note : '';
             });
-            $table->editColumn('variant', function ($row) {
-                return $row->variant ? $row->variant : '';
+            $table->editColumn('variation', function ($row) {
+                return $row->variation ? $row->variation : '';
             });
             $table->editColumn('quantity', function ($row) {
                 return $row->quantity ? $row->quantity : '';

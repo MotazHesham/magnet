@@ -58,7 +58,7 @@ class SpecialOrder extends Model implements HasMedia
         'store_id',
         'color',
         'category_id',
-        'variants',
+        'variations',
         'description',
         'delivery_status',
         'offer_price_status',

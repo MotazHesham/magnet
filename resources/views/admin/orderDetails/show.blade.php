@@ -65,10 +65,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.orderDetail.fields.variant') }}
+                            {{ trans('cruds.orderDetail.fields.variation') }}
                         </th>
                         <td>
-                            {{ $orderDetail->variant }}
+                            {{ $orderDetail->variation }}
                         </td>
                     </tr>
                     <tr>

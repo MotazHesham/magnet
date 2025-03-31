@@ -48,6 +48,8 @@ class Store extends Model implements HasMedia
         'tax_number',
         'rating',
         'admin_to_pay',
+        'latitude',
+        'longitude',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -69,14 +71,24 @@ class Store extends Model implements HasMedia
         return $this->hasMany(Order::class, 'store_id', 'id');
     }
 
-    public function storeStoreReviews()
-    {
-        return $this->hasMany(StoreReview::class, 'store_id', 'id');
-    }
-
     public function storeSpecialOrders()
     {
         return $this->hasMany(SpecialOrder::class, 'store_id', 'id');
+    }
+
+    public function storeStoreWithdrawRequests()
+    {
+        return $this->hasMany(StoreWithdrawRequest::class, 'store_id', 'id');
+    }
+
+    public function storeCommissionHistories()
+    {
+        return $this->hasMany(CommissionHistory::class, 'store_id', 'id');
+    }
+
+    public function storeStoreCities()
+    {
+        return $this->hasMany(StoreCity::class, 'store_id', 'id');
     }
 
     public function user()

@@ -10,20 +10,6 @@
         <form method="POST" action="{{ route("admin.orders.store") }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="combined_order_id">{{ trans('cruds.order.fields.combined_order') }}</label>
-                <select class="form-control select2 {{ $errors->has('combined_order') ? 'is-invalid' : '' }}" name="combined_order_id" id="combined_order_id">
-                    @foreach($combined_orders as $id => $entry)
-                        <option value="{{ $id }}" {{ old('combined_order_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('combined_order'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('combined_order') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.order.fields.combined_order_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="order_num">{{ trans('cruds.order.fields.order_num') }}</label>
                 <input class="form-control {{ $errors->has('order_num') ? 'is-invalid' : '' }}" type="text" name="order_num" id="order_num" value="{{ old('order_num', '') }}">
                 @if($errors->has('order_num'))
@@ -60,18 +46,6 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.order.fields.store_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <div class="form-check {{ $errors->has('store_approval') ? 'is-invalid' : '' }}">
-                    <input class="form-check-input" type="checkbox" name="store_approval" id="store_approval" value="1" required {{ old('store_approval', 0) == 1 ? 'checked' : '' }}>
-                    <label class="required form-check-label" for="store_approval">{{ trans('cruds.order.fields.store_approval') }}</label>
-                </div>
-                @if($errors->has('store_approval'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('store_approval') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.order.fields.store_approval_helper') }}</span>
             </div>
             <div class="form-group">
                 <label>{{ trans('cruds.order.fields.delivery_status') }}</label>
@@ -152,6 +126,16 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.order.fields.coupon_discount_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="shipping_cost">{{ trans('cruds.order.fields.shipping_cost') }}</label>
+                <input class="form-control {{ $errors->has('shipping_cost') ? 'is-invalid' : '' }}" type="number" name="shipping_cost" id="shipping_cost" value="{{ old('shipping_cost', '') }}" step="0.01" required>
+                @if($errors->has('shipping_cost'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('shipping_cost') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.order.fields.shipping_cost_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="total">{{ trans('cruds.order.fields.total') }}</label>

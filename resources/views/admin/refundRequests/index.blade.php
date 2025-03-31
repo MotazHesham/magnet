@@ -31,9 +31,6 @@
                         {{ trans('cruds.refundRequest.fields.store') }}
                     </th>
                     <th>
-                        {{ trans('cruds.refundRequest.fields.reason') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.refundRequest.fields.refund_amount') }}
                     </th>
                     <th>
@@ -41,15 +38,6 @@
                     </th>
                     <th>
                         {{ trans('cruds.refundRequest.fields.admin_approval') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.refundRequest.fields.reject_reason') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.refundRequest.fields.invoice_photo') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.refundRequest.fields.product_photo') }}
                     </th>
                     <th>
                         {{ trans('cruds.refundRequest.fields.refund_status') }}
@@ -113,13 +101,9 @@
 { data: 'id', name: 'id' },
 { data: 'user_name', name: 'user.name' },
 { data: 'store_store_name', name: 'store.store_name' },
-{ data: 'reason', name: 'reason' },
 { data: 'refund_amount', name: 'refund_amount' },
 { data: 'store_approval', name: 'store_approval' },
 { data: 'admin_approval', name: 'admin_approval' },
-{ data: 'reject_reason', name: 'reject_reason' },
-{ data: 'invoice_photo', name: 'invoice_photo', sortable: false, searchable: false },
-{ data: 'product_photo', name: 'product_photo', sortable: false, searchable: false },
 { data: 'refund_status', name: 'refund_status' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],

@@ -25,9 +25,6 @@
                             {{ trans('cruds.order.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.order.fields.combined_order') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.order.fields.order_num') }}
                         </th>
                         <th>
@@ -35,9 +32,6 @@
                         </th>
                         <th>
                             {{ trans('cruds.order.fields.store') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.order.fields.store_approval') }}
                         </th>
                         <th>
                             {{ trans('cruds.order.fields.delivery_status') }}
@@ -58,6 +52,9 @@
                             {{ trans('cruds.order.fields.coupon_discount') }}
                         </th>
                         <th>
+                            {{ trans('cruds.order.fields.shipping_cost') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.order.fields.total') }}
                         </th>
                         <th>
@@ -75,9 +72,6 @@
                                 {{ $order->id ?? '' }}
                             </td>
                             <td>
-                                {{ $order->combined_order->order_num ?? '' }}
-                            </td>
-                            <td>
                                 {{ $order->order_num ?? '' }}
                             </td>
                             <td>
@@ -85,10 +79,6 @@
                             </td>
                             <td>
                                 {{ $order->store->store_name ?? '' }}
-                            </td>
-                            <td>
-                                <span style="display:none">{{ $order->store_approval ?? '' }}</span>
-                                <input type="checkbox" disabled="disabled" {{ $order->store_approval ? 'checked' : '' }}>
                             </td>
                             <td>
                                 {{ App\Models\Order::DELIVERY_STATUS_SELECT[$order->delivery_status] ?? '' }}
@@ -107,6 +97,9 @@
                             </td>
                             <td>
                                 {{ $order->coupon_discount ?? '' }}
+                            </td>
+                            <td>
+                                {{ $order->shipping_cost ?? '' }}
                             </td>
                             <td>
                                 {{ $order->total ?? '' }}

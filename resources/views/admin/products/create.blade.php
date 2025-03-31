@@ -170,49 +170,24 @@
                 <span class="help-block">{{ trans('cruds.product.fields.photos_helper') }}</span>
             </div>
             <div class="form-group">
-                <label>{{ trans('cruds.product.fields.video_provider') }}</label>
-                <select class="form-control {{ $errors->has('video_provider') ? 'is-invalid' : '' }}" name="video_provider" id="video_provider">
-                    <option value disabled {{ old('video_provider', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                    @foreach(App\Models\Product::VIDEO_PROVIDER_SELECT as $key => $label)
-                        <option value="{{ $key }}" {{ old('video_provider', '') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('video_provider'))
+                <label class="required" for="purchase_price">{{ trans('cruds.product.fields.purchase_price') }}</label>
+                <input class="form-control {{ $errors->has('purchase_price') ? 'is-invalid' : '' }}" type="number" name="purchase_price" id="purchase_price" value="{{ old('purchase_price', '') }}" step="0.01" required>
+                @if($errors->has('purchase_price'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('video_provider') }}
+                        {{ $errors->first('purchase_price') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.product.fields.video_provider_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.product.fields.purchase_price_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="video_link">{{ trans('cruds.product.fields.video_link') }}</label>
-                <input class="form-control {{ $errors->has('video_link') ? 'is-invalid' : '' }}" type="text" name="video_link" id="video_link" value="{{ old('video_link', '') }}">
-                @if($errors->has('video_link'))
+                <label class="required" for="unit_price">{{ trans('cruds.product.fields.unit_price') }}</label>
+                <input class="form-control {{ $errors->has('unit_price') ? 'is-invalid' : '' }}" type="number" name="unit_price" id="unit_price" value="{{ old('unit_price', '') }}" step="0.01" required>
+                @if($errors->has('unit_price'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('video_link') }}
+                        {{ $errors->first('unit_price') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.product.fields.video_link_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label class="required" for="price">{{ trans('cruds.product.fields.price') }}</label>
-                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="number" name="price" id="price" value="{{ old('price', '') }}" step="0.01" required>
-                @if($errors->has('price'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('price') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.product.fields.price_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="shipping_cost">{{ trans('cruds.product.fields.shipping_cost') }}</label>
-                <input class="form-control {{ $errors->has('shipping_cost') ? 'is-invalid' : '' }}" type="number" name="shipping_cost" id="shipping_cost" value="{{ old('shipping_cost', '') }}" step="0.01">
-                @if($errors->has('shipping_cost'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('shipping_cost') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.product.fields.shipping_cost_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.product.fields.unit_price_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="discount">{{ trans('cruds.product.fields.discount') }}</label>
@@ -258,16 +233,6 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.sku_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="est_shipping_days">{{ trans('cruds.product.fields.est_shipping_days') }}</label>
-                <input class="form-control {{ $errors->has('est_shipping_days') ? 'is-invalid' : '' }}" type="number" name="est_shipping_days" id="est_shipping_days" value="{{ old('est_shipping_days', '') }}" step="1">
-                @if($errors->has('est_shipping_days'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('est_shipping_days') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.product.fields.est_shipping_days_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="num_of_sale">{{ trans('cruds.product.fields.num_of_sale') }}</label>

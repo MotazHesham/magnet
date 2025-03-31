@@ -57,14 +57,17 @@ class CustomersController extends Controller
             $table->editColumn('user.phone', function ($row) {
                 return $row->user ? (is_string($row->user) ? $row->user : $row->user->phone) : '';
             });
-            $table->editColumn('balance', function ($row) {
-                return $row->balance ? $row->balance : '';
+            $table->editColumn('wallet_balance', function ($row) {
+                return $row->wallet_balance ? $row->wallet_balance : '';
             });
             $table->editColumn('points', function ($row) {
                 return $row->points ? $row->points : '';
             });
+            $table->editColumn('can_scratch', function ($row) {
+                return '<input type="checkbox" disabled ' . ($row->can_scratch ? 'checked' : null) . '>';
+            });
 
-            $table->rawColumns(['actions', 'placeholder', 'user']);
+            $table->rawColumns(['actions', 'placeholder', 'user', 'can_scratch']);
 
             return $table->make(true);
         }

@@ -36,6 +36,9 @@ class UpdateSpecialOrderRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'variations' => [
+                'required',
+            ],
             'delivery_status' => [
                 'required',
             ],

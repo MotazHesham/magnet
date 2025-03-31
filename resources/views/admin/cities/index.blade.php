@@ -31,6 +31,9 @@
                         {{ trans('cruds.city.fields.active') }}
                     </th>
                     <th>
+                        {{ trans('cruds.city.fields.shipping_cost') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.city.fields.districts') }}
                     </th>
                     <th>
@@ -92,6 +95,7 @@
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
 { data: 'active', name: 'active' },
+{ data: 'shipping_cost', name: 'shipping_cost' },
 { data: 'districts', name: 'districts.name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],

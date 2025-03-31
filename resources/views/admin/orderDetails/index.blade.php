@@ -40,7 +40,7 @@
                         {{ trans('cruds.orderDetail.fields.note') }}
                     </th>
                     <th>
-                        {{ trans('cruds.orderDetail.fields.variant') }}
+                        {{ trans('cruds.orderDetail.fields.variation') }}
                     </th>
                     <th>
                         {{ trans('cruds.orderDetail.fields.quantity') }}
@@ -110,7 +110,7 @@
 { data: 'product_name', name: 'product.name' },
 { data: 'price', name: 'price' },
 { data: 'note', name: 'note' },
-{ data: 'variant', name: 'variant' },
+{ data: 'variation', name: 'variation' },
 { data: 'quantity', name: 'quantity' },
 { data: 'earn_point', name: 'earn_point' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }

@@ -22,8 +22,9 @@ class Customer extends Model
 
     protected $fillable = [
         'user_id',
-        'balance',
+        'wallet_balance',
         'points',
+        'can_scratch',
         'created_at',
         'updated_at',
         'deleted_at',

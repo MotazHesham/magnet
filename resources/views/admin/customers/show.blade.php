@@ -33,10 +33,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.customer.fields.balance') }}
+                            {{ trans('cruds.customer.fields.wallet_balance') }}
                         </th>
                         <td>
-                            {{ $customer->balance }}
+                            {{ $customer->wallet_balance }}
                         </td>
                     </tr>
                     <tr>
@@ -45,6 +45,14 @@
                         </th>
                         <td>
                             {{ $customer->points }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.customer.fields.can_scratch') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $customer->can_scratch ? 'checked' : '' }}>
                         </td>
                     </tr>
                 </tbody>

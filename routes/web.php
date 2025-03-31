@@ -81,10 +81,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('carts/destroy', 'CartController@massDestroy')->name('carts.massDestroy');
     Route::resource('carts', 'CartController');
 
-    // Combined Orders
-    Route::delete('combined-orders/destroy', 'CombinedOrdersController@massDestroy')->name('combined-orders.massDestroy');
-    Route::resource('combined-orders', 'CombinedOrdersController');
-
     // Orders
     Route::delete('orders/destroy', 'OrdersController@massDestroy')->name('orders.massDestroy');
     Route::resource('orders', 'OrdersController');
@@ -102,10 +98,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Product Reviews
     Route::delete('product-reviews/destroy', 'ProductReviewsController@massDestroy')->name('product-reviews.massDestroy');
     Route::resource('product-reviews', 'ProductReviewsController');
-
-    // Store Reviews
-    Route::delete('store-reviews/destroy', 'StoreReviewsController@massDestroy')->name('store-reviews.massDestroy');
-    Route::resource('store-reviews', 'StoreReviewsController');
 
     // Popups
     Route::delete('popups/destroy', 'PopupsController@massDestroy')->name('popups.massDestroy');
@@ -195,13 +187,49 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('settings/ckmedia', 'SettingsController@storeCKEditorImages')->name('settings.storeCKEditorImages');
     Route::resource('settings', 'SettingsController');
 
-    // Notification Types
-    Route::delete('notification-types/destroy', 'NotificationTypesController@massDestroy')->name('notification-types.massDestroy');
-    Route::resource('notification-types', 'NotificationTypesController');
+    // Scratches
+    Route::delete('scratches/destroy', 'ScratchesController@massDestroy')->name('scratches.massDestroy');
+    Route::resource('scratches', 'ScratchesController');
+
+    // Customer Scratches
+    Route::delete('customer-scratches/destroy', 'CustomerScratchesController@massDestroy')->name('customer-scratches.massDestroy');
+    Route::resource('customer-scratches', 'CustomerScratchesController');
 
     // Notifications
     Route::delete('notifications/destroy', 'NotificationsController@massDestroy')->name('notifications.massDestroy');
     Route::resource('notifications', 'NotificationsController');
+
+    // Notification Types
+    Route::delete('notification-types/destroy', 'NotificationTypesController@massDestroy')->name('notification-types.massDestroy');
+    Route::resource('notification-types', 'NotificationTypesController');
+
+    // Store Withdraw Requests
+    Route::delete('store-withdraw-requests/destroy', 'StoreWithdrawRequestsController@massDestroy')->name('store-withdraw-requests.massDestroy');
+    Route::resource('store-withdraw-requests', 'StoreWithdrawRequestsController');
+
+    // Commission History
+    Route::resource('commission-histories', 'CommissionHistoryController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+
+    // Store Cities
+    Route::delete('store-cities/destroy', 'StoreCitiesController@massDestroy')->name('store-cities.massDestroy');
+    Route::resource('store-cities', 'StoreCitiesController');
+
+    // Email Templates
+    Route::delete('email-templates/destroy', 'EmailTemplatesController@massDestroy')->name('email-templates.massDestroy');
+    Route::post('email-templates/media', 'EmailTemplatesController@storeMedia')->name('email-templates.storeMedia');
+    Route::post('email-templates/ckmedia', 'EmailTemplatesController@storeCKEditorImages')->name('email-templates.storeCKEditorImages');
+    Route::resource('email-templates', 'EmailTemplatesController');
+
+    // Searches
+    Route::resource('searches', 'SearchesController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Otp Methods
+    Route::resource('otp-methods', 'OtpMethodsController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Sms Templates
+    Route::post('sms-templates/media', 'SmsTemplatesController@storeMedia')->name('sms-templates.storeMedia');
+    Route::post('sms-templates/ckmedia', 'SmsTemplatesController@storeCKEditorImages')->name('sms-templates.storeCKEditorImages');
+    Route::resource('sms-templates', 'SmsTemplatesController', ['except' => ['create', 'store', 'show', 'destroy']]);
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

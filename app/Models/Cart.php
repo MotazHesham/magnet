@@ -20,9 +20,9 @@ class Cart extends Model
     ];
 
     protected $fillable = [
-        'product_id',
         'user_id',
         'temp_user_uid',
+        'product_id',
         'store_id',
         'quantity',
         'note',
@@ -37,14 +37,14 @@ class Cart extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function product()
-    {
-        return $this->belongsTo(Product::class, 'product_id');
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     public function store()

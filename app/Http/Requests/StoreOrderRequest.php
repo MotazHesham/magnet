@@ -21,10 +21,10 @@ class StoreOrderRequest extends FormRequest
                 'string',
                 'nullable',
             ],
-            'store_approval' => [
+            'payment_status' => [
                 'required',
             ],
-            'payment_status' => [
+            'shipping_cost' => [
                 'required',
             ],
         ];

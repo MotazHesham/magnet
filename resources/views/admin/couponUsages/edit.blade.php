@@ -11,8 +11,8 @@
             @method('PUT')
             @csrf
             <div class="form-group">
-                <label for="coupon_id">{{ trans('cruds.couponUsage.fields.coupon') }}</label>
-                <select class="form-control select2 {{ $errors->has('coupon') ? 'is-invalid' : '' }}" name="coupon_id" id="coupon_id">
+                <label class="required" for="coupon_id">{{ trans('cruds.couponUsage.fields.coupon') }}</label>
+                <select class="form-control select2 {{ $errors->has('coupon') ? 'is-invalid' : '' }}" name="coupon_id" id="coupon_id" required>
                     @foreach($coupons as $id => $entry)
                         <option value="{{ $id }}" {{ (old('coupon_id') ? old('coupon_id') : $couponUsage->coupon->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                     @endforeach
@@ -25,8 +25,8 @@
                 <span class="help-block">{{ trans('cruds.couponUsage.fields.coupon_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="user_id">{{ trans('cruds.couponUsage.fields.user') }}</label>
-                <select class="form-control select2 {{ $errors->has('user') ? 'is-invalid' : '' }}" name="user_id" id="user_id">
+                <label class="required" for="user_id">{{ trans('cruds.couponUsage.fields.user') }}</label>
+                <select class="form-control select2 {{ $errors->has('user') ? 'is-invalid' : '' }}" name="user_id" id="user_id" required>
                     @foreach($users as $id => $entry)
                         <option value="{{ $id }}" {{ (old('user_id') ? old('user_id') : $couponUsage->user->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                     @endforeach
@@ -39,28 +39,28 @@
                 <span class="help-block">{{ trans('cruds.couponUsage.fields.user_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="discount">{{ trans('cruds.couponUsage.fields.discount') }}</label>
-                <input class="form-control {{ $errors->has('discount') ? 'is-invalid' : '' }}" type="number" name="discount" id="discount" value="{{ old('discount', $couponUsage->discount) }}" step="0.01">
+                <label class="required" for="order_id">{{ trans('cruds.couponUsage.fields.order') }}</label>
+                <select class="form-control select2 {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order_id" id="order_id" required>
+                    @foreach($orders as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('order_id') ? old('order_id') : $couponUsage->order->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('order'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('order') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.couponUsage.fields.order_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="discount">{{ trans('cruds.couponUsage.fields.discount') }}</label>
+                <input class="form-control {{ $errors->has('discount') ? 'is-invalid' : '' }}" type="number" name="discount" id="discount" value="{{ old('discount', $couponUsage->discount) }}" step="0.01" required>
                 @if($errors->has('discount'))
                     <div class="invalid-feedback">
                         {{ $errors->first('discount') }}
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.couponUsage.fields.discount_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="combined_order_id">{{ trans('cruds.couponUsage.fields.combined_order') }}</label>
-                <select class="form-control select2 {{ $errors->has('combined_order') ? 'is-invalid' : '' }}" name="combined_order_id" id="combined_order_id">
-                    @foreach($combined_orders as $id => $entry)
-                        <option value="{{ $id }}" {{ (old('combined_order_id') ? old('combined_order_id') : $couponUsage->combined_order->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('combined_order'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('combined_order') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.couponUsage.fields.combined_order_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

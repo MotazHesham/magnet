@@ -31,10 +31,10 @@
                         {{ trans('cruds.couponUsage.fields.user') }}
                     </th>
                     <th>
-                        {{ trans('cruds.couponUsage.fields.discount') }}
+                        {{ trans('cruds.couponUsage.fields.order') }}
                     </th>
                     <th>
-                        {{ trans('cruds.couponUsage.fields.combined_order') }}
+                        {{ trans('cruds.couponUsage.fields.discount') }}
                     </th>
                     <th>
                         &nbsp;
@@ -95,8 +95,8 @@
 { data: 'id', name: 'id' },
 { data: 'coupon_name', name: 'coupon.name' },
 { data: 'user_name', name: 'user.name' },
+{ data: 'order_order_num', name: 'order.order_num' },
 { data: 'discount', name: 'discount' },
-{ data: 'combined_order_order_num', name: 'combined_order.order_num' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

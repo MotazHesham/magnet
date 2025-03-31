@@ -52,7 +52,7 @@
                             {{ trans('cruds.refundRequest.fields.order_detail') }}
                         </th>
                         <td>
-                            {{ $refundRequest->order_detail->variant ?? '' }}
+                            {{ $refundRequest->order_detail->note ?? '' }}
                         </td>
                     </tr>
                     <tr>

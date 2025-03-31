@@ -21,6 +21,13 @@ class UpdateRefundRequestRequest extends FormRequest
                 'required',
                 'integer',
             ],
+            'store_id' => [
+                'required',
+                'integer',
+            ],
+            'refund_amount' => [
+                'required',
+            ],
         ];
     }
 }

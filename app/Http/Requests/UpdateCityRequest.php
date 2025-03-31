@@ -21,6 +21,9 @@ class UpdateCityRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'shipping_cost' => [
+                'required',
+            ],
             'districts.*' => [
                 'integer',
             ],

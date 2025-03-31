@@ -64,6 +64,9 @@
                         {{ trans('cruds.specialOrder.fields.total') }}
                     </th>
                     <th>
+                        {{ trans('cruds.specialOrder.fields.created_at') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -133,6 +136,7 @@
 { data: 'payment_status', name: 'payment_status' },
 { data: 'shipping_cost', name: 'shipping_cost' },
 { data: 'total', name: 'total' },
+{ data: 'created_at', name: 'created_at' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

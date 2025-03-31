@@ -37,11 +37,10 @@ class UpdateProductRequest extends FormRequest
             'photos' => [
                 'array',
             ],
-            'video_link' => [
-                'string',
-                'nullable',
+            'purchase_price' => [
+                'required',
             ],
-            'price' => [
+            'unit_price' => [
                 'required',
             ],
             'current_stock' => [
@@ -53,12 +52,6 @@ class UpdateProductRequest extends FormRequest
             'sku' => [
                 'string',
                 'nullable',
-            ],
-            'est_shipping_days' => [
-                'nullable',
-                'integer',
-                'min:-2147483648',
-                'max:2147483647',
             ],
             'num_of_sale' => [
                 'nullable',

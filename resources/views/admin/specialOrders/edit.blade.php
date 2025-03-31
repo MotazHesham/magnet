@@ -84,14 +84,14 @@
                 <span class="help-block">{{ trans('cruds.specialOrder.fields.category_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="variants">{{ trans('cruds.specialOrder.fields.variants') }}</label>
-                <textarea class="form-control {{ $errors->has('variants') ? 'is-invalid' : '' }}" name="variants" id="variants">{{ old('variants', $specialOrder->variants) }}</textarea>
-                @if($errors->has('variants'))
+                <label class="required" for="variations">{{ trans('cruds.specialOrder.fields.variations') }}</label>
+                <textarea class="form-control {{ $errors->has('variations') ? 'is-invalid' : '' }}" name="variations" id="variations" required>{{ old('variations', $specialOrder->variations) }}</textarea>
+                @if($errors->has('variations'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('variants') }}
+                        {{ $errors->first('variations') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.specialOrder.fields.variants_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.specialOrder.fields.variations_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="description">{{ trans('cruds.specialOrder.fields.description') }}</label>

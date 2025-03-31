@@ -34,21 +34,10 @@ class Order extends Model
         'un_paid' => 'لم يتم الدفع',
     ];
 
-    public const DELIVERY_STATUS_SELECT = [
-        'pending'     => 'قيد الانتظار',
-        'preparing'   => 'جاري التجهيز',
-        'prepared'    => 'تم التجهيز',
-        'on_delivery' => 'تم إرساله للشحن',
-        'delivered'   => 'تم التسليم',
-        'canceled'    => 'تم الإلغاء',
-    ];
-
     protected $fillable = [
-        'combined_order_id',
         'order_num',
         'user_id',
         'store_id',
-        'store_approval',
         'delivery_status',
         'payment_method',
         'payment_status',
@@ -56,10 +45,23 @@ class Order extends Model
         'shipping_address',
         'shipping_type',
         'coupon_discount',
+        'shipping_cost',
         'total',
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+
+    public const DELIVERY_STATUS_SELECT = [
+        'pending'              => 'قيد الانتظار',
+        'preparing'            => 'تم الدفع و جاري التجهيز',
+        'prepared'             => 'تم التجهيز',
+        'on_delivery'          => 'تم إرساله للشحن',
+        'delivered_from_store' => 'تم التسليم من المتجر',
+        'canceled_from_client' => 'تم الإلغاء',
+        'store_approved'       => 'تم الموافقة من المتجر',
+        'store_rejected'       => 'تم الرفض من المتجر',
+        'client_received'      => 'تم الإستلام',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -78,9 +80,9 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class, 'order_id', 'id');
     }
 
-    public function combined_order()
+    public function orderCouponUsages()
     {
-        return $this->belongsTo(CombinedOrder::class, 'combined_order_id');
+        return $this->hasMany(CouponUsage::class, 'order_id', 'id');
     }
 
     public function user()

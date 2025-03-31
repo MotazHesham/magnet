@@ -41,18 +41,18 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.couponUsage.fields.discount') }}
+                            {{ trans('cruds.couponUsage.fields.order') }}
                         </th>
                         <td>
-                            {{ $couponUsage->discount }}
+                            {{ $couponUsage->order->order_num ?? '' }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.couponUsage.fields.combined_order') }}
+                            {{ trans('cruds.couponUsage.fields.discount') }}
                         </th>
                         <td>
-                            {{ $couponUsage->combined_order->order_num ?? '' }}
+                            {{ $couponUsage->discount }}
                         </td>
                     </tr>
                 </tbody>

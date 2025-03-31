@@ -28,6 +28,8 @@ class Address extends Model
         'district_id',
         'address',
         'is_default',
+        'latitude',
+        'longitude',
         'created_at',
         'updated_at',
         'deleted_at',

@@ -50,6 +50,9 @@ class CitiesController extends Controller
             $table->editColumn('active', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->active ? 'checked' : null) . '>';
             });
+            $table->editColumn('shipping_cost', function ($row) {
+                return $row->shipping_cost ? $row->shipping_cost : '';
+            });
             $table->editColumn('districts', function ($row) {
                 $labels = [];
                 foreach ($row->districts as $district) {

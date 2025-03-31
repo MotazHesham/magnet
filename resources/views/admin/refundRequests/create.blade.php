@@ -66,8 +66,8 @@
                 <span class="help-block">{{ trans('cruds.refundRequest.fields.order_detail_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="store_id">{{ trans('cruds.refundRequest.fields.store') }}</label>
-                <select class="form-control select2 {{ $errors->has('store') ? 'is-invalid' : '' }}" name="store_id" id="store_id">
+                <label class="required" for="store_id">{{ trans('cruds.refundRequest.fields.store') }}</label>
+                <select class="form-control select2 {{ $errors->has('store') ? 'is-invalid' : '' }}" name="store_id" id="store_id" required>
                     @foreach($stores as $id => $entry)
                         <option value="{{ $id }}" {{ old('store_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                     @endforeach
@@ -90,8 +90,8 @@
                 <span class="help-block">{{ trans('cruds.refundRequest.fields.reason_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="refund_amount">{{ trans('cruds.refundRequest.fields.refund_amount') }}</label>
-                <input class="form-control {{ $errors->has('refund_amount') ? 'is-invalid' : '' }}" type="number" name="refund_amount" id="refund_amount" value="{{ old('refund_amount', '') }}" step="0.01">
+                <label class="required" for="refund_amount">{{ trans('cruds.refundRequest.fields.refund_amount') }}</label>
+                <input class="form-control {{ $errors->has('refund_amount') ? 'is-invalid' : '' }}" type="number" name="refund_amount" id="refund_amount" value="{{ old('refund_amount', '') }}" step="0.01" required>
                 @if($errors->has('refund_amount'))
                     <div class="invalid-feedback">
                         {{ $errors->first('refund_amount') }}

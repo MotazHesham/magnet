@@ -21,10 +21,6 @@ class StoreUserRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'email' => [
-                'required',
-                'unique:users',
-            ],
             'password' => [
                 'required',
             ],
@@ -37,8 +33,7 @@ class StoreUserRequest extends FormRequest
             ],
             'phone' => [
                 'string',
-                'required',
-                'unique:users',
+                'nullable',
             ],
         ];
     }
