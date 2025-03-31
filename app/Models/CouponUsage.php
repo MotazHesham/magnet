@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Auditable;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CouponUsage extends Model
 {
-    use SoftDeletes, HasFactory;
+    use SoftDeletes, Auditable, HasFactory;
 
     public $table = 'coupon_usages';
 
@@ -22,8 +23,8 @@ class CouponUsage extends Model
     protected $fillable = [
         'coupon_id',
         'user_id',
+        'order_id',
         'discount',
-        'combined_order_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -44,8 +45,8 @@ class CouponUsage extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function combined_order()
+    public function order()
     {
-        return $this->belongsTo(CombinedOrder::class, 'combined_order_id');
+        return $this->belongsTo(Order::class, 'order_id');
     }
 }

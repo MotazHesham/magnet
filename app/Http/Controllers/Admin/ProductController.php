@@ -90,8 +90,11 @@ class ProductController extends Controller
 
                 return '';
             });
-            $table->editColumn('price', function ($row) {
-                return $row->price ? $row->price : '';
+            $table->editColumn('purchase_price', function ($row) {
+                return $row->purchase_price ? $row->purchase_price : '';
+            });
+            $table->editColumn('unit_price', function ($row) {
+                return $row->unit_price ? $row->unit_price : '';
             });
             $table->editColumn('current_stock', function ($row) {
                 return $row->current_stock ? $row->current_stock : '';

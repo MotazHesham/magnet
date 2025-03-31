@@ -169,6 +169,22 @@
                             {{ $store->admin_to_pay }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.store.fields.latitude') }}
+                        </th>
+                        <td>
+                            {{ $store->latitude }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.store.fields.longitude') }}
+                        </th>
+                        <td>
+                            {{ $store->longitude }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
@@ -191,13 +207,23 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#store_store_reviews" role="tab" data-toggle="tab">
-                {{ trans('cruds.storeReview.title') }}
+            <a class="nav-link" href="#store_special_orders" role="tab" data-toggle="tab">
+                {{ trans('cruds.specialOrder.title') }}
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#store_special_orders" role="tab" data-toggle="tab">
-                {{ trans('cruds.specialOrder.title') }}
+            <a class="nav-link" href="#store_store_withdraw_requests" role="tab" data-toggle="tab">
+                {{ trans('cruds.storeWithdrawRequest.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#store_commission_histories" role="tab" data-toggle="tab">
+                {{ trans('cruds.commissionHistory.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#store_store_cities" role="tab" data-toggle="tab">
+                {{ trans('cruds.storeCity.title') }}
             </a>
         </li>
     </ul>
@@ -205,11 +231,17 @@
         <div class="tab-pane" role="tabpanel" id="store_orders">
             @includeIf('admin.stores.relationships.storeOrders', ['orders' => $store->storeOrders])
         </div>
-        <div class="tab-pane" role="tabpanel" id="store_store_reviews">
-            @includeIf('admin.stores.relationships.storeStoreReviews', ['storeReviews' => $store->storeStoreReviews])
-        </div>
         <div class="tab-pane" role="tabpanel" id="store_special_orders">
             @includeIf('admin.stores.relationships.storeSpecialOrders', ['specialOrders' => $store->storeSpecialOrders])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="store_store_withdraw_requests">
+            @includeIf('admin.stores.relationships.storeStoreWithdrawRequests', ['storeWithdrawRequests' => $store->storeStoreWithdrawRequests])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="store_commission_histories">
+            @includeIf('admin.stores.relationships.storeCommissionHistories', ['commissionHistories' => $store->storeCommissionHistories])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="store_store_cities">
+            @includeIf('admin.stores.relationships.storeStoreCities', ['storeCities' => $store->storeStoreCities])
         </div>
     </div>
 </div>

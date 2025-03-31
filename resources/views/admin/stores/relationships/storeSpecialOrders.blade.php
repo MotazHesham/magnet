@@ -64,6 +64,9 @@
                             {{ trans('cruds.specialOrder.fields.total') }}
                         </th>
                         <th>
+                            {{ trans('cruds.specialOrder.fields.created_at') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -119,6 +122,9 @@
                             </td>
                             <td>
                                 {{ $specialOrder->total ?? '' }}
+                            </td>
+                            <td>
+                                {{ $specialOrder->created_at ?? '' }}
                             </td>
                             <td>
                                 @can('special_order_show')

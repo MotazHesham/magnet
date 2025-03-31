@@ -41,6 +41,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.city.fields.shipping_cost') }}
+                        </th>
+                        <td>
+                            {{ $city->shipping_cost }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.city.fields.districts') }}
                         </th>
                         <td>

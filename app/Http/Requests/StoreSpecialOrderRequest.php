@@ -36,6 +36,9 @@ class StoreSpecialOrderRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'variations' => [
+                'required',
+            ],
             'delivery_status' => [
                 'required',
             ],

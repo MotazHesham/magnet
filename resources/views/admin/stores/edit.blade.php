@@ -194,6 +194,26 @@
                 <span class="help-block">{{ trans('cruds.store.fields.rating_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="latitude">{{ trans('cruds.store.fields.latitude') }}</label>
+                <input class="form-control {{ $errors->has('latitude') ? 'is-invalid' : '' }}" type="text" name="latitude" id="latitude" value="{{ old('latitude', $store->latitude) }}">
+                @if($errors->has('latitude'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('latitude') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.store.fields.latitude_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="longitude">{{ trans('cruds.store.fields.longitude') }}</label>
+                <input class="form-control {{ $errors->has('longitude') ? 'is-invalid' : '' }}" type="text" name="longitude" id="longitude" value="{{ old('longitude', $store->longitude) }}">
+                @if($errors->has('longitude'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('longitude') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.store.fields.longitude_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

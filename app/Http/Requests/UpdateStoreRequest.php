@@ -57,6 +57,14 @@ class UpdateStoreRequest extends FormRequest
             'rating' => [
                 'numeric',
             ],
+            'latitude' => [
+                'string',
+                'nullable',
+            ],
+            'longitude' => [
+                'string',
+                'nullable',
+            ],
         ];
     }
 }

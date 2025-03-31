@@ -21,8 +21,16 @@ class UpdateCartRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'product_id' => [
+                'required',
+                'integer',
+            ],
+            'store_id' => [
+                'required',
+                'integer',
+            ],
             'quantity' => [
-                'nullable',
+                'required',
                 'integer',
                 'min:-2147483648',
                 'max:2147483647',

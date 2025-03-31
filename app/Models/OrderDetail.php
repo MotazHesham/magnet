@@ -26,7 +26,7 @@ class OrderDetail extends Model
         'product_id',
         'price',
         'note',
-        'variant',
+        'variation',
         'quantity',
         'earn_point',
         'created_at',

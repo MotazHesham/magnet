@@ -40,7 +40,7 @@
                             {{ trans('cruds.orderDetail.fields.note') }}
                         </th>
                         <th>
-                            {{ trans('cruds.orderDetail.fields.variant') }}
+                            {{ trans('cruds.orderDetail.fields.variation') }}
                         </th>
                         <th>
                             {{ trans('cruds.orderDetail.fields.quantity') }}
@@ -78,7 +78,7 @@
                                 {{ $orderDetail->note ?? '' }}
                             </td>
                             <td>
-                                {{ $orderDetail->variant ?? '' }}
+                                {{ $orderDetail->variation ?? '' }}
                             </td>
                             <td>
                                 {{ $orderDetail->quantity ?? '' }}

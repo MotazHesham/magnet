@@ -25,14 +25,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.order.fields.combined_order') }}
-                        </th>
-                        <td>
-                            {{ $order->combined_order->order_num ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.order.fields.order_num') }}
                         </th>
                         <td>
@@ -53,14 +45,6 @@
                         </th>
                         <td>
                             {{ $order->store->store_name ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.order.fields.store_approval') }}
-                        </th>
-                        <td>
-                            <input type="checkbox" disabled="disabled" {{ $order->store_approval ? 'checked' : '' }}>
                         </td>
                     </tr>
                     <tr>
@@ -121,6 +105,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.order.fields.shipping_cost') }}
+                        </th>
+                        <td>
+                            {{ $order->shipping_cost }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.order.fields.total') }}
                         </th>
                         <td>
@@ -148,10 +140,18 @@
                 {{ trans('cruds.orderDetail.title') }}
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#order_coupon_usages" role="tab" data-toggle="tab">
+                {{ trans('cruds.couponUsage.title') }}
+            </a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="order_order_details">
             @includeIf('admin.orders.relationships.orderOrderDetails', ['orderDetails' => $order->orderOrderDetails])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="order_coupon_usages">
+            @includeIf('admin.orders.relationships.orderCouponUsages', ['couponUsages' => $order->orderCouponUsages])
         </div>
     </div>
 </div>

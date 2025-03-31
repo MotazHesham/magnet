@@ -37,10 +37,13 @@
                             {{ trans('cruds.user.fields.phone') }}
                         </th>
                         <th>
-                            {{ trans('cruds.customer.fields.balance') }}
+                            {{ trans('cruds.customer.fields.wallet_balance') }}
                         </th>
                         <th>
                             {{ trans('cruds.customer.fields.points') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.customer.fields.can_scratch') }}
                         </th>
                         <th>
                             &nbsp;
@@ -70,10 +73,14 @@
                                 {{ $customer->user->phone ?? '' }}
                             </td>
                             <td>
-                                {{ $customer->balance ?? '' }}
+                                {{ $customer->wallet_balance ?? '' }}
                             </td>
                             <td>
                                 {{ $customer->points ?? '' }}
+                            </td>
+                            <td>
+                                <span style="display:none">{{ $customer->can_scratch ?? '' }}</span>
+                                <input type="checkbox" disabled="disabled" {{ $customer->can_scratch ? 'checked' : '' }}>
                             </td>
                             <td>
                                 @can('customer_show')

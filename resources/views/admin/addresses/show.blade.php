@@ -79,6 +79,22 @@
                             <input type="checkbox" disabled="disabled" {{ $address->is_default ? 'checked' : '' }}>
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.address.fields.latitude') }}
+                        </th>
+                        <td>
+                            {{ $address->latitude }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.address.fields.longitude') }}
+                        </th>
+                        <td>
+                            {{ $address->longitude }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

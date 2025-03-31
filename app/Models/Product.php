@@ -22,10 +22,6 @@ class Product extends Model implements HasMedia
         'photos',
     ];
 
-    public const VIDEO_PROVIDER_SELECT = [
-        'youtube' => 'Youtube',
-    ];
-
     protected $dates = [
         'created_at',
         'updated_at',
@@ -48,10 +44,8 @@ class Product extends Model implements HasMedia
         'featured',
         'approved',
         'published',
-        'video_provider',
-        'video_link',
-        'price',
-        'shipping_cost',
+        'purchase_price',
+        'unit_price',
         'discount',
         'discount_type',
         'current_stock',
@@ -60,8 +54,6 @@ class Product extends Model implements HasMedia
         'attibutes',
         'choice_options',
         'colors',
-        'variations',
-        'est_shipping_days',
         'num_of_sale',
         'rating',
         'slug',

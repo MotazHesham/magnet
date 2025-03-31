@@ -23,6 +23,7 @@ class City extends Model
     protected $fillable = [
         'name',
         'active',
+        'shipping_cost',
         'created_at',
         'updated_at',
         'deleted_at',

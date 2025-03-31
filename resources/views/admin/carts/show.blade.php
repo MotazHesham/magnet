@@ -25,14 +25,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.cart.fields.product') }}
-                        </th>
-                        <td>
-                            {{ $cart->product->name ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.cart.fields.user') }}
                         </th>
                         <td>
@@ -45,6 +37,14 @@
                         </th>
                         <td>
                             {{ $cart->temp_user_uid }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.cart.fields.product') }}
+                        </th>
+                        <td>
+                            {{ $cart->product->name ?? '' }}
                         </td>
                     </tr>
                     <tr>

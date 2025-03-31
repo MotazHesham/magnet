@@ -25,13 +25,13 @@
                         {{ trans('cruds.cart.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.cart.fields.product') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.cart.fields.user') }}
                     </th>
                     <th>
                         {{ trans('cruds.cart.fields.temp_user_uid') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.cart.fields.product') }}
                     </th>
                     <th>
                         {{ trans('cruds.cart.fields.store') }}
@@ -105,9 +105,9 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
-{ data: 'product_name', name: 'product.name' },
 { data: 'user_name', name: 'user.name' },
 { data: 'temp_user_uid', name: 'temp_user_uid' },
+{ data: 'product_name', name: 'product.name' },
 { data: 'store_store_name', name: 'store.store_name' },
 { data: 'quantity', name: 'quantity' },
 { data: 'note', name: 'note' },

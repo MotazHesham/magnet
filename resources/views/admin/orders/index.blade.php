@@ -25,9 +25,6 @@
                         {{ trans('cruds.order.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.order.fields.combined_order') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.order.fields.order_num') }}
                     </th>
                     <th>
@@ -35,9 +32,6 @@
                     </th>
                     <th>
                         {{ trans('cruds.order.fields.store') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.order.fields.store_approval') }}
                     </th>
                     <th>
                         {{ trans('cruds.order.fields.delivery_status') }}
@@ -56,6 +50,9 @@
                     </th>
                     <th>
                         {{ trans('cruds.order.fields.coupon_discount') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.order.fields.shipping_cost') }}
                     </th>
                     <th>
                         {{ trans('cruds.order.fields.total') }}
@@ -117,17 +114,16 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
-{ data: 'combined_order_order_num', name: 'combined_order.order_num' },
 { data: 'order_num', name: 'order_num' },
 { data: 'user_name', name: 'user.name' },
 { data: 'store_store_name', name: 'store.store_name' },
-{ data: 'store_approval', name: 'store_approval' },
 { data: 'delivery_status', name: 'delivery_status' },
 { data: 'payment_method', name: 'payment_method' },
 { data: 'payment_status', name: 'payment_status' },
 { data: 'shipping_address', name: 'shipping_address' },
 { data: 'shipping_type', name: 'shipping_type' },
 { data: 'coupon_discount', name: 'coupon_discount' },
+{ data: 'shipping_cost', name: 'shipping_cost' },
 { data: 'total', name: 'total' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],

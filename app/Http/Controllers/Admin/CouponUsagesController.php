@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyCouponUsageRequest;
 use App\Http\Requests\StoreCouponUsageRequest;
 use App\Http\Requests\UpdateCouponUsageRequest;
-use App\Models\CombinedOrder;
 use App\Models\Coupon;
 use App\Models\CouponUsage;
+use App\Models\Order;
 use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class CouponUsagesController extends Controller
         abort_if(Gate::denies('coupon_usage_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = CouponUsage::with(['coupon', 'user', 'combined_order'])->select(sprintf('%s.*', (new CouponUsage)->table));
+            $query = CouponUsage::with(['coupon', 'user', 'order'])->select(sprintf('%s.*', (new CouponUsage)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -54,14 +54,15 @@ class CouponUsagesController extends Controller
                 return $row->user ? $row->user->name : '';
             });
 
+            $table->addColumn('order_order_num', function ($row) {
+                return $row->order ? $row->order->order_num : '';
+            });
+
             $table->editColumn('discount', function ($row) {
                 return $row->discount ? $row->discount : '';
             });
-            $table->addColumn('combined_order_order_num', function ($row) {
-                return $row->combined_order ? $row->combined_order->order_num : '';
-            });
 
-            $table->rawColumns(['actions', 'placeholder', 'coupon', 'user', 'combined_order']);
+            $table->rawColumns(['actions', 'placeholder', 'coupon', 'user', 'order']);
 
             return $table->make(true);
         }
@@ -77,9 +78,9 @@ class CouponUsagesController extends Controller
 
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $combined_orders = CombinedOrder::pluck('order_num', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $orders = Order::pluck('order_num', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.couponUsages.create', compact('combined_orders', 'coupons', 'users'));
+        return view('admin.couponUsages.create', compact('coupons', 'orders', 'users'));
     }
 
     public function store(StoreCouponUsageRequest $request)
@@ -97,11 +98,11 @@ class CouponUsagesController extends Controller
 
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $combined_orders = CombinedOrder::pluck('order_num', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $orders = Order::pluck('order_num', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $couponUsage->load('coupon', 'user', 'combined_order');
+        $couponUsage->load('coupon', 'user', 'order');
 
-        return view('admin.couponUsages.edit', compact('combined_orders', 'couponUsage', 'coupons', 'users'));
+        return view('admin.couponUsages.edit', compact('couponUsage', 'coupons', 'orders', 'users'));
     }
 
     public function update(UpdateCouponUsageRequest $request, CouponUsage $couponUsage)
@@ -115,7 +116,7 @@ class CouponUsagesController extends Controller
     {
         abort_if(Gate::denies('coupon_usage_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $couponUsage->load('coupon', 'user', 'combined_order');
+        $couponUsage->load('coupon', 'user', 'order');
 
         return view('admin.couponUsages.show', compact('couponUsage'));
     }

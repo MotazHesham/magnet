@@ -139,34 +139,18 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.product.fields.video_provider') }}
+                            {{ trans('cruds.product.fields.purchase_price') }}
                         </th>
                         <td>
-                            {{ App\Models\Product::VIDEO_PROVIDER_SELECT[$product->video_provider] ?? '' }}
+                            {{ $product->purchase_price }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.product.fields.video_link') }}
+                            {{ trans('cruds.product.fields.unit_price') }}
                         </th>
                         <td>
-                            {{ $product->video_link }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.product.fields.price') }}
-                        </th>
-                        <td>
-                            {{ $product->price }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.product.fields.shipping_cost') }}
-                        </th>
-                        <td>
-                            {{ $product->shipping_cost }}
+                            {{ $product->unit_price }}
                         </td>
                     </tr>
                     <tr>
@@ -231,22 +215,6 @@
                         </th>
                         <td>
                             {{ $product->colors }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.product.fields.variations') }}
-                        </th>
-                        <td>
-                            {{ $product->variations }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.product.fields.est_shipping_days') }}
-                        </th>
-                        <td>
-                            {{ $product->est_shipping_days }}
                         </td>
                     </tr>
                     <tr>

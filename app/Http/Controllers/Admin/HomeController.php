@@ -275,6 +275,69 @@ class HomeController
                 ->{$settings7['aggregate_function'] ?? 'count'}($settings7['aggregate_field'] ?? '*');
         }
 
-        return view('home', compact('settings1', 'settings2', 'settings3', 'settings4', 'settings5', 'settings6', 'settings7'));
+        $settings8 = [
+            'chart_title'           => 'Latest Stores',
+            'chart_type'            => 'latest_entries',
+            'report_type'           => 'group_by_date',
+            'model'                 => 'App\Models\Store',
+            'group_by_field'        => 'created_at',
+            'group_by_period'       => 'day',
+            'aggregate_function'    => 'count',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-6',
+            'entries_number'        => '5',
+            'fields'                => [
+                'id'         => '',
+                'store_name' => '',
+                'created_at' => '',
+                'city'       => 'name',
+            ],
+            'translation_key' => 'store',
+        ];
+
+        $settings8['data'] = [];
+        if (class_exists($settings8['model'])) {
+            $settings8['data'] = $settings8['model']::latest()
+                ->take($settings8['entries_number'])
+                ->get();
+        }
+
+        if (! array_key_exists('fields', $settings8)) {
+            $settings8['fields'] = [];
+        }
+
+        $settings9 = [
+            'chart_title'           => 'Latest Customers',
+            'chart_type'            => 'latest_entries',
+            'report_type'           => 'group_by_date',
+            'model'                 => 'App\Models\Customer',
+            'group_by_field'        => 'created_at',
+            'group_by_period'       => 'day',
+            'aggregate_function'    => 'count',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-6',
+            'entries_number'        => '5',
+            'fields'                => [
+                'id'         => '',
+                'user'       => 'name',
+                'created_at' => '',
+            ],
+            'translation_key' => 'customer',
+        ];
+
+        $settings9['data'] = [];
+        if (class_exists($settings9['model'])) {
+            $settings9['data'] = $settings9['model']::latest()
+                ->take($settings9['entries_number'])
+                ->get();
+        }
+
+        if (! array_key_exists('fields', $settings9)) {
+            $settings9['fields'] = [];
+        }
+
+        return view('home', compact('settings1', 'settings2', 'settings3', 'settings4', 'settings5', 'settings6', 'settings7', 'settings8', 'settings9'));
     }
 }

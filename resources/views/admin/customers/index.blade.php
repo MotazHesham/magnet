@@ -37,10 +37,13 @@
                         {{ trans('cruds.user.fields.phone') }}
                     </th>
                     <th>
-                        {{ trans('cruds.customer.fields.balance') }}
+                        {{ trans('cruds.customer.fields.wallet_balance') }}
                     </th>
                     <th>
                         {{ trans('cruds.customer.fields.points') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.customer.fields.can_scratch') }}
                     </th>
                     <th>
                         &nbsp;
@@ -103,8 +106,9 @@
 { data: 'user.email', name: 'user.email' },
 { data: 'user.approved', name: 'user.approved' },
 { data: 'user.phone', name: 'user.phone' },
-{ data: 'balance', name: 'balance' },
+{ data: 'wallet_balance', name: 'wallet_balance' },
 { data: 'points', name: 'points' },
+{ data: 'can_scratch', name: 'can_scratch' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

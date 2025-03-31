@@ -20,6 +20,16 @@
                 <span class="help-block">{{ trans('cruds.city.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="shipping_cost">{{ trans('cruds.city.fields.shipping_cost') }}</label>
+                <input class="form-control {{ $errors->has('shipping_cost') ? 'is-invalid' : '' }}" type="number" name="shipping_cost" id="shipping_cost" value="{{ old('shipping_cost', '') }}" step="0.01" required>
+                @if($errors->has('shipping_cost'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('shipping_cost') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.city.fields.shipping_cost_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="districts">{{ trans('cruds.city.fields.districts') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>

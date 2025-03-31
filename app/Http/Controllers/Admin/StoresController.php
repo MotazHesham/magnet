@@ -180,7 +180,7 @@ class StoresController extends Controller
     {
         abort_if(Gate::denies('store_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $store->load('user', 'city', 'categories', 'storeOrders', 'storeStoreReviews', 'storeSpecialOrders');
+        $store->load('user', 'city', 'categories', 'storeOrders', 'storeSpecialOrders', 'storeStoreWithdrawRequests', 'storeCommissionHistories', 'storeStoreCities');
 
         return view('admin.stores.show', compact('store'));
     }

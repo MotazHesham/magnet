@@ -16,6 +16,22 @@ class StoreCouponUsageRequest extends FormRequest
 
     public function rules()
     {
-        return [];
+        return [
+            'coupon_id' => [
+                'required',
+                'integer',
+            ],
+            'user_id' => [
+                'required',
+                'integer',
+            ],
+            'order_id' => [
+                'required',
+                'integer',
+            ],
+            'discount' => [
+                'required',
+            ],
+        ];
     }
 }

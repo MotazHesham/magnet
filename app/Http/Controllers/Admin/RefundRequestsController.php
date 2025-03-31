@@ -60,9 +60,6 @@ class RefundRequestsController extends Controller
                 return $row->store ? $row->store->store_name : '';
             });
 
-            $table->editColumn('reason', function ($row) {
-                return $row->reason ? $row->reason : '';
-            });
             $table->editColumn('refund_amount', function ($row) {
                 return $row->refund_amount ? $row->refund_amount : '';
             });
@@ -72,36 +69,11 @@ class RefundRequestsController extends Controller
             $table->editColumn('admin_approval', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->admin_approval ? 'checked' : null) . '>';
             });
-            $table->editColumn('reject_reason', function ($row) {
-                return $row->reject_reason ? $row->reject_reason : '';
-            });
-            $table->editColumn('invoice_photo', function ($row) {
-                if ($photo = $row->invoice_photo) {
-                    return sprintf(
-                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-                        $photo->url,
-                        $photo->thumbnail
-                    );
-                }
-
-                return '';
-            });
-            $table->editColumn('product_photo', function ($row) {
-                if ($photo = $row->product_photo) {
-                    return sprintf(
-                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-                        $photo->url,
-                        $photo->thumbnail
-                    );
-                }
-
-                return '';
-            });
             $table->editColumn('refund_status', function ($row) {
                 return $row->refund_status ? RefundRequest::REFUND_STATUS_SELECT[$row->refund_status] : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'user', 'store', 'store_approval', 'admin_approval', 'invoice_photo', 'product_photo']);
+            $table->rawColumns(['actions', 'placeholder', 'user', 'store', 'store_approval', 'admin_approval']);
 
             return $table->make(true);
         }
@@ -119,7 +91,7 @@ class RefundRequestsController extends Controller
 
         $orders = Order::pluck('order_num', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $order_details = OrderDetail::pluck('variant', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $order_details = OrderDetail::pluck('note', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -155,7 +127,7 @@ class RefundRequestsController extends Controller
 
         $orders = Order::pluck('order_num', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $order_details = OrderDetail::pluck('variant', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $order_details = OrderDetail::pluck('note', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 

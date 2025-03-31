@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyOrderRequest;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use App\Models\CombinedOrder;
 use App\Models\Order;
 use App\Models\Store;
 use App\Models\User;
@@ -22,7 +21,7 @@ class OrdersController extends Controller
         abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Order::with(['combined_order', 'user', 'store'])->select(sprintf('%s.*', (new Order)->table));
+            $query = Order::with(['user', 'store'])->select(sprintf('%s.*', (new Order)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -46,10 +45,6 @@ class OrdersController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : '';
             });
-            $table->addColumn('combined_order_order_num', function ($row) {
-                return $row->combined_order ? $row->combined_order->order_num : '';
-            });
-
             $table->editColumn('order_num', function ($row) {
                 return $row->order_num ? $row->order_num : '';
             });
@@ -61,9 +56,6 @@ class OrdersController extends Controller
                 return $row->store ? $row->store->store_name : '';
             });
 
-            $table->editColumn('store_approval', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->store_approval ? 'checked' : null) . '>';
-            });
             $table->editColumn('delivery_status', function ($row) {
                 return $row->delivery_status ? Order::DELIVERY_STATUS_SELECT[$row->delivery_status] : '';
             });
@@ -82,11 +74,14 @@ class OrdersController extends Controller
             $table->editColumn('coupon_discount', function ($row) {
                 return $row->coupon_discount ? $row->coupon_discount : '';
             });
+            $table->editColumn('shipping_cost', function ($row) {
+                return $row->shipping_cost ? $row->shipping_cost : '';
+            });
             $table->editColumn('total', function ($row) {
                 return $row->total ? $row->total : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'combined_order', 'user', 'store', 'store_approval']);
+            $table->rawColumns(['actions', 'placeholder', 'user', 'store']);
 
             return $table->make(true);
         }
@@ -98,13 +93,11 @@ class OrdersController extends Controller
     {
         abort_if(Gate::denies('order_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $combined_orders = CombinedOrder::pluck('order_num', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.orders.create', compact('combined_orders', 'stores', 'users'));
+        return view('admin.orders.create', compact('stores', 'users'));
     }
 
     public function store(StoreOrderRequest $request)
@@ -118,15 +111,13 @@ class OrdersController extends Controller
     {
         abort_if(Gate::denies('order_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $combined_orders = CombinedOrder::pluck('order_num', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $order->load('combined_order', 'user', 'store');
+        $order->load('user', 'store');
 
-        return view('admin.orders.edit', compact('combined_orders', 'order', 'stores', 'users'));
+        return view('admin.orders.edit', compact('order', 'stores', 'users'));
     }
 
     public function update(UpdateOrderRequest $request, Order $order)
@@ -140,7 +131,7 @@ class OrdersController extends Controller
     {
         abort_if(Gate::denies('order_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $order->load('combined_order', 'user', 'store', 'orderOrderDetails');
+        $order->load('user', 'store', 'orderOrderDetails', 'orderCouponUsages');
 
         return view('admin.orders.show', compact('order'));
     }

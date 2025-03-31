@@ -41,6 +41,14 @@ class UpdateAddressRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'latitude' => [
+                'string',
+                'nullable',
+            ],
+            'longitude' => [
+                'string',
+                'nullable',
+            ],
         ];
     }
 }

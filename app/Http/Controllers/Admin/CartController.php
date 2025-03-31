@@ -22,7 +22,7 @@ class CartController extends Controller
         abort_if(Gate::denies('cart_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Cart::with(['product', 'user', 'store'])->select(sprintf('%s.*', (new Cart)->table));
+            $query = Cart::with(['user', 'product', 'store'])->select(sprintf('%s.*', (new Cart)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -46,10 +46,6 @@ class CartController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : '';
             });
-            $table->addColumn('product_name', function ($row) {
-                return $row->product ? $row->product->name : '';
-            });
-
             $table->addColumn('user_name', function ($row) {
                 return $row->user ? $row->user->name : '';
             });
@@ -57,6 +53,10 @@ class CartController extends Controller
             $table->editColumn('temp_user_uid', function ($row) {
                 return $row->temp_user_uid ? $row->temp_user_uid : '';
             });
+            $table->addColumn('product_name', function ($row) {
+                return $row->product ? $row->product->name : '';
+            });
+
             $table->addColumn('store_store_name', function ($row) {
                 return $row->store ? $row->store->store_name : '';
             });
@@ -71,7 +71,7 @@ class CartController extends Controller
                 return $row->variant ? $row->variant : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'product', 'user', 'store']);
+            $table->rawColumns(['actions', 'placeholder', 'user', 'product', 'store']);
 
             return $table->make(true);
         }
@@ -83,9 +83,9 @@ class CartController extends Controller
     {
         abort_if(Gate::denies('cart_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -103,13 +103,13 @@ class CartController extends Controller
     {
         abort_if(Gate::denies('cart_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $cart->load('product', 'user', 'store');
+        $cart->load('user', 'product', 'store');
 
         return view('admin.carts.edit', compact('cart', 'products', 'stores', 'users'));
     }
@@ -125,7 +125,7 @@ class CartController extends Controller
     {
         abort_if(Gate::denies('cart_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $cart->load('product', 'user', 'store');
+        $cart->load('user', 'product', 'store');
 
         return view('admin.carts.show', compact('cart'));
     }
