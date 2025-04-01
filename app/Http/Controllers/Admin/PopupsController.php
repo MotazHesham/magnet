@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
-use App\Http\Requests\MassDestroyPopupRequest;
-use App\Http\Requests\StorePopupRequest;
-use App\Http\Requests\UpdatePopupRequest;
+use App\Http\Requests\Admin\MassDestroyPopupRequest;
+use App\Http\Requests\Admin\StorePopupRequest;
+use App\Http\Requests\Admin\UpdatePopupRequest;
 use App\Models\Popup;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyCombinedOrderRequest;
-use App\Http\Requests\StoreCombinedOrderRequest;
-use App\Http\Requests\UpdateCombinedOrderRequest;
+use App\Http\Requests\Admin\MassDestroyCombinedOrderRequest;
+use App\Http\Requests\Admin\StoreCombinedOrderRequest;
+use App\Http\Requests\Admin\UpdateCombinedOrderRequest;
 use App\Models\CombinedOrder;
 use App\Models\User;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyProductReviewRequest;
-use App\Http\Requests\StoreProductReviewRequest;
-use App\Http\Requests\UpdateProductReviewRequest;
+use App\Http\Requests\Admin\MassDestroyProductReviewRequest;
+use App\Http\Requests\Admin\StoreProductReviewRequest;
+use App\Http\Requests\Admin\UpdateProductReviewRequest;
 use App\Models\Product;
 use App\Models\ProductReview;
 use App\Models\User;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

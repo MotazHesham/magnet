@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
-use App\Http\Requests\MassDestroyEmailTemplateRequest;
-use App\Http\Requests\StoreEmailTemplateRequest;
-use App\Http\Requests\UpdateEmailTemplateRequest;
+use App\Http\Requests\Admin\MassDestroyEmailTemplateRequest;
+use App\Http\Requests\Admin\StoreEmailTemplateRequest;
+use App\Http\Requests\Admin\UpdateEmailTemplateRequest;
 use App\Models\EmailTemplate;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;

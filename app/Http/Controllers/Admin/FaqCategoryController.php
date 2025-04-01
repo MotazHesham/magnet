@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyFaqCategoryRequest;
-use App\Http\Requests\StoreFaqCategoryRequest;
-use App\Http\Requests\UpdateFaqCategoryRequest;
+use App\Http\Requests\Admin\MassDestroyFaqCategoryRequest;
+use App\Http\Requests\Admin\StoreFaqCategoryRequest;
+use App\Http\Requests\Admin\UpdateFaqCategoryRequest;
 use App\Models\FaqCategory;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 

@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.smsTemplate.title_singular') }} {{ trans('global.list') }}
+        {{ trans('cruds.smsTemplate.title') }}
     </div>
 
     <div class="card-body">

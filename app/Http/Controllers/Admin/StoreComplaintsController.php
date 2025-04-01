@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyStoreComplaintRequest;
-use App\Http\Requests\StoreStoreComplaintRequest;
-use App\Http\Requests\UpdateStoreComplaintRequest;
+use App\Http\Requests\Admin\MassDestroyStoreComplaintRequest;
+use App\Http\Requests\Admin\StoreStoreComplaintRequest;
+use App\Http\Requests\Admin\UpdateStoreComplaintRequest;
 use App\Models\Store;
 use App\Models\StoreComplaint;
 use App\Models\User;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

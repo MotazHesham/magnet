@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyStoreCityRequest;
-use App\Http\Requests\StoreStoreCityRequest;
-use App\Http\Requests\UpdateStoreCityRequest;
+use App\Http\Requests\Admin\MassDestroyStoreCityRequest;
+use App\Http\Requests\Admin\StoreStoreCityRequest;
+use App\Http\Requests\Admin\UpdateStoreCityRequest;
 use App\Models\City;
 use App\Models\Store;
 use App\Models\StoreCity;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

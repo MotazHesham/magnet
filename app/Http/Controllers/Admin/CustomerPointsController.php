@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyCustomerPointRequest;
-use App\Http\Requests\StoreCustomerPointRequest;
-use App\Http\Requests\UpdateCustomerPointRequest;
+use App\Http\Requests\Admin\MassDestroyCustomerPointRequest;
+use App\Http\Requests\Admin\StoreCustomerPointRequest;
+use App\Http\Requests\Admin\UpdateCustomerPointRequest;
 use App\Models\CustomerPoint;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\User;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

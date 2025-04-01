@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyColorRequest;
-use App\Http\Requests\StoreColorRequest;
-use App\Http\Requests\UpdateColorRequest;
+use App\Http\Requests\Admin\MassDestroyColorRequest;
+use App\Http\Requests\Admin\StoreColorRequest;
+use App\Http\Requests\Admin\UpdateColorRequest;
 use App\Models\Color;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

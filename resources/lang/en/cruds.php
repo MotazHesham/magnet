@@ -174,7 +174,7 @@ return [
             'parent'                  => 'Parent',
             'parent_helper'           => ' ',
             'order_level'             => 'Order Level',
-            'order_level_helper'      => ' ',
+            'order_level_helper'      => 'The highest number has priority in order.',
         ],
     ],
     'brand' => [

@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
-use App\Http\Requests\MassDestroyStoreRequest;
-use App\Http\Requests\StoreStoreRequest;
-use App\Http\Requests\UpdateStoreRequest;
+use App\Http\Requests\Admin\MassDestroyStoreRequest;
+use App\Http\Requests\Admin\StoreStoreRequest;
+use App\Http\Requests\Admin\UpdateStoreRequest;
 use App\Models\City;
 use App\Models\ProductCategory;
 use App\Models\Store;
 use App\Models\User;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;

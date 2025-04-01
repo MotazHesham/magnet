@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class HomeController
 {
+    
+    public function updateStatuses(Request $request){ 
+        $type = $request->type;
+        $model = $request->model;
+        $raw = $model::findOrFail($request->id);
+        $raw->$type = $request->status; 
+        $raw->save();
+        return 1;
+    }
+    
     public function index()
     {
         $settings1 = [

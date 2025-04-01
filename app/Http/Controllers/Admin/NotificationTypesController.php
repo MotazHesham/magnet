@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyNotificationTypeRequest;
-use App\Http\Requests\StoreNotificationTypeRequest;
-use App\Http\Requests\UpdateNotificationTypeRequest;
+use App\Http\Requests\Admin\MassDestroyNotificationTypeRequest;
+use App\Http\Requests\Admin\StoreNotificationTypeRequest;
+use App\Http\Requests\Admin\UpdateNotificationTypeRequest;
 use App\Models\NotificationType;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

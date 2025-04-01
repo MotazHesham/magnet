@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyProductFavoriteRequest;
-use App\Http\Requests\StoreProductFavoriteRequest;
-use App\Http\Requests\UpdateProductFavoriteRequest;
+use App\Http\Requests\Admin\MassDestroyProductFavoriteRequest;
+use App\Http\Requests\Admin\StoreProductFavoriteRequest;
+use App\Http\Requests\Admin\UpdateProductFavoriteRequest;
 use App\Models\Product;
 use App\Models\ProductFavorite;
 use App\Models\User;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

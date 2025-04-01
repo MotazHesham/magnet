@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyStoreWithdrawRequestRequest;
-use App\Http\Requests\StoreStoreWithdrawRequestRequest;
-use App\Http\Requests\UpdateStoreWithdrawRequestRequest;
+use App\Http\Requests\Admin\MassDestroyStoreWithdrawRequestRequest;
+use App\Http\Requests\Admin\StoreStoreWithdrawRequestRequest;
+use App\Http\Requests\Admin\UpdateStoreWithdrawRequestRequest;
 use App\Models\Store;
 use App\Models\StoreWithdrawRequest;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

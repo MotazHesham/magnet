@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyFaqQuestionRequest;
-use App\Http\Requests\StoreFaqQuestionRequest;
-use App\Http\Requests\UpdateFaqQuestionRequest;
+use App\Http\Requests\Admin\MassDestroyFaqQuestionRequest;
+use App\Http\Requests\Admin\StoreFaqQuestionRequest;
+use App\Http\Requests\Admin\UpdateFaqQuestionRequest;
 use App\Models\FaqCategory;
 use App\Models\FaqQuestion;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

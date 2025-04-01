@@ -284,7 +284,7 @@
             </li>
         @endcan
         @can('marketing_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/carts*") ? "c-show" : "" }} {{ request()->is("admin/product-stock-remembers*") ? "c-show" : "" }} {{ request()->is("admin/product-favorites*") ? "c-show" : "" }} {{ request()->is("admin/*") ? "c-show" : "" }} {{ request()->is("admin/*") ? "c-show" : "" }} {{ request()->is("admin/searches*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/carts*") ? "c-show" : "" }} {{ request()->is("admin/product-stock-remembers*") ? "c-show" : "" }} {{ request()->is("admin/product-favorites*") ? "c-show" : "" }} {{ request()->is("admin/searches*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-bullhorn c-sidebar-nav-icon">
 

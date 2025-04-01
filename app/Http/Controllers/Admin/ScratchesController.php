@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyScratchRequest;
-use App\Http\Requests\StoreScratchRequest;
-use App\Http\Requests\UpdateScratchRequest;
+use App\Http\Requests\Admin\MassDestroyScratchRequest;
+use App\Http\Requests\Admin\StoreScratchRequest;
+use App\Http\Requests\Admin\UpdateScratchRequest;
 use App\Models\Scratch;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

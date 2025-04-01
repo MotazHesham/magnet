@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyAttributeRequest;
-use App\Http\Requests\StoreAttributeRequest;
-use App\Http\Requests\UpdateAttributeRequest;
+use App\Http\Requests\Admin\MassDestroyAttributeRequest;
+use App\Http\Requests\Admin\StoreAttributeRequest;
+use App\Http\Requests\Admin\UpdateAttributeRequest;
 use App\Models\Attribute;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 

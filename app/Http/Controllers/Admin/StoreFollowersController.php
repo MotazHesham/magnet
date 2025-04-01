@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyStoreFollowerRequest;
-use App\Http\Requests\StoreStoreFollowerRequest;
-use App\Http\Requests\UpdateStoreFollowerRequest;
+use App\Http\Requests\Admin\MassDestroyStoreFollowerRequest;
+use App\Http\Requests\Admin\StoreStoreFollowerRequest;
+use App\Http\Requests\Admin\UpdateStoreFollowerRequest;
 use App\Models\Store;
 use App\Models\StoreFollower;
 use App\Models\User;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

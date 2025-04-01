@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyDistrictRequest;
-use App\Http\Requests\StoreDistrictRequest;
-use App\Http\Requests\UpdateDistrictRequest;
+use App\Http\Requests\Admin\MassDestroyDistrictRequest;
+use App\Http\Requests\Admin\StoreDistrictRequest;
+use App\Http\Requests\Admin\UpdateDistrictRequest;
 use App\Models\District;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

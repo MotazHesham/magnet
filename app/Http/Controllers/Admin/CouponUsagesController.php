@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyCouponUsageRequest;
-use App\Http\Requests\StoreCouponUsageRequest;
-use App\Http\Requests\UpdateCouponUsageRequest;
+use App\Http\Requests\Admin\MassDestroyCouponUsageRequest;
+use App\Http\Requests\Admin\StoreCouponUsageRequest;
+use App\Http\Requests\Admin\UpdateCouponUsageRequest;
 use App\Models\Coupon;
 use App\Models\CouponUsage;
 use App\Models\Order;
 use App\Models\User;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

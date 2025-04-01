@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyAttributeValueRequest;
-use App\Http\Requests\StoreAttributeValueRequest;
-use App\Http\Requests\UpdateAttributeValueRequest;
+use App\Http\Requests\Admin\MassDestroyAttributeValueRequest;
+use App\Http\Requests\Admin\StoreAttributeValueRequest;
+use App\Http\Requests\Admin\UpdateAttributeValueRequest;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

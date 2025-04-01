@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyProductStockRememberRequest;
-use App\Http\Requests\StoreProductStockRememberRequest;
-use App\Http\Requests\UpdateProductStockRememberRequest;
+use App\Http\Requests\Admin\MassDestroyProductStockRememberRequest;
+use App\Http\Requests\Admin\StoreProductStockRememberRequest;
+use App\Http\Requests\Admin\UpdateProductStockRememberRequest;
 use App\Models\Product;
 use App\Models\ProductStockRemember;
 use App\Models\User;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

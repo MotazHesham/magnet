@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyAddressRequest;
-use App\Http\Requests\StoreAddressRequest;
-use App\Http\Requests\UpdateAddressRequest;
+use App\Http\Requests\Admin\MassDestroyAddressRequest;
+use App\Http\Requests\Admin\StoreAddressRequest;
+use App\Http\Requests\Admin\UpdateAddressRequest;
 use App\Models\Address;
 use App\Models\City;
 use App\Models\District;
 use App\Models\Region;
 use App\Models\User;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

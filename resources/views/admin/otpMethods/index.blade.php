@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.otpMethod.title_singular') }} {{ trans('global.list') }}
+        {{ trans('cruds.otpMethod.title') }}
     </div>
 
     <div class="card-body">

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyRegionRequest;
-use App\Http\Requests\StoreRegionRequest;
-use App\Http\Requests\UpdateRegionRequest;
+use App\Http\Requests\Admin\MassDestroyRegionRequest;
+use App\Http\Requests\Admin\StoreRegionRequest;
+use App\Http\Requests\Admin\UpdateRegionRequest;
 use App\Models\City;
 use App\Models\Region;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

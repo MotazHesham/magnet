@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
-use App\Http\Requests\MassDestroyProductCategoryRequest;
-use App\Http\Requests\StoreProductCategoryRequest;
-use App\Http\Requests\UpdateProductCategoryRequest;
+use App\Http\Requests\Admin\MassDestroyProductCategoryRequest;
+use App\Http\Requests\Admin\StoreProductCategoryRequest;
+use App\Http\Requests\Admin\UpdateProductCategoryRequest;
 use App\Models\ProductCategory;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Support\Str;
+use Spatie\MediaLibrary\MediaCollections\Models\Media; 
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -48,14 +49,20 @@ class ProductCategoryController extends Controller
                 return $row->id ? $row->id : '';
             });
             $table->addColumn('parent_name', function ($row) {
-                return $row->parent ? $row->parent->name : '';
+                return $row->parent ? $row->parent->name : '-----';
             });
 
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
             });
             $table->editColumn('featured', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->featured ? 'checked' : null) . '>';
+                return '<label class="c-switch c-switch-pill c-switch-success">
+                    <input onchange="updateStatuses(this, \'featured\', \'App\\\\Models\\\\ProductCategory\')" 
+                        value="' . $row->id . '" 
+                        type="checkbox" 
+                        class="c-switch-input" ' . ($row->featured ? 'checked' : '') . '>
+                    <span class="c-switch-slider"></span>
+                </label>';
             });
             $table->editColumn('banner', function ($row) {
                 if ($photo = $row->banner) {
@@ -90,7 +97,7 @@ class ProductCategoryController extends Controller
     }
 
     public function store(StoreProductCategoryRequest $request)
-    {
+    { 
         $productCategory = ProductCategory::create($request->all());
 
         if ($request->input('banner', false)) {
@@ -108,7 +115,7 @@ class ProductCategoryController extends Controller
     {
         abort_if(Gate::denies('product_category_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $parents = ProductCategory::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $parents = ProductCategory::where('id','!=',$productCategory->id)->get()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $productCategory->load('parent');
 

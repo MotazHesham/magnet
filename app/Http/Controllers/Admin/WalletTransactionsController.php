@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyWalletTransactionRequest;
-use App\Http\Requests\StoreWalletTransactionRequest;
-use App\Http\Requests\UpdateWalletTransactionRequest;
+use App\Http\Requests\Admin\MassDestroyWalletTransactionRequest;
+use App\Http\Requests\Admin\StoreWalletTransactionRequest;
+use App\Http\Requests\Admin\UpdateWalletTransactionRequest;
 use App\Models\WalletTransaction;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

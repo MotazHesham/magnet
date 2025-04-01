@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyPaymentMethodRequest;
-use App\Http\Requests\StorePaymentMethodRequest;
-use App\Http\Requests\UpdatePaymentMethodRequest;
+use App\Http\Requests\Admin\MassDestroyPaymentMethodRequest;
+use App\Http\Requests\Admin\StorePaymentMethodRequest;
+use App\Http\Requests\Admin\UpdatePaymentMethodRequest;
 use App\Models\PaymentMethod;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 

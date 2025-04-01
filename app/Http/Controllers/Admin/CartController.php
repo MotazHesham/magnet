@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyCartRequest;
-use App\Http\Requests\StoreCartRequest;
-use App\Http\Requests\UpdateCartRequest;
+use App\Http\Requests\Admin\MassDestroyCartRequest;
+use App\Http\Requests\Admin\StoreCartRequest;
+use App\Http\Requests\Admin\UpdateCartRequest;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Store;
 use App\Models\User;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;

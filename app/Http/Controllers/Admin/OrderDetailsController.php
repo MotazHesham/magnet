@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyOrderDetailRequest;
-use App\Http\Requests\StoreOrderDetailRequest;
-use App\Http\Requests\UpdateOrderDetailRequest;
+use App\Http\Requests\Admin\MassDestroyOrderDetailRequest;
+use App\Http\Requests\Admin\StoreOrderDetailRequest;
+use App\Http\Requests\Admin\UpdateOrderDetailRequest;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\Store;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
