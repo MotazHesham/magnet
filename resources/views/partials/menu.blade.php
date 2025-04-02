@@ -63,17 +63,7 @@
                                 {{ trans('cruds.attribute.title') }}
                             </a>
                         </li>
-                    @endcan
-                    @can('attribute_value_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.attribute-values.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/attribute-values") || request()->is("admin/attribute-values/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.attributeValue.title') }}
-                            </a>
-                        </li>
-                    @endcan
+                    @endcan 
                     @can('color_access')
                         <li class="c-sidebar-nav-item">
                             <a href="{{ route("admin.colors.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/colors") || request()->is("admin/colors/*") ? "c-active" : "" }}">

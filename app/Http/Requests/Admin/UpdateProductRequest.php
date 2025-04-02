@@ -16,57 +16,30 @@ class UpdateProductRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'name' => [
-                'string',
-                'required',
-            ],
-            'product_categories.*' => [
-                'integer',
-            ],
-            'product_categories' => [
-                'array',
-            ],
-            'weight' => [
-                'numeric',
-            ],
-            'tags' => [
-                'string',
-                'nullable',
-            ],
-            'photos' => [
-                'array',
-            ],
-            'purchase_price' => [
-                'required',
-            ],
-            'unit_price' => [
-                'required',
-            ],
-            'current_stock' => [
-                'nullable',
-                'integer',
-                'min:-2147483648',
-                'max:2147483647',
-            ],
-            'sku' => [
-                'string',
-                'nullable',
-            ],
-            'num_of_sale' => [
-                'nullable',
-                'integer',
-                'min:-2147483648',
-                'max:2147483647',
-            ],
-            'slug' => [
-                'string',
-                'required',
-            ],
-            'meta_title' => [
-                'string',
-                'nullable',
-            ],
-        ];
+        $selectedAttributesIds = request()->input('attribute_options', []);
+        $rules = [];
+        $rules['name'] = 'required|string|max:255';
+        $rules['product_categories.*'] = 'integer';
+        $rules['product_categories'] = 'array|required';
+        $rules['photos'] = 'array';
+        $rules['purchase_price'] = 'required';
+        $rules['unit_price'] = 'required';
+        $rules['current_stock'] = 'nullable|integer';
+        $rules['sku'] = 'string|nullable';
+        $rules['meta_title'] = 'string|nullable';
+        
+        if($this->get('discount') > 0){
+            $rules['discount_type'] = 'required';
+        }
+        
+        if ($this->get('discount_type') == 'amount') {
+            $rules['discount'] = 'sometimes|required|numeric|lt:unit_price';
+        } else {
+            $rules['discount'] = 'sometimes|required|numeric|lt:100';
+        }
+        foreach ($selectedAttributesIds as $id) {
+            $rules["attribute_options_{$id}"] = ['required', 'array', 'min:1']; 
+        }
+        return $rules;
     }
 }

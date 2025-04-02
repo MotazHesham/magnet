@@ -28,8 +28,8 @@ class ProductComplaintsController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'product_complaint_show';
-                $editGate      = 'product_complaint_edit';
+                $viewGate      = false;
+                $editGate      = false;
                 $deleteGate    = 'product_complaint_delete';
                 $crudRoutePart = 'product-complaints';
 
@@ -63,53 +63,6 @@ class ProductComplaintsController extends Controller
         }
 
         return view('admin.productComplaints.index');
-    }
-
-    public function create()
-    {
-        abort_if(Gate::denies('product_complaint_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.productComplaints.create', compact('products', 'users'));
-    }
-
-    public function store(StoreProductComplaintRequest $request)
-    {
-        $productComplaint = ProductComplaint::create($request->all());
-
-        return redirect()->route('admin.product-complaints.index');
-    }
-
-    public function edit(ProductComplaint $productComplaint)
-    {
-        abort_if(Gate::denies('product_complaint_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $productComplaint->load('product', 'user');
-
-        return view('admin.productComplaints.edit', compact('productComplaint', 'products', 'users'));
-    }
-
-    public function update(UpdateProductComplaintRequest $request, ProductComplaint $productComplaint)
-    {
-        $productComplaint->update($request->all());
-
-        return redirect()->route('admin.product-complaints.index');
-    }
-
-    public function show(ProductComplaint $productComplaint)
-    {
-        abort_if(Gate::denies('product_complaint_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $productComplaint->load('product', 'user');
-
-        return view('admin.productComplaints.show', compact('productComplaint'));
     }
 
     public function destroy(ProductComplaint $productComplaint)

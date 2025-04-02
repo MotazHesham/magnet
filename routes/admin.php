@@ -63,7 +63,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('products/ckmedia', 'ProductController@storeCKEditorImages')->name('products.storeCKEditorImages');
     Route::post('products/parse-csv-import', 'ProductController@parseCsvImport')->name('products.parseCsvImport');
     Route::post('products/process-csv-import', 'ProductController@processCsvImport')->name('products.processCsvImport');
-    Route::resource('products', 'ProductController');
+    Route::post('products/sku_combination_edit', 'ProductController@sku_combination_edit')->name('products.sku_combination_edit');
+    Route::post('products/sku_combination', 'ProductController@sku_combination')->name('products.sku_combination');
+    Route::post('products/attribute_options', 'ProductController@attribute_options')->name('products.attribute_options');
+    Route::post('products/attribute_options_edit', 'ProductController@attribute_options_edit')->name('products.attribute_options_edit');
+    Route::post('products/update', 'ProductController@update')->name('products.update');
+    Route::resource('products', 'ProductController')->except('update');
 
     // Product Favorites
     Route::delete('product-favorites/destroy', 'ProductFavoritesController@massDestroy')->name('product-favorites.massDestroy');

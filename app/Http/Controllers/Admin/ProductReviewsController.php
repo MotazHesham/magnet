@@ -28,8 +28,8 @@ class ProductReviewsController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'product_review_show';
-                $editGate      = 'product_review_edit';
+                $viewGate      = false;
+                $editGate      = false;
                 $deleteGate    = 'product_review_delete';
                 $crudRoutePart = 'product-reviews';
 
@@ -65,53 +65,6 @@ class ProductReviewsController extends Controller
         }
 
         return view('admin.productReviews.index');
-    }
-
-    public function create()
-    {
-        abort_if(Gate::denies('product_review_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.productReviews.create', compact('products', 'users'));
-    }
-
-    public function store(StoreProductReviewRequest $request)
-    {
-        $productReview = ProductReview::create($request->all());
-
-        return redirect()->route('admin.product-reviews.index');
-    }
-
-    public function edit(ProductReview $productReview)
-    {
-        abort_if(Gate::denies('product_review_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $productReview->load('product', 'user');
-
-        return view('admin.productReviews.edit', compact('productReview', 'products', 'users'));
-    }
-
-    public function update(UpdateProductReviewRequest $request, ProductReview $productReview)
-    {
-        $productReview->update($request->all());
-
-        return redirect()->route('admin.product-reviews.index');
-    }
-
-    public function show(ProductReview $productReview)
-    {
-        abort_if(Gate::denies('product_review_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $productReview->load('product', 'user');
-
-        return view('admin.productReviews.show', compact('productReview'));
     }
 
     public function destroy(ProductReview $productReview)

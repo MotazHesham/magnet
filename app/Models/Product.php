@@ -10,11 +10,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Product extends Model implements HasMedia
 {
     use SoftDeletes, InteractsWithMedia, Auditable, HasFactory;
-
+    use HasSlug;
     public $table = 'products';
 
     protected $appends = [
@@ -51,7 +53,7 @@ class Product extends Model implements HasMedia
         'current_stock',
         'sku',
         'variant_product',
-        'attibutes',
+        'attributes',
         'choice_options',
         'colors',
         'num_of_sale',
@@ -69,12 +71,25 @@ class Product extends Model implements HasMedia
         return $date->format('Y-m-d H:i:s');
     }
 
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
+    public function total_stock(){
+        if($this->variant_product){
+            return $this->stocks()->sum('stock');
+        }else{
+            return $this->current_stock;
+        }
+    }
     public function productProductReviews()
     {
         return $this->hasMany(ProductReview::class, 'product_id', 'id');
@@ -83,6 +98,16 @@ class Product extends Model implements HasMedia
     public function productProductComplaints()
     {
         return $this->hasMany(ProductComplaint::class, 'product_id', 'id');
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(ProductFavorite::class, 'product_id', 'id');
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'product_id', 'id');
     }
 
     public function store()
@@ -98,6 +123,10 @@ class Product extends Model implements HasMedia
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'brand_id');
+    }
+
+    public function stocks(){
+        return $this->hasMany(ProductStock::class, 'product_id', 'id');
     }
 
     public function getMainPhotoAttribute()

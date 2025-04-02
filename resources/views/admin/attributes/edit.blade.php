@@ -3,16 +3,17 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.attribute.title_singular') }}
+        @include('partials.switchlang')
     </div>
 
     <div class="card-body">
         <form method="POST" action="{{ route("admin.attributes.update", [$attribute->id]) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
+            <input type="hidden" name="lang" value="{{ currentEditingLang() }}" id="">
             <div class="form-group">
                 <label class="required" for="name">{{ trans('cruds.attribute.fields.name') }}</label>
-                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $attribute->name) }}" required>
+                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $attribute->getTranslation('name',currentEditingLang())) }}" required>
                 @if($errors->has('name'))
                     <div class="invalid-feedback">
                         {{ $errors->first('name') }}

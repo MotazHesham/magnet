@@ -8,10 +8,15 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\Admin\MassDestroyProductRequest;
 use App\Http\Requests\Admin\StoreProductRequest;
 use App\Http\Requests\Admin\UpdateProductRequest;
+use App\Models\Attribute;
+use App\Models\AttributeValue;
 use App\Models\Brand;
+use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Store;
+use App\Services\ProductService;
+use App\Services\ProductStockService;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -22,6 +27,87 @@ class ProductController extends Controller
 {
     use MediaUploadingTrait, CsvImportTrait;
 
+    protected $productService;
+    protected $productTaxService;
+    protected $productFlashDealService;
+    protected $productStockService;
+    protected $frequentlyBoughtProductService;
+
+    public function __construct(
+        ProductService $productService,
+        ProductStockService $productStockService,
+    ) {
+        $this->productService = $productService;
+        $this->productStockService = $productStockService;
+    }
+    public function attribute_options(Request $request){ 
+        $attributes = Attribute::with('attributeAttributeValues')->whereIn('id',$request->selectedAttributes ?? [])->get();
+        return view('admin.products.attribute-options', compact('attributes'));
+    }
+    public function attribute_options_edit(Request $request){ 
+        $product = Product::find($request->product_id);
+        $attributes = Attribute::with('attributeAttributeValues')->whereIn('id',$request->selectedAttributes ?? [])->get();
+        return view('admin.products.attribute-options-edit', compact('attributes','product'));
+    }
+    public function sku_combination(Request $request)
+    {
+        $options = array();
+
+        $colors_active = 0;
+        if($request->has('colors')){
+            $colors_active = 1;
+            array_push($options, $request->colors);
+        }
+
+        $unit_price = $request->unit_price; 
+        $purchase_price = $request->purchase_price; 
+        $product_name = $request->name;
+
+        if($request->has('attribute_options')){
+            foreach ($request->attribute_options as $key => $no) {
+                $name = 'attribute_options_'.$no;  
+                $attributeValues = AttributeValue::whereIn('id',$request[$name] ?? [])->get()->pluck('value') ?? [];
+                if($attributeValues->isEmpty()){
+                    return response()->json(['error' => 'Please select at least one value for attribute '.$no]);
+                }
+                array_push($options,$attributeValues); 
+            }
+        }
+
+        $combinations = combinations($options);
+        return view('admin.products.sku-combinations', compact('combinations', 'purchase_price','unit_price', 'colors_active', 'product_name'));
+    }
+
+    public function sku_combination_edit(Request $request)
+    {  
+        $product = Product::find($request->product_id);
+        $product->load('stocks');
+
+        $options = array();
+        $colors_active = 0;
+        if($request->has('colors')){
+            $colors_active = 1;
+            array_push($options, $request->colors);
+        }
+
+        $product_name = $request->name;
+        $unit_price = $request->unit_price; 
+        $purchase_price = $request->purchase_price; 
+
+        if($request->has('attribute_options')){
+            foreach ($request->attribute_options as $key => $no) {
+                $name = 'attribute_options_'.$no;  
+                $attributeValues = AttributeValue::whereIn('id',$request[$name] ?? [])->get()->pluck('value') ?? [];
+                if($attributeValues->isEmpty()){
+                    return response()->json(['error' => 'Please select at least one value for attribute '.$no]);
+                }
+                array_push($options,$attributeValues); 
+            }
+        }
+
+        $combinations = combinations($options);
+        return view('admin.products.sku-combinations-edit', compact('combinations', 'unit_price', 'purchase_price' , 'colors_active', 'product_name', 'product'));
+    }
     public function index(Request $request)
     {
         abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -61,7 +147,7 @@ class ProductController extends Controller
             $table->editColumn('product_categories', function ($row) {
                 $labels = [];
                 foreach ($row->product_categories as $product_category) {
-                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $product_category->name);
+                    $labels[] = sprintf('<span class="badge badge-light badge-many">%s</span>', $product_category->name);
                 }
 
                 return implode(' ', $labels);
@@ -71,13 +157,31 @@ class ProductController extends Controller
             });
 
             $table->editColumn('featured', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->featured ? 'checked' : null) . '>';
+                return '<label class="c-switch c-switch-pill c-switch-success">
+                    <input onchange="updateStatuses(this, \'featured\', \'App\\\\Models\\\\Product\')" 
+                        value="' . $row->id . '" 
+                        type="checkbox" 
+                        class="c-switch-input" ' . ($row->featured ? 'checked' : '') . '>
+                    <span class="c-switch-slider"></span>
+                </label>';
             });
             $table->editColumn('approved', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->approved ? 'checked' : null) . '>';
+                return '<label class="c-switch c-switch-pill c-switch-success">
+                    <input onchange="updateStatuses(this, \'approved\', \'App\\\\Models\\\\Product\')" 
+                        value="' . $row->id . '" 
+                        type="checkbox" 
+                        class="c-switch-input" ' . ($row->approved ? 'checked' : '') . '>
+                    <span class="c-switch-slider"></span>
+                </label>';
             });
             $table->editColumn('published', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+                return '<label class="c-switch c-switch-pill c-switch-success">
+                    <input onchange="updateStatuses(this, \'published\', \'App\\\\Models\\\\Product\')" 
+                        value="' . $row->id . '" 
+                        type="checkbox" 
+                        class="c-switch-input" ' . ($row->published ? 'checked' : '') . '>
+                    <span class="c-switch-slider"></span>
+                </label>';
             });
             $table->editColumn('main_photo', function ($row) {
                 if ($photo = $row->main_photo) {
@@ -124,13 +228,23 @@ class ProductController extends Controller
 
         $brands = Brand::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.products.create', compact('brands', 'product_categories', 'stores'));
+        $colors = Color::pluck('name', 'code');
+
+        $attributes = Attribute::pluck('name', 'id');
+        
+        return view('admin.products.create', compact('brands', 'product_categories', 'stores','colors','attributes'));
     }
 
     public function store(StoreProductRequest $request)
-    {
-        $product = Product::create($request->all());
+    { 
+        $product = $this->productService->store($request->all());
+
+        $request->merge(['product_id' => $product->id]);
+        
         $product->product_categories()->sync($request->input('product_categories', []));
+
+        $this->productStockService->store($request->all(), $product);
+
         if ($request->input('main_photo', false)) {
             $product->addMedia(storage_path('tmp/uploads/' . basename($request->input('main_photo'))))->toMediaCollection('main_photo');
         }
@@ -149,22 +263,32 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         abort_if(Gate::denies('product_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        
         $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $product_categories = ProductCategory::pluck('name', 'id');
 
         $brands = Brand::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
+        $colors = Color::pluck('name', 'code');
+
+        $attributes = Attribute::pluck('name', 'id');
+
         $product->load('store', 'product_categories', 'brand');
 
-        return view('admin.products.edit', compact('brands', 'product', 'product_categories', 'stores'));
+        return view('admin.products.edit', compact('brands', 'product', 'product_categories', 'stores', 'colors' ,'attributes'));
     }
 
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request)
     {
-        $product->update($request->all());
+        $product = Product::findOrFail($request->product_id);
+
+        $product = $this->productService->update($request->all(),$product);
+
         $product->product_categories()->sync($request->input('product_categories', []));
+
+        $this->productStockService->store($request->all(), $product);
+
         if ($request->input('main_photo', false)) {
             if (! $product->main_photo || $request->input('main_photo') !== $product->main_photo->file_name) {
                 if ($product->main_photo) {
@@ -206,7 +330,7 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $product->delete();
+        $this->productService->destroy($product->id);
 
         return back();
     }

@@ -10,20 +10,7 @@
         <form method="POST" action="{{ route("admin.attribute-values.update", [$attributeValue->id]) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
-            <div class="form-group">
-                <label class="required" for="attribute_id">{{ trans('cruds.attributeValue.fields.attribute') }}</label>
-                <select class="form-control select2 {{ $errors->has('attribute') ? 'is-invalid' : '' }}" name="attribute_id" id="attribute_id" required>
-                    @foreach($attributes as $id => $entry)
-                        <option value="{{ $id }}" {{ (old('attribute_id') ? old('attribute_id') : $attributeValue->attribute->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('attribute'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('attribute') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.attributeValue.fields.attribute_helper') }}</span>
-            </div>
+            <input type="hidden" name="attribute_id" value="{{ $attributeValue->attribute_id }}" id=""> 
             <div class="form-group">
                 <label class="required" for="value">{{ trans('cruds.attributeValue.fields.value') }}</label>
                 <input class="form-control {{ $errors->has('value') ? 'is-invalid' : '' }}" type="text" name="value" id="value" value="{{ old('value', $attributeValue->value) }}" required>

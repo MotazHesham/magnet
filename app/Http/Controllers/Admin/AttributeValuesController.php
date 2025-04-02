@@ -73,7 +73,7 @@ class AttributeValuesController extends Controller
     {
         $attributeValue = AttributeValue::create($request->all());
 
-        return redirect()->route('admin.attribute-values.index');
+        return redirect()->route('admin.attributes.show',$attributeValue->attribute_id);
     }
 
     public function edit(AttributeValue $attributeValue)
@@ -91,7 +91,7 @@ class AttributeValuesController extends Controller
     {
         $attributeValue->update($request->all());
 
-        return redirect()->route('admin.attribute-values.index');
+        return redirect()->route('admin.attributes.show',$attributeValue->attribute_id);
     }
 
     public function show(AttributeValue $attributeValue)

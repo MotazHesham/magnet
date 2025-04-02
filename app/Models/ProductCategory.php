@@ -12,11 +12,14 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
 
 class ProductCategory extends Model implements HasMedia
 {
     use SoftDeletes, InteractsWithMedia, Auditable, HasFactory;
-    use HasSlug;
+    use HasSlug, HasTranslations;
+
+    public $translatable = ['name'];
 
     protected $appends = [
         'banner',

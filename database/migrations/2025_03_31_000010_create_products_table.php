@@ -25,12 +25,12 @@ class CreateProductsTable extends Migration
             $table->integer('current_stock')->nullable();
             $table->string('sku')->nullable();
             $table->boolean('variant_product')->default(0)->nullable();
-            $table->longText('attibutes')->nullable();
+            $table->longText('attributes')->nullable();
             $table->longText('choice_options')->nullable();
             $table->longText('colors')->nullable();
             $table->integer('num_of_sale')->nullable();
             $table->float('rating', 4, 2)->nullable();
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('meta_title')->nullable();
             $table->longText('meta_description')->nullable();
             $table->timestamps();

@@ -17,7 +17,7 @@ class AttributesController extends Controller
     {
         abort_if(Gate::denies('attribute_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $attributes = Attribute::all();
+        $attributes = Attribute::with('attributeAttributeValues')->paginate();
 
         return view('admin.attributes.index', compact('attributes'));
     }
@@ -45,8 +45,9 @@ class AttributesController extends Controller
 
     public function update(UpdateAttributeRequest $request, Attribute $attribute)
     {
-        $attribute->update($request->all());
-
+        $attribute->setTranslation('name',$request->lang,$request->name);
+        $attribute->save();
+        
         return redirect()->route('admin.attributes.index');
     }
 

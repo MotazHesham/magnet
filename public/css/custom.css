@@ -181,3 +181,7 @@ table.dataTable thead .sorting_desc {
     color: gray;
     font-size: 12px;
 }
+.active-switch-lang{
+    background-color: #4CAF50;
+    color: #fff; 
+}

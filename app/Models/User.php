@@ -169,6 +169,9 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(Role::class);
     }
 
+    public function store(){
+        return $this->hasOne(Store::class);
+    }
     public function getPhotoAttribute()
     {
         $file = $this->getMedia('photo')->last();

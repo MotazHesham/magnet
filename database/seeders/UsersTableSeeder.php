@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
                 'verified_at'        => '2025-03-31 16:49:31',
                 'verification_token' => '',
                 'phone'              => '',
+                'user_type'          => 'staff',
             ],
         ];
 

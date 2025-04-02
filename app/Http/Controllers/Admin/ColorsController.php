@@ -26,7 +26,7 @@ class ColorsController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'color_show';
+                $viewGate      = false;
                 $editGate      = 'color_edit';
                 $deleteGate    = 'color_delete';
                 $crudRoutePart = 'colors';
@@ -49,8 +49,11 @@ class ColorsController extends Controller
             $table->editColumn('code', function ($row) {
                 return $row->code ? $row->code : '';
             });
+            $table->editColumn('color', function ($row) {
+                return $row->code ? '<div style="height:25px;width:25px;background:'.$row->code.';border-radius:5px"></div>' : '';
+            });
 
-            $table->rawColumns(['actions', 'placeholder']);
+            $table->rawColumns(['actions', 'placeholder','color']);
 
             return $table->make(true);
         }
