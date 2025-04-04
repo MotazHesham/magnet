@@ -31,10 +31,7 @@ class StoreNotificationTypeRequest extends FormRequest
             ],
             'default_text' => [
                 'required',
-            ],
-            'status' => [
-                'required',
-            ],
+            ], 
         ];
     }
 }

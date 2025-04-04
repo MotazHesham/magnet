@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             RegionSeeder::class,
             CitiesSeeder::class,
+            NotificationTypeSeeder::class,
         ]);
     }
 }

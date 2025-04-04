@@ -324,4 +324,5 @@ return [
     'messenger'                      => 'Messenger', 
     'pay'                            => 'Pay',
     'reject'                         => 'Reject',
+    'done'                           => 'Done',
 ];

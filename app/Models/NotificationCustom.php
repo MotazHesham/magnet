@@ -9,15 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
-class NotificationType extends Model
+class NotificationCustom extends Model
 {
-    use SoftDeletes, Auditable, HasFactory;
+    use SoftDeletes, Auditable, HasFactory; 
     use HasTranslations;
 
-    public $table = 'notification_types';
-
-    
-    public $translatable = ['name', 'default_text'];
+    public $translatable = ['title', 'description'];
+    public $table = 'notification_customs';
 
     protected $dates = [
         'created_at',
@@ -25,18 +23,11 @@ class NotificationType extends Model
         'deleted_at',
     ];
 
-    public const USER_TYPE_SELECT = [
-        'staff'    => 'أدمن',
-        'customer' => 'عميل',
-        'seller'   => 'بائع',
-    ];
-
     protected $fillable = [
-        'user_type',
-        'type',
-        'name',
-        'default_text',
-        'status',
+        'notification_type_id',
+        'title',
+        'description',
+        'link',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -45,5 +36,15 @@ class NotificationType extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function notification_type()
+    {
+        return $this->belongsTo(NotificationType::class, 'notification_type_id');
+    }
+
+    public function users()
+    {
+        return $this->hasMany(Notification::class, 'notification_custom_id');
     }
 }

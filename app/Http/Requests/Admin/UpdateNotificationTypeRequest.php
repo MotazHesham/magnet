@@ -16,25 +16,14 @@ class UpdateNotificationTypeRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'user_type' => [
-                'string',
-                'required',
-            ],
-            'type' => [
-                'string',
-                'required',
-            ],
+        return [ 
             'name' => [
                 'string',
                 'required',
             ],
             'default_text' => [
                 'required',
-            ],
-            'status' => [
-                'required',
-            ],
+            ], 
         ];
     }
 }

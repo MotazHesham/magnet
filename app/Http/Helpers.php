@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\NotificationType;
 use App\Models\Setting;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -86,12 +87,28 @@ if (!function_exists('getRequest')) {
 	}
 }
 
+if (!function_exists('randomCreatedAt')) {
+    function randomCreatedAt(){
+        $faker = \Faker\Factory::create('ar_SA');
+        return $faker->dateTimeBetween('-3 years', '+1 year')->format('Y-m-d').' '.$faker->time('H:i:s');
+    }
+}
+
 if (!function_exists('getmonth_name')) {
     function getmonth_name($monthNum){
 		$dateObj   = DateTime::createFromFormat('!m', $monthNum);
 		$monthName = $dateObj->format('F');
 		return $monthName;
 	}
+}
+
+if (!function_exists('get_notification_type')) {
+    function get_notification_type($value, $columnName)
+    {
+        $notificationType = NotificationType::query();
+        $notificationType = $columnName == 'id' ? $notificationType->where('id', $value) : $notificationType->where('type', $value);
+        return $notificationType->first();
+    }
 }
 
 if (!function_exists('calculate_diff_date')) {

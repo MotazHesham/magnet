@@ -274,7 +274,7 @@
             </li>
         @endcan
         @can('marketing_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/carts*") ? "c-show" : "" }} {{ request()->is("admin/product-stock-remembers*") ? "c-show" : "" }} {{ request()->is("admin/product-favorites*") ? "c-show" : "" }} {{ request()->is("admin/searches*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/carts*") ? "c-show" : "" }} {{ request()->is("admin/product-stock-remembers*") ? "c-show" : "" }} {{ request()->is("admin/product-favorites*") ? "c-show" : "" }} {{ request()->is("admin/searches*") ? "c-show" : "" }} {{ request()->is("admin/notifications-customs*") ? "c-show" : "" }} {{ request()->is("admin/notification-types*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-bullhorn c-sidebar-nav-icon">
 
@@ -335,24 +335,14 @@
                         </li>
                     @endcan
                     @can('notification_managment_access')
-                        <li class="c-sidebar-nav-dropdown {{ request()->is("admin/notifications*") ? "c-show" : "" }} {{ request()->is("admin/notification-types*") ? "c-show" : "" }}">
+                        <li class="c-sidebar-nav-dropdown {{ request()->is("admin/notifications-customs*") ? "c-show" : "" }} {{ request()->is("admin/notification-types*") ? "c-show" : "" }}">
                             <a class="c-sidebar-nav-dropdown-toggle" href="#">
                                 <i class="fa-fw fas fa-bullhorn c-sidebar-nav-icon">
 
                                 </i>
                                 {{ trans('cruds.notificationManagment.title') }}
                             </a>
-                            <ul class="c-sidebar-nav-dropdown-items">
-                                @can('notification_access')
-                                    <li class="c-sidebar-nav-item">
-                                        <a href="{{ route("admin.notifications.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/notifications") || request()->is("admin/notifications/*") ? "c-active" : "" }}">
-                                            <i class="fa-fw far fa-bell c-sidebar-nav-icon">
-
-                                            </i>
-                                            {{ trans('cruds.notification.title') }}
-                                        </a>
-                                    </li>
-                                @endcan
+                            <ul class="c-sidebar-nav-dropdown-items"> 
                                 @can('notification_type_access')
                                     <li class="c-sidebar-nav-item">
                                         <a href="{{ route("admin.notification-types.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/notification-types") || request()->is("admin/notification-types/*") ? "c-active" : "" }}">
@@ -360,6 +350,16 @@
 
                                             </i>
                                             {{ trans('cruds.notificationType.title') }}
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('notification_custom_access')
+                                    <li class="c-sidebar-nav-item">
+                                        <a href="{{ route("admin.notification-customs.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/notification-customs") || request()->is("admin/notification-customs/*") ? "c-active" : "" }}">
+                                            <i class="fa-fw fas fa-volume-up c-sidebar-nav-icon">
+
+                                            </i>
+                                            {{ trans('cruds.notificationCustom.title') }}
                                         </a>
                                     </li>
                                 @endcan

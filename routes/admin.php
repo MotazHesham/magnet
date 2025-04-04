@@ -156,7 +156,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Payment Methods
     Route::delete('payment-methods/destroy', 'PaymentMethodsController@massDestroy')->name('payment-methods.massDestroy');
-    Route::resource('payment-methods', 'PaymentMethodsController');
+    Route::post('payment-methods/update', 'PaymentMethodsController@update')->name('payment-methods.update');
+    Route::post('payment-methods/update_status', 'PaymentMethodsController@update_status')->name('payment-methods.update_status');
+    Route::resource('payment-methods', 'PaymentMethodsController')->except('update');
 
     // Coupons
     Route::delete('coupons/destroy', 'CouponsController@massDestroy')->name('coupons.massDestroy');
@@ -206,9 +208,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('customer-scratches/destroy', 'CustomerScratchesController@massDestroy')->name('customer-scratches.massDestroy');
     Route::resource('customer-scratches', 'CustomerScratchesController');
 
-    // Notifications
-    Route::delete('notifications/destroy', 'NotificationsController@massDestroy')->name('notifications.massDestroy');
-    Route::resource('notifications', 'NotificationsController');
+    // Notification Custom
+    Route::delete('notification-customs/destroy', 'NotificationCustomController@massDestroy')->name('notification-customs.massDestroy');
+    Route::resource('notification-customs', 'NotificationCustomController');
 
     // Notification Types
     Route::delete('notification-types/destroy', 'NotificationTypesController@massDestroy')->name('notification-types.massDestroy');

@@ -25,11 +25,16 @@ class Notification extends Model
         'data',
         'read_at',
         'notification_type_id',
+        'notification_custom_id',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
+    public function notifiable()
+    {
+        return $this->morphTo();
+    }
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
@@ -48,5 +53,9 @@ class Notification extends Model
     public function notification_type()
     {
         return $this->belongsTo(NotificationType::class, 'notification_type_id');
+    }
+    public function notification_custom()
+    {
+        return $this->belongsTo(NotificationCustom::class, 'notification_custom_id');
     }
 }

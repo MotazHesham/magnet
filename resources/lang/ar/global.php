@@ -324,5 +324,6 @@ return [
     'messenger'                      => 'مراسل',
     'pay'                            => 'دفع',
     'reject'                         => 'رفض',
+    'done'                           => 'تم',
 
 ];

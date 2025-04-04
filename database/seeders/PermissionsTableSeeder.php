@@ -9,7 +9,7 @@ class PermissionsTableSeeder extends Seeder
 {
     public function run()
     {
-        $i = 0;
+        $i = 1;
         $permissions = [
             [
                 'id'    => $i++,
@@ -597,23 +597,23 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => $i++,
-                'title' => 'notification_create',
+                'title' => 'notification_custom_create',
             ],
             [
                 'id'    => $i++,
-                'title' => 'notification_edit',
+                'title' => 'notification_custom_edit',
             ],
             [
                 'id'    => $i++,
-                'title' => 'notification_show',
+                'title' => 'notification_custom_show',
             ],
             [
                 'id'    => $i++,
-                'title' => 'notification_delete',
+                'title' => 'notification_custom_delete',
             ],
             [
                 'id'    => $i++,
-                'title' => 'notification_access',
+                'title' => 'notification_custom_access',
             ],
             [
                 'id'    => $i++,

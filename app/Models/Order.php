@@ -54,13 +54,13 @@ class Order extends Model
 
     public const DELIVERY_STATUS_SELECT = [
         'pending'              => 'قيد الانتظار',
+        'store_approved'       => 'تم الموافقة من المتجر',
+        'store_rejected'       => 'تم الرفض من المتجر',
         'preparing'            => 'تم الدفع و جاري التجهيز',
         'prepared'             => 'تم التجهيز',
         'on_delivery'          => 'تم إرساله للشحن',
         'delivered_from_store' => 'تم التسليم من المتجر',
         'canceled_from_client' => 'تم الإلغاء',
-        'store_approved'       => 'تم الموافقة من المتجر',
-        'store_rejected'       => 'تم الرفض من المتجر',
         'client_received'      => 'تم الإستلام',
     ];
 

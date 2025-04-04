@@ -185,3 +185,7 @@ table.dataTable thead .sorting_desc {
     background-color: #4CAF50;
     color: #fff; 
 }
+
+.lang-icon{
+    color:red;
+}

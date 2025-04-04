@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\MassDestroyStoreCityRequest;
-use App\Http\Requests\Admin\StoreStoreCityRequest;
+use App\Http\Controllers\Controller; 
 use App\Http\Requests\Admin\UpdateStoreCityRequest;
 use App\Models\City;
 use App\Models\Store;
@@ -28,7 +26,7 @@ class StoreCitiesController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'store_city_show';
+                $viewGate      = false;
                 $editGate      = 'store_city_edit';
                 $deleteGate    = false;
                 $crudRoutePart = 'store-cities';
@@ -63,25 +61,7 @@ class StoreCitiesController extends Controller
         }
 
         return view('admin.storeCities.index');
-    }
-
-    public function create()
-    {
-        abort_if(Gate::denies('store_city_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $cities = City::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.storeCities.create', compact('cities', 'stores'));
-    }
-
-    public function store(StoreStoreCityRequest $request)
-    {
-        $storeCity = StoreCity::create($request->all());
-
-        return redirect()->route('admin.store-cities.index');
-    }
+    } 
 
     public function edit(StoreCity $storeCity)
     {
@@ -101,34 +81,5 @@ class StoreCitiesController extends Controller
         $storeCity->update($request->all());
 
         return redirect()->route('admin.store-cities.index');
-    }
-
-    public function show(StoreCity $storeCity)
-    {
-        abort_if(Gate::denies('store_city_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $storeCity->load('store', 'city');
-
-        return view('admin.storeCities.show', compact('storeCity'));
-    }
-
-    public function destroy(StoreCity $storeCity)
-    {
-        abort_if(Gate::denies('store_city_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $storeCity->delete();
-
-        return back();
-    }
-
-    public function massDestroy(MassDestroyStoreCityRequest $request)
-    {
-        $storeCities = StoreCity::find(request('ids'));
-
-        foreach ($storeCities as $storeCity) {
-            $storeCity->delete();
-        }
-
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
+    } 
 }

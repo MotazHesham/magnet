@@ -160,7 +160,7 @@
                 text: message,
                 type: type,
                 showConfirmButton: 'Okay',
-                confirmButtonText: 'تم', 
+                confirmButtonText: '{{ trans("global.done") }}', 
                 timer: seconds
             });
         }
@@ -179,9 +179,9 @@
                 model: model,
             }, function(data) {
                 if (data == 1) {
-                    showAlert('success', 'Success', '');
+                    showAlert('success', '{{ trans("flash.success") }}', '');
                 } else {
-                    showAlert('danger', 'Something went wrong', '');
+                    showAlert('danger', 'Something Went Wrong', '');
                 }
             });
         }

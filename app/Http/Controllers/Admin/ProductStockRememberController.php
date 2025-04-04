@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\MassDestroyProductStockRememberRequest;
-use App\Http\Requests\Admin\StoreProductStockRememberRequest;
-use App\Http\Requests\Admin\UpdateProductStockRememberRequest;
-use App\Models\Product;
-use App\Models\ProductStockRemember;
-use App\Models\User;
+use App\Http\Controllers\Controller; 
+use App\Models\ProductStockRemember; 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -59,72 +54,5 @@ class ProductStockRememberController extends Controller
         }
 
         return view('admin.productStockRemembers.index');
-    }
-
-    public function create()
-    {
-        abort_if(Gate::denies('product_stock_remember_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.productStockRemembers.create', compact('products', 'users'));
-    }
-
-    public function store(StoreProductStockRememberRequest $request)
-    {
-        $productStockRemember = ProductStockRemember::create($request->all());
-
-        return redirect()->route('admin.product-stock-remembers.index');
-    }
-
-    public function edit(ProductStockRemember $productStockRemember)
-    {
-        abort_if(Gate::denies('product_stock_remember_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $productStockRemember->load('user', 'product');
-
-        return view('admin.productStockRemembers.edit', compact('productStockRemember', 'products', 'users'));
-    }
-
-    public function update(UpdateProductStockRememberRequest $request, ProductStockRemember $productStockRemember)
-    {
-        $productStockRemember->update($request->all());
-
-        return redirect()->route('admin.product-stock-remembers.index');
-    }
-
-    public function show(ProductStockRemember $productStockRemember)
-    {
-        abort_if(Gate::denies('product_stock_remember_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $productStockRemember->load('user', 'product');
-
-        return view('admin.productStockRemembers.show', compact('productStockRemember'));
-    }
-
-    public function destroy(ProductStockRemember $productStockRemember)
-    {
-        abort_if(Gate::denies('product_stock_remember_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $productStockRemember->delete();
-
-        return back();
-    }
-
-    public function massDestroy(MassDestroyProductStockRememberRequest $request)
-    {
-        $productStockRemembers = ProductStockRemember::find(request('ids'));
-
-        foreach ($productStockRemembers as $productStockRemember) {
-            $productStockRemember->delete();
-        }
-
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
+    } 
 }

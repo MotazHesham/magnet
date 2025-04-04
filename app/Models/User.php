@@ -96,7 +96,7 @@ class User extends Authenticatable implements HasMedia
                 $user->verification_token = $token;
                 $user->save(); 
 
-                $user->notify(new VerifyUserNotification($user));
+                // $user->notify(new VerifyUserNotification($user));
             }
         });
     }
