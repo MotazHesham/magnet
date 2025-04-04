@@ -321,6 +321,7 @@ return [
     'team_disband_notice'            => 'All your team members will no longer have team assigned.',
     'leave'                          => 'Leave',
     'calendar'                       => 'Calendar',
-    'messenger'                      => 'Messenger',
-
+    'messenger'                      => 'Messenger', 
+    'pay'                            => 'Pay',
+    'reject'                         => 'Reject',
 ];

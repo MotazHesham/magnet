@@ -13,7 +13,7 @@ class CreateProductCategoriesTable extends Migration
             $table->string('name');
             $table->boolean('featured')->default(0)->nullable();
             $table->string('slug')->unique();
-            $table->integer('order_level');
+            $table->integer('order_level')->default(0);
             $table->string('meta_title')->nullable();
             $table->longText('meta_description')->nullable();
             $table->timestamps();

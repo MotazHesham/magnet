@@ -118,48 +118,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.relatedData') }}
-    </div>
-    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
-        <li class="nav-item">
-            <a class="nav-link" href="#user_product_reviews" role="tab" data-toggle="tab">
-                {{ trans('cruds.productReview.title') }}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#user_addresses" role="tab" data-toggle="tab">
-                {{ trans('cruds.address.title') }}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#user_customers" role="tab" data-toggle="tab">
-                {{ trans('cruds.customer.title') }}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#user_customer_points" role="tab" data-toggle="tab">
-                {{ trans('cruds.customerPoint.title') }}
-            </a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="user_product_reviews">
-            @includeIf('admin.users.relationships.userProductReviews', ['productReviews' => $user->userProductReviews])
-        </div>
-        <div class="tab-pane" role="tabpanel" id="user_addresses">
-            @includeIf('admin.users.relationships.userAddresses', ['addresses' => $user->userAddresses])
-        </div>
-        <div class="tab-pane" role="tabpanel" id="user_customers">
-            @includeIf('admin.users.relationships.userCustomers', ['customers' => $user->userCustomers])
-        </div>
-        <div class="tab-pane" role="tabpanel" id="user_customer_points">
-            @includeIf('admin.users.relationships.userCustomerPoints', ['customerPoints' => $user->userCustomerPoints])
-        </div>
-    </div>
-</div>
+</div> 
 
 @endsection

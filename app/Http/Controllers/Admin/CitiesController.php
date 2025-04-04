@@ -56,7 +56,7 @@ class CitiesController extends Controller
             $table->editColumn('districts', function ($row) {
                 $labels = [];
                 foreach ($row->districts as $district) {
-                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $district->name);
+                    $labels[] = sprintf('<span class="badge badge-light badge-many">%s</span>', $district->name);
                 }
 
                 return implode(' ', $labels);

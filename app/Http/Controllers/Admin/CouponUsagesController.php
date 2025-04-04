@@ -2,14 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\MassDestroyCouponUsageRequest;
-use App\Http\Requests\Admin\StoreCouponUsageRequest;
-use App\Http\Requests\Admin\UpdateCouponUsageRequest;
-use App\Models\Coupon;
-use App\Models\CouponUsage;
-use App\Models\Order;
-use App\Models\User;
+use App\Http\Controllers\Controller; 
+use App\Models\CouponUsage; 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,74 +64,4 @@ class CouponUsagesController extends Controller
         return view('admin.couponUsages.index');
     }
 
-    public function create()
-    {
-        abort_if(Gate::denies('coupon_usage_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $coupons = Coupon::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $orders = Order::pluck('order_num', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.couponUsages.create', compact('coupons', 'orders', 'users'));
-    }
-
-    public function store(StoreCouponUsageRequest $request)
-    {
-        $couponUsage = CouponUsage::create($request->all());
-
-        return redirect()->route('admin.coupon-usages.index');
-    }
-
-    public function edit(CouponUsage $couponUsage)
-    {
-        abort_if(Gate::denies('coupon_usage_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $coupons = Coupon::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $orders = Order::pluck('order_num', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $couponUsage->load('coupon', 'user', 'order');
-
-        return view('admin.couponUsages.edit', compact('couponUsage', 'coupons', 'orders', 'users'));
-    }
-
-    public function update(UpdateCouponUsageRequest $request, CouponUsage $couponUsage)
-    {
-        $couponUsage->update($request->all());
-
-        return redirect()->route('admin.coupon-usages.index');
-    }
-
-    public function show(CouponUsage $couponUsage)
-    {
-        abort_if(Gate::denies('coupon_usage_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $couponUsage->load('coupon', 'user', 'order');
-
-        return view('admin.couponUsages.show', compact('couponUsage'));
-    }
-
-    public function destroy(CouponUsage $couponUsage)
-    {
-        abort_if(Gate::denies('coupon_usage_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $couponUsage->delete();
-
-        return back();
-    }
-
-    public function massDestroy(MassDestroyCouponUsageRequest $request)
-    {
-        $couponUsages = CouponUsage::find(request('ids'));
-
-        foreach ($couponUsages as $couponUsage) {
-            $couponUsage->delete();
-        }
-
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
 }

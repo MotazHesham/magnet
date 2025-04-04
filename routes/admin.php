@@ -216,6 +216,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Store Withdraw Requests
     Route::delete('store-withdraw-requests/destroy', 'StoreWithdrawRequestsController@massDestroy')->name('store-withdraw-requests.massDestroy');
+    Route::get('store-withdraw-requests/update_status/{id}/{status}', 'StoreWithdrawRequestsController@update_status')->name('store-withdraw-requests.update_status');
     Route::resource('store-withdraw-requests', 'StoreWithdrawRequestsController');
 
     // Commission History

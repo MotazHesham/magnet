@@ -9,969 +9,722 @@ class PermissionsTableSeeder extends Seeder
 {
     public function run()
     {
+        $i = 0;
         $permissions = [
             [
-                'id'    => 1,
+                'id'    => $i++,
                 'title' => 'user_management_access',
             ],
             [
-                'id'    => 2,
-                'title' => 'permission_create',
-            ],
-            [
-                'id'    => 3,
-                'title' => 'permission_edit',
-            ],
-            [
-                'id'    => 4,
-                'title' => 'permission_show',
-            ],
-            [
-                'id'    => 5,
-                'title' => 'permission_delete',
-            ],
-            [
-                'id'    => 6,
-                'title' => 'permission_access',
-            ],
-            [
-                'id'    => 7,
+                'id'    => $i++,
                 'title' => 'role_create',
             ],
             [
-                'id'    => 8,
+                'id'    => $i++,
                 'title' => 'role_edit',
             ],
             [
-                'id'    => 9,
+                'id'    => $i++,
                 'title' => 'role_show',
             ],
             [
-                'id'    => 10,
+                'id'    => $i++,
                 'title' => 'role_delete',
             ],
             [
-                'id'    => 11,
+                'id'    => $i++,
                 'title' => 'role_access',
             ],
             [
-                'id'    => 12,
+                'id'    => $i++,
                 'title' => 'user_create',
             ],
             [
-                'id'    => 13,
+                'id'    => $i++,
                 'title' => 'user_edit',
             ],
             [
-                'id'    => 14,
+                'id'    => $i++,
                 'title' => 'user_show',
             ],
             [
-                'id'    => 15,
+                'id'    => $i++,
                 'title' => 'user_delete',
             ],
             [
-                'id'    => 16,
+                'id'    => $i++,
                 'title' => 'user_access',
             ],
             [
-                'id'    => 17,
+                'id'    => $i++,
                 'title' => 'audit_log_show',
             ],
             [
-                'id'    => 18,
+                'id'    => $i++,
                 'title' => 'audit_log_access',
             ],
             [
-                'id'    => 19,
+                'id'    => $i++,
                 'title' => 'faq_management_access',
             ],
             [
-                'id'    => 20,
+                'id'    => $i++,
                 'title' => 'faq_category_create',
             ],
             [
-                'id'    => 21,
+                'id'    => $i++,
                 'title' => 'faq_category_edit',
             ],
             [
-                'id'    => 22,
+                'id'    => $i++,
                 'title' => 'faq_category_show',
             ],
             [
-                'id'    => 23,
+                'id'    => $i++,
                 'title' => 'faq_category_delete',
             ],
             [
-                'id'    => 24,
+                'id'    => $i++,
                 'title' => 'faq_category_access',
             ],
             [
-                'id'    => 25,
+                'id'    => $i++,
                 'title' => 'faq_question_create',
             ],
             [
-                'id'    => 26,
+                'id'    => $i++,
                 'title' => 'faq_question_edit',
             ],
             [
-                'id'    => 27,
+                'id'    => $i++,
                 'title' => 'faq_question_show',
             ],
             [
-                'id'    => 28,
+                'id'    => $i++,
                 'title' => 'faq_question_delete',
             ],
             [
-                'id'    => 29,
+                'id'    => $i++,
                 'title' => 'faq_question_access',
             ],
             [
-                'id'    => 30,
+                'id'    => $i++,
                 'title' => 'product_category_create',
             ],
             [
-                'id'    => 31,
+                'id'    => $i++,
                 'title' => 'product_category_edit',
             ],
             [
-                'id'    => 32,
+                'id'    => $i++,
                 'title' => 'product_category_show',
             ],
             [
-                'id'    => 33,
+                'id'    => $i++,
                 'title' => 'product_category_delete',
             ],
             [
-                'id'    => 34,
+                'id'    => $i++,
                 'title' => 'product_category_access',
             ],
             [
-                'id'    => 35,
+                'id'    => $i++,
                 'title' => 'brand_create',
             ],
             [
-                'id'    => 36,
+                'id'    => $i++,
                 'title' => 'brand_edit',
             ],
             [
-                'id'    => 37,
+                'id'    => $i++,
                 'title' => 'brand_show',
             ],
             [
-                'id'    => 38,
+                'id'    => $i++,
                 'title' => 'brand_delete',
             ],
             [
-                'id'    => 39,
+                'id'    => $i++,
                 'title' => 'brand_access',
             ],
             [
-                'id'    => 40,
+                'id'    => $i++,
                 'title' => 'product_create',
             ],
             [
-                'id'    => 41,
+                'id'    => $i++,
                 'title' => 'product_edit',
             ],
             [
-                'id'    => 42,
+                'id'    => $i++,
                 'title' => 'product_show',
             ],
             [
-                'id'    => 43,
+                'id'    => $i++,
                 'title' => 'product_delete',
             ],
             [
-                'id'    => 44,
+                'id'    => $i++,
                 'title' => 'product_access',
             ],
             [
-                'id'    => 45,
-                'title' => 'product_favorite_create',
-            ],
-            [
-                'id'    => 46,
-                'title' => 'product_favorite_edit',
-            ],
-            [
-                'id'    => 47,
-                'title' => 'product_favorite_show',
-            ],
-            [
-                'id'    => 48,
-                'title' => 'product_favorite_delete',
-            ],
-            [
-                'id'    => 49,
+                'id'    => $i++,
                 'title' => 'product_favorite_access',
             ],
             [
-                'id'    => 50,
+                'id'    => $i++,
                 'title' => 'country_managment_access',
             ],
             [
-                'id'    => 51,
+                'id'    => $i++,
                 'title' => 'district_create',
             ],
             [
-                'id'    => 52,
+                'id'    => $i++,
                 'title' => 'district_edit',
             ],
             [
-                'id'    => 53,
+                'id'    => $i++,
                 'title' => 'district_show',
             ],
             [
-                'id'    => 54,
+                'id'    => $i++,
                 'title' => 'district_delete',
             ],
             [
-                'id'    => 55,
+                'id'    => $i++,
                 'title' => 'district_access',
             ],
             [
-                'id'    => 56,
+                'id'    => $i++,
                 'title' => 'city_create',
             ],
             [
-                'id'    => 57,
+                'id'    => $i++,
                 'title' => 'city_edit',
             ],
             [
-                'id'    => 58,
+                'id'    => $i++,
                 'title' => 'city_show',
             ],
             [
-                'id'    => 59,
+                'id'    => $i++,
                 'title' => 'city_delete',
             ],
             [
-                'id'    => 60,
+                'id'    => $i++,
                 'title' => 'city_access',
             ],
             [
-                'id'    => 61,
+                'id'    => $i++,
                 'title' => 'store_create',
             ],
             [
-                'id'    => 62,
+                'id'    => $i++,
                 'title' => 'store_edit',
             ],
             [
-                'id'    => 63,
+                'id'    => $i++,
                 'title' => 'store_show',
             ],
             [
-                'id'    => 64,
+                'id'    => $i++,
                 'title' => 'store_delete',
             ],
             [
-                'id'    => 65,
+                'id'    => $i++,
                 'title' => 'store_access',
-            ],
+            ], 
             [
-                'id'    => 66,
-                'title' => 'cart_create',
-            ],
-            [
-                'id'    => 67,
-                'title' => 'cart_edit',
-            ],
-            [
-                'id'    => 68,
-                'title' => 'cart_show',
-            ],
-            [
-                'id'    => 69,
-                'title' => 'cart_delete',
-            ],
-            [
-                'id'    => 70,
+                'id'    => $i++,
                 'title' => 'cart_access',
             ],
             [
-                'id'    => 71,
+                'id'    => $i++,
                 'title' => 'order_create',
             ],
             [
-                'id'    => 72,
+                'id'    => $i++,
                 'title' => 'order_edit',
             ],
             [
-                'id'    => 73,
+                'id'    => $i++,
                 'title' => 'order_show',
             ],
             [
-                'id'    => 74,
+                'id'    => $i++,
                 'title' => 'order_delete',
             ],
             [
-                'id'    => 75,
+                'id'    => $i++,
                 'title' => 'order_access',
             ],
             [
-                'id'    => 76,
+                'id'    => $i++,
                 'title' => 'order_detail_create',
             ],
             [
-                'id'    => 77,
+                'id'    => $i++,
                 'title' => 'order_detail_edit',
             ],
             [
-                'id'    => 78,
+                'id'    => $i++,
                 'title' => 'order_detail_show',
             ],
             [
-                'id'    => 79,
+                'id'    => $i++,
                 'title' => 'order_detail_delete',
             ],
             [
-                'id'    => 80,
+                'id'    => $i++,
                 'title' => 'order_detail_access',
             ],
             [
-                'id'    => 81,
+                'id'    => $i++,
                 'title' => 'refund_request_create',
             ],
             [
-                'id'    => 82,
+                'id'    => $i++,
                 'title' => 'refund_request_edit',
             ],
             [
-                'id'    => 83,
+                'id'    => $i++,
                 'title' => 'refund_request_show',
             ],
             [
-                'id'    => 84,
+                'id'    => $i++,
                 'title' => 'refund_request_delete',
             ],
             [
-                'id'    => 85,
+                'id'    => $i++,
                 'title' => 'refund_request_access',
             ],
             [
-                'id'    => 86,
-                'title' => 'product_review_create',
-            ],
-            [
-                'id'    => 87,
-                'title' => 'product_review_edit',
-            ],
-            [
-                'id'    => 88,
-                'title' => 'product_review_show',
-            ],
-            [
-                'id'    => 89,
+                'id'    => $i++,
                 'title' => 'product_review_delete',
             ],
             [
-                'id'    => 90,
+                'id'    => $i++,
                 'title' => 'product_review_access',
             ],
             [
-                'id'    => 91,
+                'id'    => $i++,
                 'title' => 'popup_create',
             ],
             [
-                'id'    => 92,
+                'id'    => $i++,
                 'title' => 'popup_edit',
             ],
             [
-                'id'    => 93,
+                'id'    => $i++,
                 'title' => 'popup_show',
             ],
             [
-                'id'    => 94,
+                'id'    => $i++,
                 'title' => 'popup_delete',
             ],
             [
-                'id'    => 95,
+                'id'    => $i++,
                 'title' => 'popup_access',
             ],
             [
-                'id'    => 96,
+                'id'    => $i++,
                 'title' => 'slider_create',
             ],
             [
-                'id'    => 97,
+                'id'    => $i++,
                 'title' => 'slider_edit',
             ],
             [
-                'id'    => 98,
+                'id'    => $i++,
                 'title' => 'slider_show',
             ],
             [
-                'id'    => 99,
+                'id'    => $i++,
                 'title' => 'slider_delete',
             ],
             [
-                'id'    => 100,
+                'id'    => $i++,
                 'title' => 'slider_access',
             ],
             [
-                'id'    => 101,
-                'title' => 'address_create',
-            ],
-            [
-                'id'    => 102,
-                'title' => 'address_edit',
-            ],
-            [
-                'id'    => 103,
+                'id'    => $i++,
                 'title' => 'address_show',
             ],
             [
-                'id'    => 104,
-                'title' => 'address_delete',
-            ],
-            [
-                'id'    => 105,
+                'id'    => $i++,
                 'title' => 'address_access',
             ],
             [
-                'id'    => 106,
+                'id'    => $i++,
                 'title' => 'customer_create',
             ],
             [
-                'id'    => 107,
+                'id'    => $i++,
                 'title' => 'customer_edit',
             ],
             [
-                'id'    => 108,
+                'id'    => $i++,
                 'title' => 'customer_show',
             ],
             [
-                'id'    => 109,
+                'id'    => $i++,
                 'title' => 'customer_delete',
             ],
             [
-                'id'    => 110,
+                'id'    => $i++,
                 'title' => 'customer_access',
             ],
             [
-                'id'    => 111,
+                'id'    => $i++,
                 'title' => 'attribute_create',
             ],
             [
-                'id'    => 112,
+                'id'    => $i++,
                 'title' => 'attribute_edit',
             ],
             [
-                'id'    => 113,
-                'title' => 'attribute_show',
-            ],
-            [
-                'id'    => 114,
+                'id'    => $i++,
                 'title' => 'attribute_delete',
             ],
             [
-                'id'    => 115,
+                'id'    => $i++,
                 'title' => 'attribute_access',
             ],
             [
-                'id'    => 116,
+                'id'    => $i++,
                 'title' => 'region_create',
             ],
             [
-                'id'    => 117,
+                'id'    => $i++,
                 'title' => 'region_edit',
             ],
             [
-                'id'    => 118,
+                'id'    => $i++,
                 'title' => 'region_show',
             ],
             [
-                'id'    => 119,
+                'id'    => $i++,
                 'title' => 'region_delete',
             ],
             [
-                'id'    => 120,
+                'id'    => $i++,
                 'title' => 'region_access',
             ],
             [
-                'id'    => 121,
-                'title' => 'store_follower_create',
-            ],
-            [
-                'id'    => 122,
-                'title' => 'store_follower_edit',
-            ],
-            [
-                'id'    => 123,
-                'title' => 'store_follower_show',
-            ],
-            [
-                'id'    => 124,
-                'title' => 'store_follower_delete',
-            ],
-            [
-                'id'    => 125,
+                'id'    => $i++,
                 'title' => 'store_follower_access',
             ],
             [
-                'id'    => 126,
-                'title' => 'store_complaint_create',
-            ],
-            [
-                'id'    => 127,
-                'title' => 'store_complaint_edit',
-            ],
-            [
-                'id'    => 128,
-                'title' => 'store_complaint_show',
-            ],
-            [
-                'id'    => 129,
-                'title' => 'store_complaint_delete',
-            ],
-            [
-                'id'    => 130,
+                'id'    => $i++,
                 'title' => 'store_complaint_access',
             ],
             [
-                'id'    => 131,
-                'title' => 'product_complaint_create',
-            ],
-            [
-                'id'    => 132,
-                'title' => 'product_complaint_edit',
-            ],
-            [
-                'id'    => 133,
-                'title' => 'product_complaint_show',
-            ],
-            [
-                'id'    => 134,
-                'title' => 'product_complaint_delete',
-            ],
-            [
-                'id'    => 135,
+                'id'    => $i++,
                 'title' => 'product_complaint_access',
             ],
             [
-                'id'    => 136,
-                'title' => 'product_stock_remember_create',
-            ],
-            [
-                'id'    => 137,
-                'title' => 'product_stock_remember_edit',
-            ],
-            [
-                'id'    => 138,
-                'title' => 'product_stock_remember_show',
-            ],
-            [
-                'id'    => 139,
-                'title' => 'product_stock_remember_delete',
-            ],
-            [
-                'id'    => 140,
+                'id'    => $i++,
                 'title' => 'product_stock_remember_access',
             ],
             [
-                'id'    => 141,
-                'title' => 'payment_method_create',
-            ],
-            [
-                'id'    => 142,
+                'id'    => $i++,
                 'title' => 'payment_method_edit',
             ],
             [
-                'id'    => 143,
-                'title' => 'payment_method_show',
-            ],
-            [
-                'id'    => 144,
-                'title' => 'payment_method_delete',
-            ],
-            [
-                'id'    => 145,
+                'id'    => $i++,
                 'title' => 'payment_method_access',
             ],
             [
-                'id'    => 146,
+                'id'    => $i++,
                 'title' => 'coupon_create',
             ],
             [
-                'id'    => 147,
+                'id'    => $i++,
                 'title' => 'coupon_edit',
             ],
             [
-                'id'    => 148,
+                'id'    => $i++,
                 'title' => 'coupon_show',
             ],
             [
-                'id'    => 149,
+                'id'    => $i++,
                 'title' => 'coupon_delete',
             ],
             [
-                'id'    => 150,
+                'id'    => $i++,
                 'title' => 'coupon_access',
             ],
             [
-                'id'    => 151,
-                'title' => 'coupon_usage_create',
-            ],
-            [
-                'id'    => 152,
-                'title' => 'coupon_usage_edit',
-            ],
-            [
-                'id'    => 153,
-                'title' => 'coupon_usage_show',
-            ],
-            [
-                'id'    => 154,
-                'title' => 'coupon_usage_delete',
-            ],
-            [
-                'id'    => 155,
+                'id'    => $i++,
                 'title' => 'coupon_usage_access',
             ],
             [
-                'id'    => 156,
+                'id'    => $i++,
                 'title' => 'color_create',
             ],
             [
-                'id'    => 157,
+                'id'    => $i++,
                 'title' => 'color_edit',
             ],
             [
-                'id'    => 158,
+                'id'    => $i++,
                 'title' => 'color_show',
             ],
             [
-                'id'    => 159,
+                'id'    => $i++,
                 'title' => 'color_delete',
             ],
             [
-                'id'    => 160,
+                'id'    => $i++,
                 'title' => 'color_access',
             ],
             [
-                'id'    => 161,
+                'id'    => $i++,
                 'title' => 'product_managment_access',
             ],
             [
-                'id'    => 162,
+                'id'    => $i++,
                 'title' => 'general_setting_access',
             ],
             [
-                'id'    => 163,
+                'id'    => $i++,
                 'title' => 'store_managment_access',
             ],
             [
-                'id'    => 164,
+                'id'    => $i++,
                 'title' => 'order_managment_access',
             ],
             [
-                'id'    => 165,
+                'id'    => $i++,
                 'title' => 'marketing_access',
             ],
             [
-                'id'    => 166,
+                'id'    => $i++,
                 'title' => 'special_order_create',
             ],
             [
-                'id'    => 167,
+                'id'    => $i++,
                 'title' => 'special_order_edit',
             ],
             [
-                'id'    => 168,
+                'id'    => $i++,
                 'title' => 'special_order_show',
             ],
             [
-                'id'    => 169,
+                'id'    => $i++,
                 'title' => 'special_order_delete',
             ],
             [
-                'id'    => 170,
+                'id'    => $i++,
                 'title' => 'special_order_access',
             ],
             [
-                'id'    => 171,
-                'title' => 'contactu_show',
-            ],
-            [
-                'id'    => 172,
+                'id'    => $i++,
                 'title' => 'contactu_delete',
             ],
             [
-                'id'    => 173,
+                'id'    => $i++,
                 'title' => 'contactu_access',
-            ],
+            ], 
             [
-                'id'    => 174,
-                'title' => 'wallet_transaction_create',
-            ],
-            [
-                'id'    => 175,
-                'title' => 'wallet_transaction_edit',
-            ],
-            [
-                'id'    => 176,
+                'id'    => $i++,
                 'title' => 'wallet_transaction_show',
-            ],
+            ], 
             [
-                'id'    => 177,
-                'title' => 'wallet_transaction_delete',
-            ],
-            [
-                'id'    => 178,
+                'id'    => $i++,
                 'title' => 'wallet_transaction_access',
             ],
             [
-                'id'    => 179,
+                'id'    => $i++,
                 'title' => 'customer_managment_access',
             ],
             [
-                'id'    => 180,
-                'title' => 'customer_point_create',
-            ],
-            [
-                'id'    => 181,
-                'title' => 'customer_point_edit',
-            ],
-            [
-                'id'    => 182,
-                'title' => 'customer_point_show',
-            ],
-            [
-                'id'    => 183,
-                'title' => 'customer_point_delete',
-            ],
-            [
-                'id'    => 184,
+                'id'    => $i++,
                 'title' => 'customer_point_access',
             ],
             [
-                'id'    => 185,
+                'id'    => $i++,
                 'title' => 'attribute_value_create',
             ],
             [
-                'id'    => 186,
+                'id'    => $i++,
                 'title' => 'attribute_value_edit',
             ],
             [
-                'id'    => 187,
-                'title' => 'attribute_value_show',
-            ],
-            [
-                'id'    => 188,
+                'id'    => $i++,
                 'title' => 'attribute_value_delete',
             ],
             [
-                'id'    => 189,
+                'id'    => $i++,
                 'title' => 'attribute_value_access',
             ],
             [
-                'id'    => 190,
-                'title' => 'setting_create',
-            ],
-            [
-                'id'    => 191,
+                'id'    => $i++,
                 'title' => 'setting_edit',
             ],
             [
-                'id'    => 192,
-                'title' => 'setting_show',
-            ],
-            [
-                'id'    => 193,
-                'title' => 'setting_delete',
-            ],
-            [
-                'id'    => 194,
+                'id'    => $i++,
                 'title' => 'setting_access',
             ],
             [
-                'id'    => 195,
+                'id'    => $i++,
                 'title' => 'scratch_create',
             ],
             [
-                'id'    => 196,
+                'id'    => $i++,
                 'title' => 'scratch_edit',
             ],
             [
-                'id'    => 197,
+                'id'    => $i++,
                 'title' => 'scratch_show',
             ],
             [
-                'id'    => 198,
+                'id'    => $i++,
                 'title' => 'scratch_delete',
             ],
             [
-                'id'    => 199,
+                'id'    => $i++,
                 'title' => 'scratch_access',
             ],
             [
-                'id'    => 200,
-                'title' => 'customer_scratch_create',
-            ],
-            [
-                'id'    => 201,
-                'title' => 'customer_scratch_edit',
-            ],
-            [
-                'id'    => 202,
-                'title' => 'customer_scratch_show',
-            ],
-            [
-                'id'    => 203,
-                'title' => 'customer_scratch_delete',
-            ],
-            [
-                'id'    => 204,
+                'id'    => $i++,
                 'title' => 'customer_scratch_access',
             ],
             [
-                'id'    => 205,
+                'id'    => $i++,
                 'title' => 'coupon_managment_access',
             ],
             [
-                'id'    => 206,
+                'id'    => $i++,
                 'title' => 'notification_create',
             ],
             [
-                'id'    => 207,
+                'id'    => $i++,
                 'title' => 'notification_edit',
             ],
             [
-                'id'    => 208,
+                'id'    => $i++,
                 'title' => 'notification_show',
             ],
             [
-                'id'    => 209,
+                'id'    => $i++,
                 'title' => 'notification_delete',
             ],
             [
-                'id'    => 210,
+                'id'    => $i++,
                 'title' => 'notification_access',
             ],
             [
-                'id'    => 211,
+                'id'    => $i++,
                 'title' => 'notification_type_create',
             ],
             [
-                'id'    => 212,
+                'id'    => $i++,
                 'title' => 'notification_type_edit',
             ],
             [
-                'id'    => 213,
+                'id'    => $i++,
                 'title' => 'notification_type_show',
             ],
             [
-                'id'    => 214,
+                'id'    => $i++,
                 'title' => 'notification_type_delete',
             ],
             [
-                'id'    => 215,
+                'id'    => $i++,
                 'title' => 'notification_type_access',
             ],
             [
-                'id'    => 216,
+                'id'    => $i++,
                 'title' => 'store_withdraw_request_create',
             ],
             [
-                'id'    => 217,
+                'id'    => $i++,
                 'title' => 'store_withdraw_request_edit',
             ],
             [
-                'id'    => 218,
+                'id'    => $i++,
                 'title' => 'store_withdraw_request_show',
             ],
             [
-                'id'    => 219,
+                'id'    => $i++,
                 'title' => 'store_withdraw_request_delete',
             ],
             [
-                'id'    => 220,
+                'id'    => $i++,
                 'title' => 'store_withdraw_request_access',
             ],
             [
-                'id'    => 221,
+                'id'    => $i++,
                 'title' => 'commission_history_show',
             ],
             [
-                'id'    => 222,
+                'id'    => $i++,
                 'title' => 'commission_history_access',
-            ],
+            ], 
             [
-                'id'    => 223,
-                'title' => 'store_city_create',
-            ],
-            [
-                'id'    => 224,
+                'id'    => $i++,
                 'title' => 'store_city_edit',
-            ],
+            ], 
             [
-                'id'    => 225,
-                'title' => 'store_city_show',
-            ],
-            [
-                'id'    => 226,
-                'title' => 'store_city_delete',
-            ],
-            [
-                'id'    => 227,
+                'id'    => $i++,
                 'title' => 'store_city_access',
             ],
             [
-                'id'    => 228,
+                'id'    => $i++,
                 'title' => 'email_template_create',
             ],
             [
-                'id'    => 229,
+                'id'    => $i++,
                 'title' => 'email_template_edit',
             ],
             [
-                'id'    => 230,
+                'id'    => $i++,
                 'title' => 'email_template_show',
             ],
             [
-                'id'    => 231,
+                'id'    => $i++,
                 'title' => 'email_template_delete',
             ],
             [
-                'id'    => 232,
+                'id'    => $i++,
                 'title' => 'email_template_access',
             ],
             [
-                'id'    => 233,
+                'id'    => $i++,
                 'title' => 'email_template_managment_access',
             ],
             [
-                'id'    => 234,
+                'id'    => $i++,
                 'title' => 'notification_managment_access',
             ],
             [
-                'id'    => 235,
+                'id'    => $i++,
                 'title' => 'report_access',
             ],
             [
-                'id'    => 236,
+                'id'    => $i++,
                 'title' => 'search_access',
             ],
             [
-                'id'    => 237,
+                'id'    => $i++,
                 'title' => 'otp_managment_access',
             ],
             [
-                'id'    => 238,
+                'id'    => $i++,
                 'title' => 'otp_method_access',
             ],
             [
-                'id'    => 239,
+                'id'    => $i++,
                 'title' => 'sms_template_edit',
             ],
             [
-                'id'    => 240,
+                'id'    => $i++,
                 'title' => 'sms_template_access',
             ],
             [
-                'id'    => 241,
+                'id'    => $i++,
                 'title' => 'profile_password_edit',
             ],
         ];

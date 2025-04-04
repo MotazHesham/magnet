@@ -377,6 +377,12 @@ return [
             'latitude_helper'                => ' ',
             'longitude'                      => 'Longitude',
             'longitude_helper'               => ' ',
+            'store_location'                 => 'Shop Location',
+            'store_location_helper'          => ' ',
+            'user_info'                      => 'User Info',
+            'user_info_helper'               => ' ',
+            'store_info'                     => 'Store Info',
+            'store_info_helper'              => ' ',
         ],
     ],
     'cart' => [

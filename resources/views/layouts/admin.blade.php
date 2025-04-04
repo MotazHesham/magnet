@@ -145,6 +145,8 @@
     <script src="{{ asset('dashboard_offline/js/dropzone.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/map.js') }}"></script>
+    <script src="https://maps.google.com/maps/api/js?key={{ config('app.google_map_key') }}&libraries=places&v=weekly"></script>
 
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">

@@ -11,7 +11,7 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->decimal('wallet_balance', 15, 2)->nullable();
-            $table->integer('points')->nullable();
+            $table->integer('points')->default(0)->nullable();
             $table->boolean('can_scratch')->default(0)->nullable();
             $table->timestamps();
             $table->softDeletes();

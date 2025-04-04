@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\UpdateStoreRequest;
 use App\Models\City;
 use App\Models\ProductCategory;
 use App\Models\Store;
+use App\Models\StoreCity;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class StoresController extends Controller
         abort_if(Gate::denies('store_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Store::with(['user', 'city', 'categories'])->select(sprintf('%s.*', (new Store)->table));
+            $query = Store::with(['user', 'city'])->select(sprintf('%s.*', (new Store)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -77,14 +78,6 @@ class StoresController extends Controller
             $table->editColumn('domain', function ($row) {
                 return $row->domain ? $row->domain : '';
             });
-            $table->editColumn('categories', function ($row) {
-                $labels = [];
-                foreach ($row->categories as $category) {
-                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $category->name);
-                }
-
-                return implode(' ', $labels);
-            });
             $table->editColumn('rating', function ($row) {
                 return $row->rating ? $row->rating : '';
             });
@@ -92,7 +85,7 @@ class StoresController extends Controller
                 return $row->admin_to_pay ? $row->admin_to_pay : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'logo', 'city', 'categories']);
+            $table->rawColumns(['actions', 'placeholder', 'logo', 'city']);
 
             return $table->make(true);
         }
@@ -115,8 +108,44 @@ class StoresController extends Controller
 
     public function store(StoreStoreRequest $request)
     {
-        $store = Store::create($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email, 
+            'password' => $request->password,
+            'approved' => 1,
+            'user_type' => 'store',
+            'phone' => $request->phone, 
+        ]);
+
+        $store = Store::create([
+            'user_id' => $user->id,
+            'store_type' => $request->store_type,
+            'store_name' => $request->store_name,
+            'description' => $request->description,
+            'city_id' => $request->city_id,
+            'address' => $request->address,
+            'store_phone' => $request->store_phone,
+            'store_email' => $request->store_email,
+            'domain' => $request->domain,
+            'identity_num' => $request->identity_num,
+            'commerical_register_num' => $request->commerical_register_num,
+            'tax_number' => $request->tax_number, 
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+        ]);
+
+        $storeCities = [];
+        foreach(City::all() as $city){
+            array_push($storeCities,[
+                'store_id' => $store->id,
+                'city_id' => $city->id,
+                'price' => $city->shipping_cost,
+            ]);
+        }
+        StoreCity::insert($storeCities);
+
         $store->categories()->sync($request->input('categories', []));
+
         if ($request->input('logo', false)) {
             $store->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
         }
@@ -143,14 +172,40 @@ class StoresController extends Controller
         $categories = ProductCategory::pluck('name', 'id');
 
         $store->load('user', 'city', 'categories');
+        $user = $store->user;
 
-        return view('admin.stores.edit', compact('categories', 'cities', 'store', 'users'));
+        return view('admin.stores.edit', compact('categories', 'cities', 'store', 'user'));
     }
 
     public function update(UpdateStoreRequest $request, Store $store)
     {
-        $store->update($request->all());
+        $user = User::findOrFail($request->user_id);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email, 
+            'password' => $request->password, 
+            'phone' => $request->phone, 
+        ]);
+
+        $store->update([ 
+            'store_type' => $request->store_type,
+            'store_name' => $request->store_name,
+            'description' => $request->description,
+            'city_id' => $request->city_id,
+            'address' => $request->address,
+            'store_phone' => $request->store_phone,
+            'store_email' => $request->store_email,
+            'domain' => $request->domain,
+            'identity_num' => $request->identity_num,
+            'commerical_register_num' => $request->commerical_register_num,
+            'tax_number' => $request->tax_number, 
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+        ]);
+
         $store->categories()->sync($request->input('categories', []));
+
         if ($request->input('logo', false)) {
             if (! $store->logo || $request->input('logo') !== $store->logo->file_name) {
                 if ($store->logo) {
@@ -180,15 +235,18 @@ class StoresController extends Controller
     {
         abort_if(Gate::denies('store_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $store->load('user', 'city', 'categories', 'storeOrders', 'storeSpecialOrders', 'storeStoreWithdrawRequests', 'storeCommissionHistories', 'storeStoreCities');
+        $store->load('user', 'city', 'categories', 'storeOrders', 'storeSpecialOrders', 'storeStoreWithdrawRequests', 'storeCommissionHistories', 'storeStoreCities.city');
 
-        return view('admin.stores.show', compact('store'));
+        $user = $store->user;
+
+        return view('admin.stores.show', compact('store','user'));
     }
 
     public function destroy(Store $store)
     {
         abort_if(Gate::denies('store_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $store->user()->delete();
         $store->delete();
 
         return back();
@@ -199,6 +257,7 @@ class StoresController extends Controller
         $stores = Store::find(request('ids'));
 
         foreach ($stores as $store) {
+            $store->user()->delete();
             $store->delete();
         }
 

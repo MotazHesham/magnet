@@ -31,8 +31,8 @@ class CustomerPointsController extends Controller
 
             $table->editColumn('actions', function ($row) {
                 $viewGate      = 'customer_point_show';
-                $editGate      = 'customer_point_edit';
-                $deleteGate    = 'customer_point_delete';
+                $editGate      = false;
+                $deleteGate    = false;
                 $crudRoutePart = 'customer-points';
 
                 return view('partials.datatablesActions', compact(

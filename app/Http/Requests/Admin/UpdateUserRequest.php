@@ -20,17 +20,16 @@ class UpdateUserRequest extends FormRequest
             'name' => [
                 'string',
                 'required',
+            ], 
+            'phone' => [ 
+                'unique:users,phone,' . request()->route('user')->id,
+                'regex:/^05\d{8}$/',
+                'required'
             ],
-            'roles.*' => [
-                'integer',
-            ],
-            'roles' => [
+            'email' => [ 
+                'unique:users,email,' . request()->route('user')->id, 
                 'required',
-                'array',
-            ],
-            'phone' => [
-                'string',
-                'nullable',
+                'email',
             ],
         ];
     }

@@ -51,8 +51,14 @@ class CustomersController extends Controller
             $table->editColumn('user.email', function ($row) {
                 return $row->user ? (is_string($row->user) ? $row->user : $row->user->email) : '';
             });
-            $table->editColumn('user.approved', function ($row) {
-                return $row->user ? (is_string($row->user) ? $row->user : $row->user->approved) : '';
+            $table->editColumn('user.block', function ($row) {
+                return '<label class="c-switch c-switch-pill c-switch-success">
+                    <input onchange="updateStatuses(this, \'block\', \'App\\\\Models\\\\User\')" 
+                        value="' . $row->user_id . '" 
+                        type="checkbox" 
+                        class="c-switch-input" ' . ($row->user->block ? 'checked' : '') . '>
+                    <span class="c-switch-slider"></span>
+                </label>'; 
             });
             $table->editColumn('user.phone', function ($row) {
                 return $row->user ? (is_string($row->user) ? $row->user : $row->user->phone) : '';
@@ -67,7 +73,7 @@ class CustomersController extends Controller
                 return '<input type="checkbox" disabled ' . ($row->can_scratch ? 'checked' : null) . '>';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'user', 'can_scratch']);
+            $table->rawColumns(['actions', 'placeholder', 'user', 'can_scratch','user.block']);
 
             return $table->make(true);
         }
@@ -86,25 +92,59 @@ class CustomersController extends Controller
 
     public function store(StoreCustomerRequest $request)
     {
-        $customer = Customer::create($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email, 
+            'password' => $request->password,
+            'approved' => 1,
+            'user_type' => 'customer',
+            'phone' => $request->phone, 
+        ]);
+
+        Customer::create([
+            'user_id' => $user->id,
+            'wallet_balance' => 0,
+            'points' => 0,
+            'can_scratch' => 1,
+        ]);
+
+        if ($request->input('photo', false)) {
+            $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        }
 
         return redirect()->route('admin.customers.index');
     }
 
     public function edit(Customer $customer)
     {
-        abort_if(Gate::denies('customer_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        abort_if(Gate::denies('customer_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden'); 
 
         $customer->load('user');
+        $user = $customer->user;
 
-        return view('admin.customers.edit', compact('customer', 'users'));
+        return view('admin.customers.edit', compact('customer', 'user'));
     }
 
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        $customer->update($request->all());
+        $user = User::find($customer->user_id);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email, 
+            'password' => $request->password, 
+            'phone' => $request->phone, 
+        ]);
+        if ($request->input('photo', false)) {
+            if (! $user->photo || $request->input('photo') !== $user->photo->file_name) {
+                if ($user->photo) {
+                    $user->photo->delete();
+                }
+                $user->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+            }
+        } elseif ($user->photo) {
+            $user->photo->delete();
+        }
 
         return redirect()->route('admin.customers.index');
     }
@@ -113,15 +153,17 @@ class CustomersController extends Controller
     {
         abort_if(Gate::denies('customer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $customer->load('user');
+        $customer->load(['user' => ['userAddresses' => ['region','city','district'], 'userProductReviews.product', 'userCustomerPoints' => ['order','product']]]);
+        $user = $customer->user;
 
-        return view('admin.customers.show', compact('customer'));
+        return view('admin.customers.show', compact('customer','user'));
     }
 
     public function destroy(Customer $customer)
     {
         abort_if(Gate::denies('customer_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $customer->user()->delete();
         $customer->delete();
 
         return back();
@@ -132,6 +174,7 @@ class CustomersController extends Controller
         $customers = Customer::find(request('ids'));
 
         foreach ($customers as $customer) {
+            $customer->user()->delete();
             $customer->delete();
         }
 

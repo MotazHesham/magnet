@@ -16,17 +16,10 @@ class UpdateStoreWithdrawRequestRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'store_id' => [
-                'required',
-                'integer',
-            ],
+        return [ 
             'amount' => [
                 'required',
-            ],
-            'status' => [
-                'required',
-            ],
+            ], 
         ];
     }
 }

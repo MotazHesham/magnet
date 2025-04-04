@@ -17,11 +17,22 @@ class StoreCustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'points' => [
+            'name' => [
+                'string',
+                'required',
+            ],
+            'password' => [
+                'required',
+            ], 
+            'phone' => [ 
+                'unique:users',
+                'regex:/^05\d{8}$/',
+                'required'
+            ],
+            'email' => [ 
+                'unique:users', 
                 'nullable',
-                'integer',
-                'min:-2147483648',
-                'max:2147483647',
+                'email',
             ],
         ];
     }

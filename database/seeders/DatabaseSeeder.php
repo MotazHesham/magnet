@@ -14,9 +14,11 @@ class DatabaseSeeder extends Seeder
             PermissionRoleTableSeeder::class,
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
-            AttributeSeeder::class,
             ColorsTableSeeder::class,
+            AttributeSeeder::class,
             CategorySeeder::class,
+            RegionSeeder::class,
+            CitiesSeeder::class,
         ]);
     }
 }

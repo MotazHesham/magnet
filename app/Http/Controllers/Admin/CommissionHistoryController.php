@@ -23,9 +23,9 @@ class CommissionHistoryController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'commission_history_show';
-                $editGate      = 'commission_history_edit';
-                $deleteGate    = 'commission_history_delete';
+                $viewGate      = false;
+                $editGate      = false;
+                $deleteGate    = false;
                 $crudRoutePart = 'commission-histories';
 
                 return view('partials.datatablesActions', compact(
@@ -65,14 +65,5 @@ class CommissionHistoryController extends Controller
         }
 
         return view('admin.commissionHistories.index');
-    }
-
-    public function show(CommissionHistory $commissionHistory)
-    {
-        abort_if(Gate::denies('commission_history_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $commissionHistory->load('store', 'order', 'order_detail');
-
-        return view('admin.commissionHistories.show', compact('commissionHistory'));
-    }
+    } 
 }

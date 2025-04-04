@@ -17,6 +17,20 @@ class UpdateStoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'name' => [
+                'string',
+                'required',
+            ], 
+            'phone' => [ 
+                'unique:users,phone,'. request()->user_id,
+                'regex:/^05\d{8}$/',
+                'required'
+            ],
+            'email' => [ 
+                'unique:users,email,'. request()->user_id,
+                'required',
+                'email',
+            ],
             'store_name' => [
                 'string',
                 'required',

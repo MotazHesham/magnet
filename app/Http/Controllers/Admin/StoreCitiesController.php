@@ -30,7 +30,7 @@ class StoreCitiesController extends Controller
             $table->editColumn('actions', function ($row) {
                 $viewGate      = 'store_city_show';
                 $editGate      = 'store_city_edit';
-                $deleteGate    = 'store_city_delete';
+                $deleteGate    = false;
                 $crudRoutePart = 'store-cities';
 
                 return view('partials.datatablesActions', compact(

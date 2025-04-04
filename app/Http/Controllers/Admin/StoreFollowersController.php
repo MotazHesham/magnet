@@ -28,9 +28,9 @@ class StoreFollowersController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'store_follower_show';
-                $editGate      = 'store_follower_edit';
-                $deleteGate    = 'store_follower_delete';
+                $viewGate      = false;
+                $editGate      = false;
+                $deleteGate    = false;
                 $crudRoutePart = 'store-followers';
 
                 return view('partials.datatablesActions', compact(

@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\MassDestroyStoreComplaintRequest;
-use App\Http\Requests\Admin\StoreStoreComplaintRequest;
-use App\Http\Requests\Admin\UpdateStoreComplaintRequest;
-use App\Models\Store;
-use App\Models\StoreComplaint;
-use App\Models\User;
+use App\Http\Controllers\Controller;  
+use App\Models\StoreComplaint; 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,9 +23,9 @@ class StoreComplaintsController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'store_complaint_show';
-                $editGate      = 'store_complaint_edit';
-                $deleteGate    = 'store_complaint_delete';
+                $viewGate      = false;
+                $editGate      = false;
+                $deleteGate    = false;
                 $crudRoutePart = 'store-complaints';
 
                 return view('partials.datatablesActions', compact(
@@ -63,72 +58,5 @@ class StoreComplaintsController extends Controller
         }
 
         return view('admin.storeComplaints.index');
-    }
-
-    public function create()
-    {
-        abort_if(Gate::denies('store_complaint_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.storeComplaints.create', compact('stores', 'users'));
-    }
-
-    public function store(StoreStoreComplaintRequest $request)
-    {
-        $storeComplaint = StoreComplaint::create($request->all());
-
-        return redirect()->route('admin.store-complaints.index');
-    }
-
-    public function edit(StoreComplaint $storeComplaint)
-    {
-        abort_if(Gate::denies('store_complaint_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $storeComplaint->load('store', 'user');
-
-        return view('admin.storeComplaints.edit', compact('storeComplaint', 'stores', 'users'));
-    }
-
-    public function update(UpdateStoreComplaintRequest $request, StoreComplaint $storeComplaint)
-    {
-        $storeComplaint->update($request->all());
-
-        return redirect()->route('admin.store-complaints.index');
-    }
-
-    public function show(StoreComplaint $storeComplaint)
-    {
-        abort_if(Gate::denies('store_complaint_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $storeComplaint->load('store', 'user');
-
-        return view('admin.storeComplaints.show', compact('storeComplaint'));
-    }
-
-    public function destroy(StoreComplaint $storeComplaint)
-    {
-        abort_if(Gate::denies('store_complaint_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $storeComplaint->delete();
-
-        return back();
-    }
-
-    public function massDestroy(MassDestroyStoreComplaintRequest $request)
-    {
-        $storeComplaints = StoreComplaint::find(request('ids'));
-
-        foreach ($storeComplaints as $storeComplaint) {
-            $storeComplaint->delete();
-        }
-
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
+    } 
 }

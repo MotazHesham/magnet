@@ -11,8 +11,8 @@ class CreateCitiesTable extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->boolean('active')->default(0)->nullable();
-            $table->decimal('shipping_cost', 15, 2);
+            $table->boolean('active')->default(1)->nullable();
+            $table->decimal('shipping_cost', 15, 2)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

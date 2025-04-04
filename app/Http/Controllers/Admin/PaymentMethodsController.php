@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\MassDestroyPaymentMethodRequest;
-use App\Http\Requests\Admin\StorePaymentMethodRequest;
+use App\Http\Controllers\Controller; 
 use App\Http\Requests\Admin\UpdatePaymentMethodRequest;
 use App\Models\PaymentMethod;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate; 
 use Symfony\Component\HttpFoundation\Response;
 
 class PaymentMethodsController extends Controller
@@ -20,21 +17,7 @@ class PaymentMethodsController extends Controller
         $paymentMethods = PaymentMethod::all();
 
         return view('admin.paymentMethods.index', compact('paymentMethods'));
-    }
-
-    public function create()
-    {
-        abort_if(Gate::denies('payment_method_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return view('admin.paymentMethods.create');
-    }
-
-    public function store(StorePaymentMethodRequest $request)
-    {
-        $paymentMethod = PaymentMethod::create($request->all());
-
-        return redirect()->route('admin.payment-methods.index');
-    }
+    } 
 
     public function edit(PaymentMethod $paymentMethod)
     {
@@ -48,32 +31,5 @@ class PaymentMethodsController extends Controller
         $paymentMethod->update($request->all());
 
         return redirect()->route('admin.payment-methods.index');
-    }
-
-    public function show(PaymentMethod $paymentMethod)
-    {
-        abort_if(Gate::denies('payment_method_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return view('admin.paymentMethods.show', compact('paymentMethod'));
-    }
-
-    public function destroy(PaymentMethod $paymentMethod)
-    {
-        abort_if(Gate::denies('payment_method_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $paymentMethod->delete();
-
-        return back();
-    }
-
-    public function massDestroy(MassDestroyPaymentMethodRequest $request)
-    {
-        $paymentMethods = PaymentMethod::find(request('ids'));
-
-        foreach ($paymentMethods as $paymentMethod) {
-            $paymentMethod->delete();
-        }
-
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
+    } 
 }

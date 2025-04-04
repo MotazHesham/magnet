@@ -50,7 +50,7 @@ class RegionsController extends Controller
             $table->editColumn('cities', function ($row) {
                 $labels = [];
                 foreach ($row->cities as $city) {
-                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $city->name);
+                    $labels[] = sprintf('<span class="badge badge-light badge-many">%s</span>', $city->name);
                 }
 
                 return implode(' ', $labels);

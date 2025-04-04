@@ -322,5 +322,7 @@ return [
     'leave'                          => 'مغادرة',
     'calendar'                       => 'التقويم',
     'messenger'                      => 'مراسل',
+    'pay'                            => 'دفع',
+    'reject'                         => 'رفض',
 
 ];

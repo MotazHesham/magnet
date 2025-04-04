@@ -3,12 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\MassDestroyProductFavoriteRequest;
-use App\Http\Requests\Admin\StoreProductFavoriteRequest;
-use App\Http\Requests\Admin\UpdateProductFavoriteRequest;
-use App\Models\Product;
 use App\Models\ProductFavorite;
-use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,70 +56,4 @@ class ProductFavoritesController extends Controller
         return view('admin.productFavorites.index');
     }
 
-    public function create()
-    {
-        abort_if(Gate::denies('product_favorite_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.productFavorites.create', compact('products', 'users'));
-    }
-
-    public function store(StoreProductFavoriteRequest $request)
-    {
-        $productFavorite = ProductFavorite::create($request->all());
-
-        return redirect()->route('admin.product-favorites.index');
-    }
-
-    public function edit(ProductFavorite $productFavorite)
-    {
-        abort_if(Gate::denies('product_favorite_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $productFavorite->load('product', 'user');
-
-        return view('admin.productFavorites.edit', compact('productFavorite', 'products', 'users'));
-    }
-
-    public function update(UpdateProductFavoriteRequest $request, ProductFavorite $productFavorite)
-    {
-        $productFavorite->update($request->all());
-
-        return redirect()->route('admin.product-favorites.index');
-    }
-
-    public function show(ProductFavorite $productFavorite)
-    {
-        abort_if(Gate::denies('product_favorite_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $productFavorite->load('product', 'user');
-
-        return view('admin.productFavorites.show', compact('productFavorite'));
-    }
-
-    public function destroy(ProductFavorite $productFavorite)
-    {
-        abort_if(Gate::denies('product_favorite_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $productFavorite->delete();
-
-        return back();
-    }
-
-    public function massDestroy(MassDestroyProductFavoriteRequest $request)
-    {
-        $productFavorites = ProductFavorite::find(request('ids'));
-
-        foreach ($productFavorites as $productFavorite) {
-            $productFavorite->delete();
-        }
-
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
 }

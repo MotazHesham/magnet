@@ -21,9 +21,9 @@ class StoreWithdrawRequest extends Model
     ];
 
     public const STATUS_SELECT = [
-        'pending'  => 'pending',
-        'paid'     => 'paid',
-        'rejected' => 'rejected',
+        'pending'  => 'قيد الانتظار',
+        'paid'     => 'تم الدفع',
+        'rejected' => 'مرفوض',
     ];
 
     protected $fillable = [
