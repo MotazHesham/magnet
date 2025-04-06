@@ -24,6 +24,7 @@ class SmsTemplate extends Model implements HasMedia
 
     protected $fillable = [
         'identifier',
+        'name',
         'sms_body',
         'templateid',
         'status',

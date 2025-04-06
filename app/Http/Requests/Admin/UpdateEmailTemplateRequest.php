@@ -17,18 +17,6 @@ class UpdateEmailTemplateRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_type' => [
-                'string',
-                'required',
-            ],
-            'identifier' => [
-                'string',
-                'required',
-            ],
-            'email_type' => [
-                'string',
-                'required',
-            ],
             'subject' => [
                 'string',
                 'required',

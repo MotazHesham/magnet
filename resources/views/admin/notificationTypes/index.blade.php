@@ -84,6 +84,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $notificationTypes->appends(request()->input())->links() }}
                 </div>
             </div>
         </div>

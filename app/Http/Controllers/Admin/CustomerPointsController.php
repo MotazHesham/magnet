@@ -2,15 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\MassDestroyCustomerPointRequest;
-use App\Http\Requests\Admin\StoreCustomerPointRequest;
-use App\Http\Requests\Admin\UpdateCustomerPointRequest;
-use App\Models\CustomerPoint;
-use App\Models\Order;
-use App\Models\OrderDetail;
-use App\Models\Product;
-use App\Models\User;
+use App\Http\Controllers\Controller; 
+use App\Models\CustomerPoint; 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -77,54 +70,8 @@ class CustomerPointsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.customerPoints.index');
-    }
-
-    public function create()
-    {
-        abort_if(Gate::denies('customer_point_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $orders = Order::pluck('order_num', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $order_details = OrderDetail::pluck('price', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.customerPoints.create', compact('order_details', 'orders', 'products', 'users'));
-    }
-
-    public function store(StoreCustomerPointRequest $request)
-    {
-        $customerPoint = CustomerPoint::create($request->all());
-
-        return redirect()->route('admin.customer-points.index');
-    }
-
-    public function edit(CustomerPoint $customerPoint)
-    {
-        abort_if(Gate::denies('customer_point_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $orders = Order::pluck('order_num', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $order_details = OrderDetail::pluck('price', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $customerPoint->load('user', 'order', 'order_detail', 'product');
-
-        return view('admin.customerPoints.edit', compact('customerPoint', 'order_details', 'orders', 'products', 'users'));
-    }
-
-    public function update(UpdateCustomerPointRequest $request, CustomerPoint $customerPoint)
-    {
-        $customerPoint->update($request->all());
-
-        return redirect()->route('admin.customer-points.index');
-    }
+        return view('admin.customer.customerPoints.index');
+    } 
 
     public function show(CustomerPoint $customerPoint)
     {
@@ -132,26 +79,6 @@ class CustomerPointsController extends Controller
 
         $customerPoint->load('user', 'order', 'order_detail', 'product');
 
-        return view('admin.customerPoints.show', compact('customerPoint'));
-    }
-
-    public function destroy(CustomerPoint $customerPoint)
-    {
-        abort_if(Gate::denies('customer_point_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $customerPoint->delete();
-
-        return back();
-    }
-
-    public function massDestroy(MassDestroyCustomerPointRequest $request)
-    {
-        $customerPoints = CustomerPoint::find(request('ids'));
-
-        foreach ($customerPoints as $customerPoint) {
-            $customerPoint->delete();
-        }
-
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
+        return view('admin.customer.customerPoints.show', compact('customerPoint'));
+    } 
 }

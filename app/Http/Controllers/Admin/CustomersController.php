@@ -78,7 +78,7 @@ class CustomersController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.customers.index');
+        return view('admin.customer.customers.index');
     }
 
     public function create()
@@ -87,7 +87,7 @@ class CustomersController extends Controller
 
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.customers.create', compact('users'));
+        return view('admin.customer.customers.create', compact('users'));
     }
 
     public function store(StoreCustomerRequest $request)
@@ -122,7 +122,7 @@ class CustomersController extends Controller
         $customer->load('user');
         $user = $customer->user;
 
-        return view('admin.customers.edit', compact('customer', 'user'));
+        return view('admin.customer.customers.edit', compact('customer', 'user'));
     }
 
     public function update(UpdateCustomerRequest $request, Customer $customer)
@@ -156,7 +156,7 @@ class CustomersController extends Controller
         $customer->load(['user' => ['userAddresses' => ['region','city','district'], 'userProductReviews.product', 'userCustomerPoints' => ['order','product']]]);
         $user = $customer->user;
 
-        return view('admin.customers.show', compact('customer','user'));
+        return view('admin.customer.customers.show', compact('customer','user'));
     }
 
     public function destroy(Customer $customer)

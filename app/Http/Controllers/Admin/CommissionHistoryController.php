@@ -64,6 +64,6 @@ class CommissionHistoryController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.commissionHistories.index');
+        return view('admin.store.commissionHistories.index');
     } 
 }

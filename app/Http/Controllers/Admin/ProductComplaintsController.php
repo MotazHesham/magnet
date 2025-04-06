@@ -62,7 +62,7 @@ class ProductComplaintsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.productComplaints.index');
+        return view('admin.product.productComplaints.index');
     }
 
     public function destroy(ProductComplaint $productComplaint)

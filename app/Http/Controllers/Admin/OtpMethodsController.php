@@ -15,43 +15,21 @@ class OtpMethodsController extends Controller
     {
         abort_if(Gate::denies('otp_method_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        if ($request->ajax()) {
-            $query = OtpMethod::query()->select(sprintf('%s.*', (new OtpMethod)->table));
-            $table = Datatables::of($query);
+        $otpMethods = OtpMethod::all();
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
+        return view('admin.otpMethods.index',compact('otpMethods'));
+    }
 
-            $table->editColumn('actions', function ($row) {
-                $viewGate      = 'otp_method_show';
-                $editGate      = 'otp_method_edit';
-                $deleteGate    = 'otp_method_delete';
-                $crudRoutePart = 'otp-methods';
+    public function update_status(Request $request){
+        $otpMethod = OtpMethod::findOrFail($request->id);
+        $otpMethod->status = $request->status;
+        $otpMethod->save();
 
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
-            });
-
-            $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : '';
-            });
-            $table->editColumn('type', function ($row) {
-                return $row->type ? $row->type : '';
-            });
-            $table->editColumn('status', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->status ? 'checked' : null) . '>';
-            });
-
-            $table->rawColumns(['actions', 'placeholder', 'status']);
-
-            return $table->make(true);
+        if($request->status == 1){ 
+            OtpMethod::where('id','!=', $otpMethod->id)
+                        ->where('status', 1)
+                        ->update(['status' => 0]);
         }
-
-        return view('admin.otpMethods.index');
+        return 1;
     }
 }

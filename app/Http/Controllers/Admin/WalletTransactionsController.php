@@ -58,12 +58,12 @@ class WalletTransactionsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.walletTransactions.index');
+        return view('admin.customer.walletTransactions.index');
     }
     public function show(WalletTransaction $walletTransaction)
     {
         abort_if(Gate::denies('wallet_transaction_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.walletTransactions.show', compact('walletTransaction'));
+        return view('admin.customer.walletTransactions.show', compact('walletTransaction'));
     }
 }

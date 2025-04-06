@@ -254,12 +254,12 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="product_product_reviews">
-                        @includeIf('admin.products.relationships.productProductReviews', [
+                        @includeIf('admin.product.products.relationships.productProductReviews', [
                             'productReviews' => $product->productProductReviews,
                         ])
                     </div>
                     <div class="tab-pane" role="tabpanel" id="product_product_complaints">
-                        @includeIf('admin.products.relationships.productProductComplaints', [
+                        @includeIf('admin.product.products.relationships.productProductComplaints', [
                             'productComplaints' => $product->productProductComplaints,
                         ])
                     </div>

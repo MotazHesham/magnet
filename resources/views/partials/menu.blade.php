@@ -331,6 +331,16 @@
                                         </a>
                                     </li>
                                 @endcan
+                                @can('smtp_settings')
+                                    <li class="c-sidebar-nav-item">
+                                        <a href="{{ route("admin.smtp-settings") }}" class="c-sidebar-nav-link {{ request()->is("admin/smtp-settings") }}">
+                                            <i class="fa-fw fas fa-wrench c-sidebar-nav-icon">
+
+                                            </i>
+                                            Smtp Settings
+                                        </a>
+                                    </li>
+                                @endcan
                             </ul>
                         </li>
                     @endcan

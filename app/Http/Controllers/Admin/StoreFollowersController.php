@@ -53,6 +53,6 @@ class StoreFollowersController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.storeFollowers.index');
+        return view('admin.store.storeFollowers.index');
     } 
 }

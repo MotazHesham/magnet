@@ -42,12 +42,12 @@ class ProductController extends Controller
     }
     public function attribute_options(Request $request){ 
         $attributes = Attribute::with('attributeAttributeValues')->whereIn('id',$request->selectedAttributes ?? [])->get();
-        return view('admin.products.attribute-options', compact('attributes'));
+        return view('admin.product.products.attribute-options', compact('attributes'));
     }
     public function attribute_options_edit(Request $request){ 
         $product = Product::find($request->product_id);
         $attributes = Attribute::with('attributeAttributeValues')->whereIn('id',$request->selectedAttributes ?? [])->get();
-        return view('admin.products.attribute-options-edit', compact('attributes','product'));
+        return view('admin.product.products.attribute-options-edit', compact('attributes','product'));
     }
     public function sku_combination(Request $request)
     {
@@ -75,7 +75,7 @@ class ProductController extends Controller
         }
 
         $combinations = combinations($options);
-        return view('admin.products.sku-combinations', compact('combinations', 'purchase_price','unit_price', 'colors_active', 'product_name'));
+        return view('admin.product.products.sku-combinations', compact('combinations', 'purchase_price','unit_price', 'colors_active', 'product_name'));
     }
 
     public function sku_combination_edit(Request $request)
@@ -106,7 +106,7 @@ class ProductController extends Controller
         }
 
         $combinations = combinations($options);
-        return view('admin.products.sku-combinations-edit', compact('combinations', 'unit_price', 'purchase_price' , 'colors_active', 'product_name', 'product'));
+        return view('admin.product.products.sku-combinations-edit', compact('combinations', 'unit_price', 'purchase_price' , 'colors_active', 'product_name', 'product'));
     }
     public function index(Request $request)
     {
@@ -215,7 +215,7 @@ class ProductController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.products.index');
+        return view('admin.product.products.index');
     }
 
     public function create()
@@ -232,7 +232,7 @@ class ProductController extends Controller
 
         $attributes = Attribute::pluck('name', 'id');
         
-        return view('admin.products.create', compact('brands', 'product_categories', 'stores','colors','attributes'));
+        return view('admin.product.products.create', compact('brands', 'product_categories', 'stores','colors','attributes'));
     }
 
     public function store(StoreProductRequest $request)
@@ -276,7 +276,7 @@ class ProductController extends Controller
 
         $product->load('store', 'product_categories', 'brand');
 
-        return view('admin.products.edit', compact('brands', 'product', 'product_categories', 'stores', 'colors' ,'attributes'));
+        return view('admin.product.products.edit', compact('brands', 'product', 'product_categories', 'stores', 'colors' ,'attributes'));
     }
 
     public function update(UpdateProductRequest $request)
@@ -323,7 +323,7 @@ class ProductController extends Controller
 
         $product->load('store', 'product_categories', 'brand', 'productProductReviews', 'productProductComplaints');
 
-        return view('admin.products.show', compact('product'));
+        return view('admin.product.products.show', compact('product'));
     }
 
     public function destroy(Product $product)

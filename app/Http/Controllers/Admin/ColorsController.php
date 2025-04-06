@@ -58,14 +58,14 @@ class ColorsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.colors.index');
+        return view('admin.product.colors.index');
     }
 
     public function create()
     {
         abort_if(Gate::denies('color_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.colors.create');
+        return view('admin.product.colors.create');
     }
 
     public function store(StoreColorRequest $request)
@@ -79,7 +79,7 @@ class ColorsController extends Controller
     {
         abort_if(Gate::denies('color_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.colors.edit', compact('color'));
+        return view('admin.product.colors.edit', compact('color'));
     }
 
     public function update(UpdateColorRequest $request, Color $color)
@@ -93,7 +93,7 @@ class ColorsController extends Controller
     {
         abort_if(Gate::denies('color_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.colors.show', compact('color'));
+        return view('admin.product.colors.show', compact('color'));
     }
 
     public function destroy(Color $color)

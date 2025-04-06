@@ -241,27 +241,27 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="store_orders">
-                        @includeIf('admin.stores.relationships.storeOrders', [
+                        @includeIf('admin.store.stores.relationships.storeOrders', [
                             'orders' => $store->storeOrders,
                         ])
                     </div>
                     <div class="tab-pane" role="tabpanel" id="store_special_orders">
-                        @includeIf('admin.stores.relationships.storeSpecialOrders', [
+                        @includeIf('admin.store.stores.relationships.storeSpecialOrders', [
                             'specialOrders' => $store->storeSpecialOrders,
                         ])
                     </div>
                     <div class="tab-pane" role="tabpanel" id="store_store_withdraw_requests">
-                        @includeIf('admin.stores.relationships.storeStoreWithdrawRequests', [
+                        @includeIf('admin.store.stores.relationships.storeStoreWithdrawRequests', [
                             'storeWithdrawRequests' => $store->storeStoreWithdrawRequests,
                         ])
                     </div>
                     <div class="tab-pane" role="tabpanel" id="store_commission_histories">
-                        @includeIf('admin.stores.relationships.storeCommissionHistories', [
+                        @includeIf('admin.store.stores.relationships.storeCommissionHistories', [
                             'commissionHistories' => $store->storeCommissionHistories,
                         ])
                     </div>
                     <div class="tab-pane" role="tabpanel" id="store_store_cities">
-                        @includeIf('admin.stores.relationships.storeStoreCities', [
+                        @includeIf('admin.store.stores.relationships.storeStoreCities', [
                             'storeCities' => $store->storeStoreCities,
                         ])
                     </div>

@@ -385,6 +385,10 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => $i++,
+                'title' => 'attribute_show',
+            ],
+            [
+                'id'    => $i++,
                 'title' => 'attribute_delete',
             ],
             [
@@ -722,6 +726,10 @@ class PermissionsTableSeeder extends Seeder
             [
                 'id'    => $i++,
                 'title' => 'sms_template_access',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'smtp_settings',
             ],
             [
                 'id'    => $i++,

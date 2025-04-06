@@ -137,17 +137,17 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="user_addresses">
-                        @includeIf('admin.users.relationships.userAddresses', [
+                        @includeIf('admin.customer.customers.relationships.userAddresses', [
                             'addresses' => $user->userAddresses,
                         ])
                     </div> 
                     <div class="tab-pane" role="tabpanel" id="user_product_reviews">
-                        @includeIf('admin.users.relationships.userProductReviews', [
+                        @includeIf('admin.customer.customers.relationships.userProductReviews', [
                             'productReviews' => $user->userProductReviews,
                         ])
                     </div>
                     <div class="tab-pane" role="tabpanel" id="user_customer_points">
-                        @includeIf('admin.users.relationships.userCustomerPoints', [
+                        @includeIf('admin.customer.customers.relationships.userCustomerPoints', [
                             'customerPoints' => $user->userCustomerPoints,
                         ])
                     </div>

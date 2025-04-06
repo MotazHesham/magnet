@@ -84,7 +84,7 @@ class ProductCategoryController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.productCategories.index');
+        return view('admin.product.productCategories.index');
     }
 
     public function create()
@@ -93,7 +93,7 @@ class ProductCategoryController extends Controller
 
         $parents = ProductCategory::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.productCategories.create', compact('parents'));
+        return view('admin.product.productCategories.create', compact('parents'));
     }
 
     public function store(StoreProductCategoryRequest $request)
@@ -119,7 +119,7 @@ class ProductCategoryController extends Controller
 
         $productCategory->load('parent');
 
-        return view('admin.productCategories.edit', compact('parents', 'productCategory'));
+        return view('admin.product.productCategories.edit', compact('parents', 'productCategory'));
     }
 
     public function update(UpdateProductCategoryRequest $request, ProductCategory $productCategory)
@@ -146,7 +146,7 @@ class ProductCategoryController extends Controller
 
         $productCategory->load('parent');
 
-        return view('admin.productCategories.show', compact('productCategory'));
+        return view('admin.product.productCategories.show', compact('productCategory'));
     }
 
     public function destroy(ProductCategory $productCategory)

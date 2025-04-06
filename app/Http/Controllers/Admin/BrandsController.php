@@ -67,14 +67,14 @@ class BrandsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.brands.index');
+        return view('admin.product.brands.index');
     }
 
     public function create()
     {
         abort_if(Gate::denies('brand_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.brands.create');
+        return view('admin.product.brands.create');
     }
 
     public function store(StoreBrandRequest $request)
@@ -96,7 +96,7 @@ class BrandsController extends Controller
     {
         abort_if(Gate::denies('brand_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.brands.edit', compact('brand'));
+        return view('admin.product.brands.edit', compact('brand'));
     }
 
     public function update(UpdateBrandRequest $request, Brand $brand)
@@ -121,7 +121,7 @@ class BrandsController extends Controller
     {
         abort_if(Gate::denies('brand_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.brands.show', compact('brand'));
+        return view('admin.product.brands.show', compact('brand'));
     }
 
     public function destroy(Brand $brand)

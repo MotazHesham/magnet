@@ -106,7 +106,7 @@ class StoreWithdrawRequestsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.storeWithdrawRequests.index');
+        return view('admin.store.storeWithdrawRequests.index');
     }
 
     public function create()
@@ -115,7 +115,7 @@ class StoreWithdrawRequestsController extends Controller
 
         $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.storeWithdrawRequests.create', compact('stores'));
+        return view('admin.store.storeWithdrawRequests.create', compact('stores'));
     }
 
     public function store(StoreStoreWithdrawRequestRequest $request)
@@ -140,7 +140,7 @@ class StoreWithdrawRequestsController extends Controller
 
         $storeWithdrawRequest->load('store');
 
-        return view('admin.storeWithdrawRequests.edit', compact('storeWithdrawRequest', 'stores'));
+        return view('admin.store.storeWithdrawRequests.edit', compact('storeWithdrawRequest', 'stores'));
     }
 
     public function update(UpdateStoreWithdrawRequestRequest $request, StoreWithdrawRequest $storeWithdrawRequest)
@@ -164,7 +164,7 @@ class StoreWithdrawRequestsController extends Controller
 
         $storeWithdrawRequest->load('store');
 
-        return view('admin.storeWithdrawRequests.show', compact('storeWithdrawRequest'));
+        return view('admin.store.storeWithdrawRequests.show', compact('storeWithdrawRequest'));
     }
 
     public function destroy(StoreWithdrawRequest $storeWithdrawRequest)

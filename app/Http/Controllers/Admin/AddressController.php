@@ -71,7 +71,7 @@ class AddressController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.addresses.index');
+        return view('admin.customer.addresses.index');
     } 
 
     public function show(Address $address)
@@ -80,6 +80,6 @@ class AddressController extends Controller
 
         $address->load('user', 'region', 'city', 'district');
 
-        return view('admin.addresses.show', compact('address'));
+        return view('admin.customer.addresses.show', compact('address'));
     } 
 }

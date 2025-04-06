@@ -20,6 +20,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('/', 'HomeController@index')->name('home');
     Route::post('updateStatuses', 'HomeController@updateStatuses')->name('updateStatuses');
 
+    // Business Settings 
+    Route::post('env_key_update', 'BusinessSettingsController@env_key_update')->name('bussiness-settings.env_key_update');
+    Route::post('test-smtp', 'BusinessSettingsController@testEmail')->name('bussiness-settings.test-smtp');
+    Route::get('smtp-settings', 'BusinessSettingsController@smtp_settings')->name('smtp-settings'); 
+
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');
@@ -238,11 +243,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('searches', 'SearchesController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
 
     // Otp Methods
+    Route::post('otp-methods/update_status', 'OtpMethodsController@update_status')->name('otp-methods.update_status');
     Route::resource('otp-methods', 'OtpMethodsController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
 
-    // Sms Templates
-    Route::post('sms-templates/media', 'SmsTemplatesController@storeMedia')->name('sms-templates.storeMedia');
-    Route::post('sms-templates/ckmedia', 'SmsTemplatesController@storeCKEditorImages')->name('sms-templates.storeCKEditorImages');
+    // Sms Templates 
     Route::resource('sms-templates', 'SmsTemplatesController', ['except' => ['create', 'store', 'show', 'destroy']]);
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

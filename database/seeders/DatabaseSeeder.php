@@ -17,9 +17,13 @@ class DatabaseSeeder extends Seeder
             ColorsTableSeeder::class,
             AttributeSeeder::class,
             CategorySeeder::class,
+            NotificationTypeSeeder::class,
+            EmailTemplateSeeder::class,
+            PaymentMethodSeeder::class,
+            OtpMethodSeeder::class,
+            SmsTemplateSeeder::class,
             RegionSeeder::class,
             CitiesSeeder::class,
-            NotificationTypeSeeder::class,
         ]);
     }
 }

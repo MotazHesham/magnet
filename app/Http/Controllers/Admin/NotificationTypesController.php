@@ -19,7 +19,7 @@ class NotificationTypesController extends Controller
     {
         abort_if(Gate::denies('notification_type_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $notificationTypes = NotificationType::where('user_type',request('user_type','customer'))->get();
+        $notificationTypes = NotificationType::where('user_type',request('user_type','customer'))->paginate(10);
 
         return view('admin.notificationTypes.index',compact('notificationTypes'));
     }

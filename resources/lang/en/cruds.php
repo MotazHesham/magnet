@@ -1287,6 +1287,8 @@ return [
             'id_helper'         => ' ',
             'identifier'        => 'Identifier',
             'identifier_helper' => ' ',
+            'name'              => 'Name',
+            'name_helper'       => ' ',
             'sms_body'          => 'Sms Body',
             'sms_body_helper'   => ' ',
             'templateid'        => 'Templateid',

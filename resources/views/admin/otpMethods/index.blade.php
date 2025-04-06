@@ -1,70 +1,50 @@
 @extends('layouts.admin')
 @section('content')
+    <div class="row">
+        @foreach ($otpMethods as $otpMethod)
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex" style="justify-content: space-between">  
+                            <h4>{{ ucfirst($otpMethod->type) }}</h4>
+                            <label class="c-switch c-switch-pill c-switch-success">
+                                <input onchange="updateOtpStatus(this)" value="{{ $otpMethod->id }}" 
+                                        type="checkbox" class="c-switch-input" {{ $otpMethod->status ? 'checked' : '' }}>
+                                <span class="c-switch-slider"></span>
+                            </label>  
+                        </div>
+                    </div>
 
-<div class="card">
-    <div class="card-header">
-        {{ trans('cruds.otpMethod.title') }}
+                    <div class="card-body">
+                        @include('admin.otpMethods.partials.'.$otpMethod->type)
+                    </div>
+                </div>
+            </div>
+    @endforeach
     </div>
-
-    <div class="card-body">
-        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-OtpMethod">
-            <thead>
-                <tr>
-                    <th width="10">
-
-                    </th>
-                    <th>
-                        {{ trans('cruds.otpMethod.fields.id') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.otpMethod.fields.type') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.otpMethod.fields.status') }}
-                    </th>
-                    <th>
-                        &nbsp;
-                    </th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-</div>
-
-
-
 @endsection
-@section('scripts')
-@parent
-<script>
-    $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-  
-  let dtOverrideGlobals = {
-    buttons: dtButtons,
-    processing: true,
-    serverSide: true,
-    retrieve: true,
-    aaSorting: [],
-    ajax: "{{ route('admin.otp-methods.index') }}",
-    columns: [
-      { data: 'placeholder', name: 'placeholder' },
-{ data: 'id', name: 'id' },
-{ data: 'type', name: 'type' },
-{ data: 'status', name: 'status' },
-{ data: 'actions', name: '{{ trans('global.actions') }}' }
-    ],
-    orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
-    pageLength: 25,
-  };
-  let table = $('.datatable-OtpMethod').DataTable(dtOverrideGlobals);
-  $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
-      $($.fn.dataTable.tables(true)).DataTable()
-          .columns.adjust();
-  });
-  
-});
 
-</script>
+@section('scripts')
+    <script>
+        
+        function updateOtpStatus(el) {
+            if (el.checked) {
+                var status = 1;
+            } else {
+                var status = 0;
+            }
+            $.post('{{ route('admin.otp-methods.update_status') }}', {
+                _token: '{{ csrf_token() }}',
+                id: el.value,
+                status: status,
+            }, function(data) {
+                if (data == 1) {
+                    showAlert('success', '{{ trans("flash.success") }}', '');
+                    location.reload();
+                } else {
+                    showAlert('danger', 'Something Went Wrong', '');
+                }
+            });
+        }
+    </script>
 @endsection

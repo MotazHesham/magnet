@@ -57,6 +57,6 @@ class StoreComplaintsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.storeComplaints.index');
+        return view('admin.store.storeComplaints.index');
     } 
 }

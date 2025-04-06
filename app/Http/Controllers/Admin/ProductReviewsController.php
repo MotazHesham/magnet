@@ -60,7 +60,7 @@ class ProductReviewsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.productReviews.index');
+        return view('admin.product.productReviews.index');
     }
 
     public function destroy(ProductReview $productReview)

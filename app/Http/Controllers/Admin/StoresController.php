@@ -90,7 +90,7 @@ class StoresController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.stores.index');
+        return view('admin.store.stores.index');
     }
 
     public function create()
@@ -103,7 +103,7 @@ class StoresController extends Controller
 
         $categories = ProductCategory::pluck('name', 'id');
 
-        return view('admin.stores.create', compact('categories', 'cities', 'users'));
+        return view('admin.store.stores.create', compact('categories', 'cities', 'users'));
     }
 
     public function store(StoreStoreRequest $request)
@@ -174,7 +174,7 @@ class StoresController extends Controller
         $store->load('user', 'city', 'categories');
         $user = $store->user;
 
-        return view('admin.stores.edit', compact('categories', 'cities', 'store', 'user'));
+        return view('admin.store.stores.edit', compact('categories', 'cities', 'store', 'user'));
     }
 
     public function update(UpdateStoreRequest $request, Store $store)
@@ -239,7 +239,7 @@ class StoresController extends Controller
 
         $user = $store->user;
 
-        return view('admin.stores.show', compact('store','user'));
+        return view('admin.store.stores.show', compact('store','user'));
     }
 
     public function destroy(Store $store)

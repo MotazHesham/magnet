@@ -11,6 +11,7 @@ class CreateSmsTemplatesTable extends Migration
         Schema::create('sms_templates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('identifier');
+            $table->string('name');
             $table->longText('sms_body');
             $table->string('templateid')->nullable();
             $table->boolean('status')->default(0)->nullable();

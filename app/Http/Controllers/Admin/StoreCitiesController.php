@@ -60,7 +60,7 @@ class StoreCitiesController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.storeCities.index');
+        return view('admin.store.storeCities.index');
     } 
 
     public function edit(StoreCity $storeCity)
@@ -73,7 +73,7 @@ class StoreCitiesController extends Controller
 
         $storeCity->load('store', 'city');
 
-        return view('admin.storeCities.edit', compact('cities', 'storeCity', 'stores'));
+        return view('admin.store.storeCities.edit', compact('cities', 'storeCity', 'stores'));
     }
 
     public function update(UpdateStoreCityRequest $request, StoreCity $storeCity)
