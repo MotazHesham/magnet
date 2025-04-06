@@ -70,7 +70,7 @@ class CartController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.carts.index');
+        return view('admin.marketing.carts.index');
     }
 
 }

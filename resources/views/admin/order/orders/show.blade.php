@@ -113,6 +113,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.order.fields.vat') }}
+                        </th>
+                        <td>
+                            {{ $order->vat }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.order.fields.total') }}
                         </th>
                         <td>
@@ -148,10 +156,10 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="order_order_details">
-            @includeIf('admin.orders.relationships.orderOrderDetails', ['orderDetails' => $order->orderOrderDetails])
+            @includeIf('admin.order.orders.relationships.orderOrderDetails', ['orderDetails' => $order->orderOrderDetails])
         </div>
         <div class="tab-pane" role="tabpanel" id="order_coupon_usages">
-            @includeIf('admin.orders.relationships.orderCouponUsages', ['couponUsages' => $order->orderCouponUsages])
+            @includeIf('admin.order.orders.relationships.orderCouponUsages', ['couponUsages' => $order->orderCouponUsages])
         </div>
     </div>
 </div>

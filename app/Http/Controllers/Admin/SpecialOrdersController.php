@@ -106,7 +106,7 @@ class SpecialOrdersController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.specialOrders.index');
+        return view('admin.order.specialOrders.index');
     }
 
     public function create()
@@ -119,7 +119,7 @@ class SpecialOrdersController extends Controller
 
         $categories = ProductCategory::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.specialOrders.create', compact('categories', 'stores', 'users'));
+        return view('admin.order.specialOrders.create', compact('categories', 'stores', 'users'));
     }
 
     public function store(StoreSpecialOrderRequest $request)
@@ -149,7 +149,7 @@ class SpecialOrdersController extends Controller
 
         $specialOrder->load('user', 'store', 'category');
 
-        return view('admin.specialOrders.edit', compact('categories', 'specialOrder', 'stores', 'users'));
+        return view('admin.order.specialOrders.edit', compact('categories', 'specialOrder', 'stores', 'users'));
     }
 
     public function update(UpdateSpecialOrderRequest $request, SpecialOrder $specialOrder)
@@ -179,7 +179,7 @@ class SpecialOrdersController extends Controller
 
         $specialOrder->load('user', 'store', 'category');
 
-        return view('admin.specialOrders.show', compact('specialOrder'));
+        return view('admin.order.specialOrders.show', compact('specialOrder'));
     }
 
     public function destroy(SpecialOrder $specialOrder)

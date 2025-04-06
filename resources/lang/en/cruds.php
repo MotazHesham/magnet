@@ -447,6 +447,8 @@ return [
             'coupon_discount_helper'  => ' ',
             'total'                   => 'Total',
             'total_helper'            => ' ',
+            'vat'                     => 'Vat',
+            'vat_helper'              => ' ',
             'shipping_cost'           => 'Shipping Cost',
             'shipping_cost_helper'    => ' ',
         ],

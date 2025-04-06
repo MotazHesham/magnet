@@ -12,7 +12,7 @@ class CreateSpecialOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->string('order_num')->nullable();
             $table->string('color')->nullable();
-            $table->longText('variations');
+            $table->longText('variations')->nullable();
             $table->longText('description')->nullable();
             $table->string('delivery_status');
             $table->string('offer_price_status');
@@ -21,6 +21,8 @@ class CreateSpecialOrdersTable extends Migration
             $table->longText('payment_data')->nullable();
             $table->longText('shipping_address')->nullable();
             $table->decimal('shipping_cost', 15, 2)->nullable();
+            $table->decimal('offer_price', 15, 2)->nullable();
+            $table->decimal('tax', 15, 2)->nullable();
             $table->decimal('total', 15, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -59,4 +59,17 @@ class Address extends Model
     {
         return $this->belongsTo(District::class, 'district_id');
     }
+
+    public function decodeDetails(){
+        return json_encode([
+            'id' => $this->id,
+            'name' => $this->name,
+            'address' => $this->address,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
+            'region_id' => $this->region_id,
+            'city_id' => $this->city_id,
+            'district_id' => $this->district_id,
+        ]);
+    }
 }

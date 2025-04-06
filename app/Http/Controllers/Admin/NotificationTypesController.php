@@ -21,7 +21,7 @@ class NotificationTypesController extends Controller
 
         $notificationTypes = NotificationType::where('user_type',request('user_type','customer'))->paginate(10);
 
-        return view('admin.notificationTypes.index',compact('notificationTypes'));
+        return view('admin.marketing.notificationTypes.index',compact('notificationTypes'));
     }
     public function store(StoreNotificationTypeRequest $request)
     {
@@ -34,7 +34,7 @@ class NotificationTypesController extends Controller
     {
         abort_if(Gate::denies('notification_type_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.notificationTypes.edit', compact('notificationType'));
+        return view('admin.marketing.notificationTypes.edit', compact('notificationType'));
     }
 
     public function update(UpdateNotificationTypeRequest $request, NotificationType $notificationType)

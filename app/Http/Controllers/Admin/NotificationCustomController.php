@@ -20,7 +20,7 @@ class NotificationCustomController extends Controller
 
         $notificationCustoms = NotificationCustom::with(['notification_type'])->get();
 
-        return view('admin.notificationCustoms.index', compact('notificationCustoms'));
+        return view('admin.marketing.notificationCustoms.index', compact('notificationCustoms'));
     }
     public function create()
     {
@@ -29,7 +29,7 @@ class NotificationCustomController extends Controller
         $notification_types = NotificationType::where('type','custom')->where('status',1)->get()
                             ->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.notificationCustoms.create', compact('notification_types'));
+        return view('admin.marketing.notificationCustoms.create', compact('notification_types'));
     }
 
 
@@ -70,7 +70,7 @@ class NotificationCustomController extends Controller
 
         $notificationCustom->load('notification_type');
 
-        return view('admin.notificationCustoms.edit', compact('notificationCustom'));
+        return view('admin.marketing.notificationCustoms.edit', compact('notificationCustom'));
     }
 
     public function update(Request $request, NotificationCustom $notificationCustom)
@@ -88,7 +88,7 @@ class NotificationCustomController extends Controller
 
         $notificationCustom->load('notification_type','users.notifiable');
 
-        return view('admin.notificationCustoms.show', compact('notificationCustom'));
+        return view('admin.marketing.notificationCustoms.show', compact('notificationCustom'));
     }
 
     public function destroy(NotificationCustom $notificationCustom)

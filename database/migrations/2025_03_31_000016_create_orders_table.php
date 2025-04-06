@@ -16,9 +16,9 @@ class CreateOrdersTable extends Migration
             $table->string('payment_status');
             $table->longText('payment_data')->nullable();
             $table->longText('shipping_address')->nullable();
-            $table->string('shipping_type')->nullable();
+            $table->string('shipping_type')->default('home_delivery')->nullable();
             $table->decimal('coupon_discount', 15, 2)->nullable();
-            $table->decimal('shipping_cost', 15, 2);
+            $table->decimal('shipping_cost', 15, 2); 
             $table->decimal('total', 15, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();

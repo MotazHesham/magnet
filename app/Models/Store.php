@@ -60,6 +60,11 @@ class Store extends Model implements HasMedia
         return $date->format('Y-m-d H:i:s');
     }
 
+    public static function boot()
+    {
+        parent::boot();
+        self::observe(new \App\Observers\StoreObserver);
+    }
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);

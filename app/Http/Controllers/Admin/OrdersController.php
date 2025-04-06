@@ -86,7 +86,7 @@ class OrdersController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.orders.index');
+        return view('admin.order.orders.index');
     }
 
     public function create()
@@ -97,7 +97,7 @@ class OrdersController extends Controller
 
         $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.orders.create', compact('stores', 'users'));
+        return view('admin.order.orders.create', compact('stores', 'users'));
     }
 
     public function store(StoreOrderRequest $request)
@@ -117,7 +117,7 @@ class OrdersController extends Controller
 
         $order->load('user', 'store');
 
-        return view('admin.orders.edit', compact('order', 'stores', 'users'));
+        return view('admin.order.orders.edit', compact('order', 'stores', 'users'));
     }
 
     public function update(UpdateOrderRequest $request, Order $order)
@@ -133,7 +133,7 @@ class OrdersController extends Controller
 
         $order->load('user', 'store', 'orderOrderDetails', 'orderCouponUsages');
 
-        return view('admin.orders.show', compact('order'));
+        return view('admin.order.orders.show', compact('order'));
     }
 
     public function destroy(Order $order)

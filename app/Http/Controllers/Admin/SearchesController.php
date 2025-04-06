@@ -52,6 +52,6 @@ class SearchesController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.searches.index');
+        return view('admin.marketing.searches.index');
     }
 }

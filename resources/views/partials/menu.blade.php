@@ -229,17 +229,7 @@
                     </i>
                     {{ trans('cruds.orderManagment.title') }}
                 </a>
-                <ul class="c-sidebar-nav-dropdown-items">
-                    @can('order_detail_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.order-details.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/order-details") || request()->is("admin/order-details/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-align-left c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.orderDetail.title') }}
-                            </a>
-                        </li>
-                    @endcan
+                <ul class="c-sidebar-nav-dropdown-items"> 
                     @can('order_access')
                         <li class="c-sidebar-nav-item">
                             <a href="{{ route("admin.orders.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/orders") || request()->is("admin/orders/*") ? "c-active" : "" }}">

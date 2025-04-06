@@ -151,5 +151,5 @@ class Product extends Model implements HasMedia
         });
 
         return $files;
-    }
+    } 
 }

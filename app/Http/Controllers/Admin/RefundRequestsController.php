@@ -78,7 +78,7 @@ class RefundRequestsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.refundRequests.index');
+        return view('admin.order.refundRequests.index');
     }
 
     public function create()
@@ -95,7 +95,7 @@ class RefundRequestsController extends Controller
 
         $stores = Store::pluck('store_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.refundRequests.create', compact('order_details', 'orders', 'special_orders', 'stores', 'users'));
+        return view('admin.order.refundRequests.create', compact('order_details', 'orders', 'special_orders', 'stores', 'users'));
     }
 
     public function store(StoreRefundRequestRequest $request)
@@ -133,7 +133,7 @@ class RefundRequestsController extends Controller
 
         $refundRequest->load('user', 'special_order', 'order', 'order_detail', 'store');
 
-        return view('admin.refundRequests.edit', compact('order_details', 'orders', 'refundRequest', 'special_orders', 'stores', 'users'));
+        return view('admin.order.refundRequests.edit', compact('order_details', 'orders', 'refundRequest', 'special_orders', 'stores', 'users'));
     }
 
     public function update(UpdateRefundRequestRequest $request, RefundRequest $refundRequest)
@@ -171,7 +171,7 @@ class RefundRequestsController extends Controller
 
         $refundRequest->load('user', 'special_order', 'order', 'order_detail', 'store');
 
-        return view('admin.refundRequests.show', compact('refundRequest'));
+        return view('admin.order.refundRequests.show', compact('refundRequest'));
     }
 
     public function destroy(RefundRequest $refundRequest)

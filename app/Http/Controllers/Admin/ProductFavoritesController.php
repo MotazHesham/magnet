@@ -53,7 +53,7 @@ class ProductFavoritesController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.productFavorites.index');
+        return view('admin.marketing.productFavorites.index');
     }
 
 }

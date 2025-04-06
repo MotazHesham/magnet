@@ -9,8 +9,7 @@ use App\Http\Requests\Admin\StoreStoreRequest;
 use App\Http\Requests\Admin\UpdateStoreRequest;
 use App\Models\City;
 use App\Models\ProductCategory;
-use App\Models\Store;
-use App\Models\StoreCity;
+use App\Models\Store; 
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
@@ -133,16 +132,6 @@ class StoresController extends Controller
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
         ]);
-
-        $storeCities = [];
-        foreach(City::all() as $city){
-            array_push($storeCities,[
-                'store_id' => $store->id,
-                'city_id' => $city->id,
-                'price' => $city->shipping_cost,
-            ]);
-        }
-        StoreCity::insert($storeCities);
 
         $store->categories()->sync($request->input('categories', []));
 

@@ -10,7 +10,9 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->decimal('price', 15, 2)->nullable();
+            $table->decimal('price', 15, 2);
+            $table->decimal('purchase_price', 15, 2)->nullable();
+            $table->decimal('tax', 15, 2)->nullable();
             $table->string('note')->nullable();
             $table->string('variation')->nullable();
             $table->integer('quantity')->nullable();

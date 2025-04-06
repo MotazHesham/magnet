@@ -53,6 +53,6 @@ class ProductStockRememberController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.productStockRemembers.index');
+        return view('admin.marketing.productStockRemembers.index');
     } 
 }

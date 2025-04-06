@@ -21,12 +21,12 @@ class Order extends Model
     ];
 
     public const PAYMENT_METHOD_SELECT = [
-        'cash' => 'الدفع عند الأستلام',
+        'edfapay' => 'edfapay',
     ];
 
     public const SHIPPING_TYPE_SELECT = [
-        'seller_wise'  => 'seller_wise',
-        'product_wise' => 'product_wise',
+        'home_delivery'  => 'Home Delivery', 
+        // maybe carrier in the future
     ];
 
     public const PAYMENT_STATUS_SELECT = [
@@ -45,7 +45,7 @@ class Order extends Model
         'shipping_address',
         'shipping_type',
         'coupon_discount',
-        'shipping_cost',
+        'shipping_cost', 
         'total',
         'created_at',
         'updated_at',

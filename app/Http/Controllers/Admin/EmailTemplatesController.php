@@ -20,13 +20,13 @@ class EmailTemplatesController extends Controller
         
         $emailTemplates = EmailTemplate::where('user_type',request('user_type','customer'))->get();
 
-        return view('admin.emailTemplates.index',compact('emailTemplates'));
+        return view('admin.marketing.emailTemplates.index',compact('emailTemplates'));
     } 
     public function edit(EmailTemplate $emailTemplate)
     {
         abort_if(Gate::denies('email_template_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.emailTemplates.edit', compact('emailTemplate'));
+        return view('admin.marketing.emailTemplates.edit', compact('emailTemplate'));
     }
 
     public function update(UpdateEmailTemplateRequest $request, EmailTemplate $emailTemplate)

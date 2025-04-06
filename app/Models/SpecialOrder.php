@@ -67,6 +67,8 @@ class SpecialOrder extends Model implements HasMedia
         'payment_data',
         'shipping_address',
         'shipping_cost',
+        'offer_price',
+        'tax',
         'total',
         'created_at',
         'updated_at',
