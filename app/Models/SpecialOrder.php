@@ -28,7 +28,7 @@ class SpecialOrder extends Model implements HasMedia
     ];
 
     public const PAYMENT_METHOD_SELECT = [
-        'cash' => 'الدفع عند الأستلام',
+        'edfapay' => 'edfapay',
     ];
 
     public const PAYMENT_STATUS_SELECT = [
@@ -80,6 +80,11 @@ class SpecialOrder extends Model implements HasMedia
         return $date->format('Y-m-d H:i:s');
     }
 
+    public static function boot()
+    {
+        parent::boot();
+        self::observe(new \App\Observers\SpecialOrderObserver);
+    }
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);

@@ -72,7 +72,7 @@ class Order extends Model
     public static function boot()
     {
         parent::boot();
-        self::observe(new \App\Observers\OrderActionObserver);
+        self::observe(new \App\Observers\OrderObserver);
     }
 
     public function orderOrderDetails()

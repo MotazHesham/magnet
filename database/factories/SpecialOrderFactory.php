@@ -40,8 +40,7 @@ class SpecialOrderFactory extends Factory
         if($address){
             $shippingAddress = $address->decodeDetails();
         }
-        return [
-            'order_num' => 'Special-' . $i++,
+        return [ 
             'user_id' => $user->id,
             'store_id' => $stores[array_rand($stores,1)],
             'category_id' => $categories[array_rand($categories,1)],  

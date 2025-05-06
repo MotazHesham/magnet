@@ -36,7 +36,6 @@ class OrderFactory extends Factory
             $shippingAddress = $address->decodeDetails();
         }
         return [
-            'order_num' => 'Order-' . $i++,
             'user_id' => $user->id,
             'store_id' => $stores[array_rand($stores,1)],
             'delivery_status' => $deliveryStatus[array_rand($deliveryStatus,1)],

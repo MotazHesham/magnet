@@ -19,11 +19,11 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         $stores = Store::pluck('id')->toArray(); 
-        $discountTypes = array_keys(Product::DISCOUNT_TYPE_SELECT);
-        $i = 1;
+        $discountTypes = array_keys(Product::DISCOUNT_TYPE_SELECT); 
+        $store_id = $stores[array_rand($stores,1)];
         return [ 
-            'store_id' => $stores[array_rand($stores,1)],
-            'name' => 'Product ' . $i++,  
+            'store_id' => $store_id,
+            'name' => 'Product ' . $store_id . rand(0000,9999),  
             'refundable' => rand(0,1),
             'featured' => rand(0,1),
             'approved' => rand(0,1),

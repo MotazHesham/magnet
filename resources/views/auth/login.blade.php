@@ -1,81 +1,122 @@
-@extends('layouts.app')
-@section('content')
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card mx-4">
-            <div class="card-body p-4">
-                <h1>{{ trans('panel.site_title') }}</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-                <p class="text-muted">{{ trans('global.login') }}</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>منصة ترميم</title>
+    <!-- External CSS -->
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/login/bootstrap.css') }}">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/login/icon.png') }}">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/login/wookie-icons.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/login/login-three.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/earlyaccess/amiri.css');
 
-                @if(session('message'))
-                    <div class="alert alert-info" role="alert">
-                        {{ session('message') }}
+        body {
+            font-family: 'amiri';
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loader -->
+    <div class="loaderWrapper">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </div>
+    <!-- End Loader -->
+    <div
+        style="background: url('{{ asset('assets/login/login-background2.jpg') }}') no-repeat;  background-size: cover;">
+        <div class="row justify-content-center no-gutters login-box-1 ">
+            <div class="col-md-6 d-none d-md-block">
+                <div class="login_left ">
+                    <div class="loginCenter">
+                        <h1 class="text-center">{{ trans('panel.site_title') }}</h1>
+                        <p>متجر إلكتروني لبيع المنتجات المختلفة , من خلاله يمكنك التسجيل والدخول للمنصة والاستفادة من جميع المزايا المتاحة</p>
+                        <ul class="social-icons">
+                            <li><a href="https://www.facebook.com" target="_blank"><i class="icon-g-64"></i></a></li>
+                            <li><a href="https://www.gmail.com" target="_blank"><i class="icon-g-87"></i></a></li>
+                            <li><a href="https://www.instagram.com" target="_blank"><i class="icon-g-67"></i></a></li>
+                            <li><a href="https://www.youtube.com" target="_blank"><i class="icon-g-76"></i></a></li>
+                        </ul>
                     </div>
-                @endif
-
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <i class="fa fa-user"></i>
-                            </span>
-                        </div>
-
-                        <input id="email" name="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required autocomplete="email" autofocus placeholder="{{ trans('global.login_email') }}" value="{{ old('email', null) }}">
-
-                        @if($errors->has('email'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('email') }}
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="login_right">
+                    <div class="loginCenter">
+                        <div class="loginIcon"><i class="icon-f-76"></i></div>
+                        <h2>تسجيل الدخول لحسابك</h2>
+                        @if(session('message'))
+                            <div class="alert alert-info" role="alert">
+                                {{ session('message') }}
                             </div>
                         @endif
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                        </div>
-
-                        <input id="password" name="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required placeholder="{{ trans('global.login_password') }}">
-
-                        @if($errors->has('password'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('password') }}
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="form-group">
+                                <input type="email" name="email" class="input-field" placeholder="البريد الإلكتروني" required autocomplete="email" autofocus value="{{ old('email', null) }}">
+                                @if($errors->has('email'))
+                                    <div class="invalid-feedback" style="display: block !important">
+                                        {{ $errors->first('email') }}
+                                    </div>
+                                @endif
                             </div>
-                        @endif
+                            <div class="form-group">
+                                <input type="password" name="password" class="input-field" placeholder="كلمة المرور" required>
+                                @if($errors->has('password'))
+                                    <div class="invalid-feedback" style="display: block !important">
+                                        {{ $errors->first('password') }}
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check-block">
+                                    <div class="form-check checkbox-theme">
+                                        <input class="form-check-input" type="checkbox" name="remember" id="rememberMe">
+                                        <label class="form-check-label" for="rememberMe">
+                                            تذكرني
+                                        </label>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="custom-btn">تسجيل الدخول</button>
+                            </div> 
+                        </form>
                     </div>
-
-                    <div class="input-group mb-4">
-                        <div class="form-check checkbox">
-                            <input class="form-check-input" name="remember" type="checkbox" id="remember" style="vertical-align: middle;" />
-                            <label class="form-check-label" for="remember" style="vertical-align: middle;">
-                                {{ trans('global.remember_me') }}
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <button type="submit" class="btn btn-primary px-4">
-                                {{ trans('global.login') }}
-                            </button>
-                        </div>
-                        <div class="col-6 text-right">
-                            @if(Route::has('password.request'))
-                                <a class="btn btn-link px-0" href="{{ route('password.request') }}">
-                                    {{ trans('global.forgot_password') }}
-                                </a><br>
-                            @endif
-                            <a class="btn btn-link px-0" href="{{ route('register') }}">
-                                {{ trans('global.register') }}
-                            </a>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    <!-- External JS libraries -->
+    <script src="{{ asset('assets/login/jquery-2.2.4.min.js') }}"></script>
+    <script src="{{ asset('assets/login/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/login/bootstrap.min.js') }}"></script>
+    <!-- Custom JS Script -->
+    <script type="text/javascript">
+        $(window).load(function() {
+            // Animate loader off screen
+            $(".loaderWrapper").fadeOut("slow");;
+        });
+    </script>
+</body>
+
+</html>

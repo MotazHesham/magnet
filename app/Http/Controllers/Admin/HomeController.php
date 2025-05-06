@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
@@ -19,6 +20,7 @@ class HomeController
     
     public function index()
     {
+        Model::preventLazyLoading(false); 
         $settings1 = [
             'chart_title'           => 'Customers',
             'chart_type'            => 'number_block',

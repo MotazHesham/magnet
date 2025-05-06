@@ -65,8 +65,13 @@
                                 {{ $slider->sub_title ?? '' }}
                             </td>
                             <td>
-                                <span style="display:none">{{ $slider->publish ?? '' }}</span>
-                                <input type="checkbox" disabled="disabled" {{ $slider->publish ? 'checked' : '' }}>
+                                <label class="c-switch c-switch-pill c-switch-success">
+                                    <input onchange="updateStatuses(this, 'publish', 'App\\Models\\Slider')" 
+                                        value="{{$slider->id}}" 
+                                        type="checkbox"
+                                        class="c-switch-input" {{$slider->publish ? 'checked' : ''}}>
+                                    <span class="c-switch-slider"></span>
+                                </label>
                             </td>
                             <td>
                                 @can('slider_show')
