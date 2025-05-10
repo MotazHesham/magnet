@@ -3,7 +3,7 @@
     @can('store_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.stores.create') }}">
+                <a class="btn btn-success-light rounded-pill" href="{{ route('admin.stores.create') }}">
                     {{ trans('global.add') }} {{ trans('cruds.store.title_singular') }}
                 </a>
             </div>
@@ -11,6 +11,7 @@
     @endcan
     <div class="card">
         <div class="card-header">
+       <div class="card-title">
             {{ trans('cruds.store.title') }}
         </div>
 
@@ -67,7 +68,7 @@
                 let deleteButton = {
                     text: deleteButtonTrans,
                     url: "{{ route('admin.stores.massDestroy') }}",
-                    className: 'btn-danger',
+                    className: 'btn-danger-light rounded-pill',
                     action: function(e, dt, node, config) {
                         var ids = $.map(dt.rows({
                             selected: true

@@ -81,6 +81,13 @@ if (!function_exists('combinations')) {
     }
 } 
 
+if (!function_exists('getNonImage')) {
+    function getNonImage()
+    {
+        return url('no-image.png');
+    }
+}
+
 if (!function_exists('getRequest')) {
     function getRequest($key,$default = null){
         return request()->has($key) && request($key) !== null ? request($key) : $default;

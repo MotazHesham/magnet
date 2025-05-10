@@ -21,6 +21,8 @@ class Permission extends Model
 
     protected $fillable = [
         'title',
+        'parent',
+        'type',
         'created_at',
         'updated_at',
         'deleted_at',

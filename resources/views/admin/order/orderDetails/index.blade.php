@@ -3,7 +3,7 @@
 @can('order_detail_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.order-details.create') }}">
+            <a class="btn btn-success-light rounded-pill" href="{{ route('admin.order-details.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.orderDetail.title_singular') }}
             </a>
         </div>
@@ -70,7 +70,7 @@
   let deleteButton = {
     text: deleteButtonTrans,
     url: "{{ route('admin.order-details.massDestroy') }}",
-    className: 'btn-danger',
+    className: 'btn-danger-light rounded-pill',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).data(), function (entry) {
           return entry.id

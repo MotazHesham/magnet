@@ -3,7 +3,7 @@
     @can('store_withdraw_request_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.store-withdraw-requests.create') }}">
+                <a class="btn btn-success-light rounded-pill" href="{{ route('admin.store-withdraw-requests.create') }}">
                     {{ trans('global.add') }} {{ trans('cruds.storeWithdrawRequest.title_singular') }}
                 </a>
             </div>
@@ -12,6 +12,7 @@
 
     <div class="card">
         <div class="card-header">
+       <div class="card-title">
             {{ trans('cruds.storeWithdrawRequest.title') }}
         </div>
 

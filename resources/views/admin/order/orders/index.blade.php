@@ -3,6 +3,7 @@
 
     <div class="card">
         <div class="card-header">
+       <div class="card-title">
             {{ trans('cruds.order.title') }}
         </div>
 

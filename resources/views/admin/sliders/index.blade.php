@@ -3,7 +3,7 @@
 @can('slider_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.sliders.create') }}">
+            <a class="btn btn-success-light rounded-pill" href="{{ route('admin.sliders.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.slider.title_singular') }}
             </a>
         </div>
@@ -64,14 +64,15 @@
                             <td>
                                 {{ $slider->sub_title ?? '' }}
                             </td>
-                            <td>
-                                <label class="c-switch c-switch-pill c-switch-success">
+                            <td> 
+                                <div class="custom-toggle-switch toggle-md ms-2">
                                     <input onchange="updateStatuses(this, 'publish', 'App\\Models\\Slider')" 
+                                        id="{{$slider->id}}" 
                                         value="{{$slider->id}}" 
                                         type="checkbox"
                                         class="c-switch-input" {{$slider->publish ? 'checked' : ''}}>
-                                    <span class="c-switch-slider"></span>
-                                </label>
+                                    <label for="{{$slider->id}}"  class="label-success mb-2"></label>
+                                </div>
                             </td>
                             <td>
                                 @can('slider_show')
@@ -117,7 +118,7 @@
   let deleteButton = {
     text: deleteButtonTrans,
     url: "{{ route('admin.sliders.massDestroy') }}",
-    className: 'btn-danger',
+    className: 'btn-danger-light rounded-pill',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
           return $(entry).data('entry-id')

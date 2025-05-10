@@ -109,8 +109,8 @@ return [
     'url'         => ':attribute نوعة غير صحيح',
     'uuid'        => ':attribute يجب أن يكون UUID صالحًا.',
     'custom'      => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'phone' => [
+            'regex' => 'يجب أن يبدأ رقم الموبايل بـ 05 ويحتوي على 10 أرقام'
         ],
     ],
     'reserved_word'                  => ':attribute  يحتوي على كلمة محجوزة',

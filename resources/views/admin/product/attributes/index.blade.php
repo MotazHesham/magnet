@@ -45,7 +45,7 @@
                                         </td>
                                         <td>
                                             @foreach($attribute->attributeAttributeValues as $attributeValue)
-                                                <span class="badge badge-light">{{ $attributeValue->value ?? '' }}</span>
+                                                <span class="badge bg-info-transparent">{{ $attributeValue->value ?? '' }}</span>
                                             @endforeach
                                         </td>
                                         <td>

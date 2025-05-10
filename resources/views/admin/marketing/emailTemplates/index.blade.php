@@ -3,6 +3,7 @@
 
     <div class="card">
         <div class="card-header">
+       <div class="card-title">
             {{ trans('cruds.emailTemplate.title') }}
             <div class="mt-4">
                 <a href="{{ route('admin.email-templates.index',['user_type' => 'customer']) }}" 

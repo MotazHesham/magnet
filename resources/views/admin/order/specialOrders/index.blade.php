@@ -3,7 +3,7 @@
     @can('special_order_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.special-orders.create') }}">
+                <a class="btn btn-success-light rounded-pill" href="{{ route('admin.special-orders.create') }}">
                     {{ trans('global.add') }} {{ trans('cruds.specialOrder.title_singular') }}
                 </a>
             </div>
@@ -11,6 +11,7 @@
     @endcan
     <div class="card">
         <div class="card-header">
+       <div class="card-title">
             {{ trans('cruds.specialOrder.title') }}
         </div>
 

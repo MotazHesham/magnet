@@ -90,6 +90,10 @@ class Product extends Model implements HasMedia
             return $this->current_stock;
         }
     }
+    public function orderOrderDetails()
+    {
+        return $this->hasMany(OrderDetail::class, 'product_id', 'id');
+    }
     public function productProductReviews()
     {
         return $this->hasMany(ProductReview::class, 'product_id', 'id');

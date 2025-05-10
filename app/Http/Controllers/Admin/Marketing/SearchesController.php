@@ -31,5 +31,5 @@ class SearchesController extends Controller
         }
 
         return view('admin.marketing.searches.index');
-    }
+    } 
 }

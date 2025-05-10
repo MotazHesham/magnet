@@ -2,8 +2,8 @@
 
 return [
     'userManagement' => [
-        'title'          => 'إدارة المستخدمين',
-        'title_singular' => 'إدارة المستخدمين',
+        'title'          => 'مستخدمين النظام',
+        'title_singular' => 'مستخدمين النظام',
     ],
     'permission' => [
         'title'          => 'الصلاحيات',
@@ -263,6 +263,8 @@ return [
             'purchase_price_helper'     => ' ',
             'unit_price'                => 'سعر البيع',
             'unit_price_helper'         => ' ',
+            'categories'                => 'الفئات',
+            'categories_helper'         => ' ',
         ],
     ],
     'productFavorite' => [
@@ -421,7 +423,7 @@ return [
             'id_helper'               => ' ',
             'order_num'               => 'رقم الطلب',
             'order_num_helper'        => ' ',
-            'user'                    => 'المستخدم',
+            'user'                    => 'العميل',
             'user_helper'             => ' ',
             'created_at'              => 'تم الإضافة في',
             'created_at_helper'       => ' ',

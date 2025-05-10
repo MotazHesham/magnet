@@ -8,6 +8,7 @@
         <div class="card-body">
             <form method="POST" action="{{ route('admin.users.store') }}" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="user_type" value="staff" id="">
                 <div class="form-group">
                     <label class="required" for="name">{{ trans('cruds.user.fields.name') }}</label>
                     <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name"
@@ -40,21 +41,7 @@
                         </div>
                     @endif
                     <span class="help-block">{{ trans('cruds.user.fields.password_helper') }}</span>
-                </div>
-                <div class="form-group">
-                    <div class="form-check {{ $errors->has('approved') ? 'is-invalid' : '' }}">
-                        <input type="hidden" name="approved" value="0">
-                        <input class="form-check-input" type="checkbox" name="approved" id="approved" value="1"
-                            {{ old('approved', 0) == 1 ? 'checked' : '' }}>
-                        <label class="form-check-label" for="approved">{{ trans('cruds.user.fields.approved') }}</label>
-                    </div>
-                    @if ($errors->has('approved'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('approved') }}
-                        </div>
-                    @endif
-                    <span class="help-block">{{ trans('cruds.user.fields.approved_helper') }}</span>
-                </div>
+                </div> 
                 <div class="form-group">
                     <label class="required" for="roles">{{ trans('cruds.user.fields.roles') }}</label>
                     <div style="padding-bottom: 4px">
@@ -98,21 +85,7 @@
                         </div>
                     @endif
                     <span class="help-block">{{ trans('cruds.user.fields.photo_helper') }}</span>
-                </div>
-                <div class="form-group">
-                    <div class="form-check {{ $errors->has('block') ? 'is-invalid' : '' }}">
-                        <input type="hidden" name="block" value="0">
-                        <input class="form-check-input" type="checkbox" name="block" id="block" value="1"
-                            {{ old('block', 0) == 1 ? 'checked' : '' }}>
-                        <label class="form-check-label" for="block">{{ trans('cruds.user.fields.block') }}</label>
-                    </div>
-                    @if ($errors->has('block'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('block') }}
-                        </div>
-                    @endif
-                    <span class="help-block">{{ trans('cruds.user.fields.block_helper') }}</span>
-                </div>
+                </div> 
                 <div class="form-group">
                     <label for="city_id">{{ trans('cruds.user.fields.city') }}</label>
                     <select class="form-control select2 {{ $errors->has('city') ? 'is-invalid' : '' }}" name="city_id"

@@ -3,7 +3,7 @@
 @can('permission_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.permissions.create') }}">
+            <a class="btn btn-success-light rounded-pill" href="{{ route('admin.permissions.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.permission.title_singular') }}
             </a>
         </div>
@@ -89,7 +89,7 @@
   let deleteButton = {
     text: deleteButtonTrans,
     url: "{{ route('admin.permissions.massDestroy') }}",
-    className: 'btn-danger',
+    className: 'btn-danger-light rounded-pill',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
           return $(entry).data('entry-id')

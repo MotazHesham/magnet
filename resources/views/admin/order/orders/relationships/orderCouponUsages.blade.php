@@ -1,7 +1,7 @@
 @can('coupon_usage_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.coupon-usages.create') }}">
+            <a class="btn btn-success-light rounded-pill" href="{{ route('admin.coupon-usages.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.couponUsage.title_singular') }}
             </a>
         </div>
@@ -103,7 +103,7 @@
   let deleteButton = {
     text: deleteButtonTrans,
     url: "{{ route('admin.coupon-usages.massDestroy') }}",
-    className: 'btn-danger',
+    className: 'btn-danger-light rounded-pill',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
           return $(entry).data('entry-id')

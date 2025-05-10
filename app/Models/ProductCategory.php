@@ -67,6 +67,11 @@ class ProductCategory extends Model implements HasMedia
     public function parent()
     {
         return $this->belongsTo(self::class, 'parent_id');
+    } 
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_product_category', 'product_category_id', 'product_id');
     }
 
     public function getBannerAttribute()

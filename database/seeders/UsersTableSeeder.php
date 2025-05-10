@@ -13,8 +13,8 @@ class UsersTableSeeder extends Seeder
             [
                 'id'                 => 1,
                 'name'               => 'Admin',
-                'email'              => 'admin@admin.com',
-                'password'           => bcrypt('password'),
+                'email'              => app()->isProduction() ? 'support@magnet.com' : 'admin@admin.com',
+                'password'           => app()->isProduction() ? bcrypt('1L6cA8csSwrtgry') : bcrypt('password'),
                 'remember_token'     => null,
                 'approved'           => 1,
                 'verified'           => 1,

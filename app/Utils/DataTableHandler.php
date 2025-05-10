@@ -51,14 +51,16 @@ class DataTableHandler
                 }
 
                 $disabled = isset($options['disabled']) && $options['disabled'] === true ? 'disabled' : '';
-                return '<label class="c-switch c-switch-pill c-switch-success">
+                
+                return '<div class="custom-toggle-switch toggle-md ms-2">
                     <input onchange="updateStatuses(this, \'' . $value . '\', \'' . addslashes($modelClass) . '\')" 
                         value="' . $id . '" 
+                        id="' . $column . $id . '"
                         type="checkbox"
                         ' . $disabled . ' 
-                        class="c-switch-input" ' . $checked . '>
-                    <span class="c-switch-slider"></span>
-                </label>';
+                        ' . $checked . '>
+                    <label for="' . $column . $id . '" class="label-success mb-2"></label>
+                </div>';
             },
             'image' => function ($row) use ($column, $options) {
                 if ($photo = $row->{$column}) {
@@ -77,7 +79,7 @@ class DataTableHandler
             'relation-many' => function ($row) use ($column, $options) {
                 $labels = [];
                 foreach ($row->{$column} as $item) {
-                    $labels[] = sprintf('<span class="badge badge-light badge-many">%s</span>', $item->{$options['column']});
+                    $labels[] = sprintf('<span class="badge bg-info-transparent">%s</span>', $item->{$options['column']});
                 }
 
                 return implode(' ', $labels);

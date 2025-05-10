@@ -3,7 +3,7 @@
     @can('notification_custom_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.notification-customs.create') }}">
+                <a class="btn btn-success-light rounded-pill" href="{{ route('admin.notification-customs.create') }}">
                     {{ trans('global.add') }} {{ trans('cruds.notificationCustom.title_singular') }}
                 </a>
             </div>
@@ -11,6 +11,7 @@
     @endcan
     <div class="card">
         <div class="card-header">
+       <div class="card-title">
             {{ trans('cruds.notificationCustom.title_singular') }} {{ trans('global.list') }}
         </div>
 

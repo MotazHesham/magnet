@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>منصة ترميم</title>
+    <title>{{ trans('panel.site_title') }}</title>
     <!-- External CSS -->
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/login/bootstrap.css') }}">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/login/icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/login/icon.svg') }}">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/login/wookie-icons.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/login/login-three.css') }}">
@@ -43,7 +43,7 @@
     </div>
     <!-- End Loader -->
     <div
-        style="background: url('{{ asset('assets/login/login-background2.jpg') }}') no-repeat;  background-size: cover;">
+        style="background: url('{{ asset('assets/login/login-background.jpg') }}') no-repeat;  background-size: cover;">
         <div class="row justify-content-center no-gutters login-box-1 ">
             <div class="col-md-6 d-none d-md-block">
                 <div class="login_left ">

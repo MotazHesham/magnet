@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\Customer\CustomersController;
 use App\Http\Controllers\Admin\Customer\WalletTransactionsController;
 use App\Http\Controllers\Admin\Faq\FaqCategoryController;
 use App\Http\Controllers\Admin\Faq\FaqQuestionController;
+use App\Http\Controllers\Admin\GlobalSearchController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Marketing\CartController;
 use App\Http\Controllers\Admin\Marketing\EmailTemplatesController;
@@ -285,7 +286,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth','st
     Route::delete('email-templates/destroy', [EmailTemplatesController::class,'massDestroy'])->name('email-templates.massDestroy');
     Route::post('email-templates/media', [EmailTemplatesController::class,'storeMedia'])->name('email-templates.storeMedia');
     Route::post('email-templates/ckmedia', [EmailTemplatesController::class,'storeCKEditorImages'])->name('email-templates.storeCKEditorImages');
-    Route::resource('email-templates', EmailTemplatesController::class);
+    Route::resource('email-templates', EmailTemplatesController::class); 
 
     // Searches
     Route::resource('searches', SearchesController::class, ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
@@ -296,6 +297,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth','st
 
     // Sms Templates 
     Route::resource('sms-templates', SmsTemplatesController::class, ['except' => ['create', 'store', 'show', 'destroy']]);
+
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], function () { 

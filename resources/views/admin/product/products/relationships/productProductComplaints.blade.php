@@ -70,7 +70,7 @@
                 let deleteButton = {
                     text: deleteButtonTrans,
                     url: "{{ route('admin.product-complaints.massDestroy') }}",
-                    className: 'btn-danger',
+                    className: 'btn-danger-light rounded-pill',
                     action: function(e, dt, node, config) {
                         var ids = $.map(dt.rows({
                             selected: true
